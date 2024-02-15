@@ -1,0 +1,5 @@
+programme test {
+    entier i ; entier j ; // Déclaration de deux variables
+    i := 57 ; // Affectation de la valeur 57 à la variable i
+    ecrire i ; // Affichage de la valeur de i
+}

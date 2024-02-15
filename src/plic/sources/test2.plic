@@ -1,0 +1,7 @@
+programme autreTest {
+    entier k ; // déclaration de k
+    k := 2 ; // affectation de k
+    ecrire k ; // affichage de k
+    k := 3 ; // affectation de k
+    ecrire k ; // affichage de k
+}
