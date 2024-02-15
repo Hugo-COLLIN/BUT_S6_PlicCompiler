@@ -2,14 +2,20 @@ package plic.analyse;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+//import java.util.ArrayList;
+//import java.util.Collection;
+//import java.util.List;
 
 public class AnalyseurSyntaxique
 {
     private final AnalyseurLexical analex;
     private String uniteCourante;
 
+//    private String[] motsReserves;
+
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
         this.analex = new AnalyseurLexical(file);
+//        this.motsReserves = ["programme"]
     }
 
     public void analyse() throws ErreurSyntaxique {
@@ -26,18 +32,41 @@ public class AnalyseurSyntaxique
     }
 
     private void analyseProg() throws ErreurSyntaxique {
-        if (!this.uniteCourante.equals("programme")) {
-            throw new ErreurSyntaxique("Erreur : programme attendu");
-        }
-        this.uniteCourante = this.analex.next();
+        analyseTerminal("programme");
 
+        analyseIdentificateur();
+        this.analyseBloc();
+    }
+
+    private void analyseIdentificateur() throws ErreurSyntaxique {
         if (!this.estIdf()) {
             throw new ErreurSyntaxique("Erreur : identificateur attendu (lettres uniquement)");
         }
         this.uniteCourante = this.analex.next();
     }
 
+    private void analyseTerminal(String terminal) throws ErreurSyntaxique {
+        if (!this.uniteCourante.equals(terminal)) {
+            throw new ErreurSyntaxique("Erreur : " + terminal + " attendu");
+        }
+        this.uniteCourante = this.analex.next();
+    }
+
     private boolean estIdf() {
         return this.uniteCourante.matches("[a-zA-Z]+") && !this.uniteCourante.equals("programme") && !this.uniteCourante.equals("EOF");
+    }
+
+    private void analyseBloc() throws ErreurSyntaxique {
+        analyseTerminal("{");
+        analyseInstruction(); // tester si "entier"
+        analyseTerminal("}");
+    }
+
+    private void analyseInstruction() throws ErreurSyntaxique {
+        if (this.uniteCourante.equals("entier")) {
+            this.uniteCourante = this.analex.next();
+            analyseIdentificateur();
+            analyseTerminal(";");
+        }
     }
 }
