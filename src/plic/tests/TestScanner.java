@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 public class TestScanner {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("C:\\Documents\\HugoC\\Git\\BUT\\BUT_S6_PLIC\\src\\plic\\sources\\test1.plic");
+        File file = new File("src/plic/sources/test1.plic");
 
 //        Scanner sc = new Scanner(file);
         AnalyseurLexical sc = new AnalyseurLexical(file);
