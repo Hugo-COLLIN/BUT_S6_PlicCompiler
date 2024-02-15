@@ -17,6 +17,12 @@ public class AnalyseurSyntaxique
         this.uniteCourante = this.analex.next();
         //Analyser le texte
         this.analyseProg();
+        // Vérifier la fin du fichier
+        if (!this.uniteCourante.equals("EOF")) {
+            throw new ErreurSyntaxique("Erreur : fin de fichier attendue");
+        }
+        // Fermer le fichier
+        this.analex.close();
     }
 
     private void analyseProg() throws ErreurSyntaxique {
