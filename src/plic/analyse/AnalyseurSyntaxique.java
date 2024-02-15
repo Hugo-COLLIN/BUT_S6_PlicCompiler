@@ -32,7 +32,7 @@ public class AnalyseurSyntaxique
         this.uniteCourante = this.analex.next();
 
         if (!this.estIdf()) {
-            throw new ErreurSyntaxique("Erreur : identificateur attendu (only letters)");
+            throw new ErreurSyntaxique("Erreur : identificateur attendu (lettres uniquement)");
         }
         this.uniteCourante = this.analex.next();
     }
