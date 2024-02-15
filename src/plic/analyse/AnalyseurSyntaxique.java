@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 public class AnalyseurSyntaxique
 {
-    private AnalyseurLexical analex;
+    private final AnalyseurLexical analex;
     private String uniteCourante;
 
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
@@ -30,5 +30,14 @@ public class AnalyseurSyntaxique
             throw new ErreurSyntaxique("Erreur : programme attendu");
         }
         this.uniteCourante = this.analex.next();
+
+        if (!this.estIdf()) {
+            throw new ErreurSyntaxique("Erreur : identificateur attendu (only letters)");
+        }
+        this.uniteCourante = this.analex.next();
+    }
+
+    private boolean estIdf() {
+        return this.uniteCourante.matches("[a-zA-Z]+") && !this.uniteCourante.equals("programme");
     }
 }
