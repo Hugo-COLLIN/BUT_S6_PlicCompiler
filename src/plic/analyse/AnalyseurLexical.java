@@ -28,4 +28,8 @@ public class AnalyseurLexical {
     public boolean hasNext() {
         return scanner.hasNext();
     }
+
+    public void close() {
+        scanner.close();
+    }
 }

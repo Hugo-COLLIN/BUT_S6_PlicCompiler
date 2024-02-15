@@ -5,3 +5,5 @@ programme autreTest {
     k := 3 ; // affectation de k
     ecrire k ; // affichage de k
 }
+
+// programme qui affiche 2 puis 3 // truc de ouf

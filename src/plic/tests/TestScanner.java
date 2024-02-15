@@ -16,5 +16,6 @@ public class TestScanner {
         while (sc.hasNext()) {
             System.out.println(sc.next());
         }
+        sc.close();
     }
 }
