@@ -15,7 +15,7 @@ public class AnalyseurLexical {
 
     public String next() {
         if (!scanner.hasNext()) { // Check if there are more tokens available
-            return "";
+            return "EOF";
         }
         String token = scanner.next();
         if (token.equals("//")) {
