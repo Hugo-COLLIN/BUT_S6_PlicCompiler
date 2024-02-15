@@ -38,6 +38,6 @@ public class AnalyseurSyntaxique
     }
 
     private boolean estIdf() {
-        return this.uniteCourante.matches("[a-zA-Z]+") && !this.uniteCourante.equals("programme");
+        return this.uniteCourante.matches("[a-zA-Z]+") && !this.uniteCourante.equals("programme") && !this.uniteCourante.equals("EOF");
     }
 }
