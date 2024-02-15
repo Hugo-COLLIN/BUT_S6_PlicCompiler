@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Adapte le comportement de Scanner et ignore les commentaires
+ * Modify the behavior of Scanner and ignore comments
  */
 public class AnalyseurLexical {
     Scanner scanner;
@@ -22,6 +22,7 @@ public class AnalyseurLexical {
             scanner.nextLine();
             return next();
         }
+
         return token;
     }
 
