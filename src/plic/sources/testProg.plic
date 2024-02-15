@@ -1,3 +1,4 @@
 programme mmm {
     entier a ;
+    entier b ;
 }

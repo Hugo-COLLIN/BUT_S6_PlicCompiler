@@ -2,6 +2,7 @@ package plic.analyse;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 //import java.util.ArrayList;
 //import java.util.Collection;
 //import java.util.List;
@@ -10,12 +11,10 @@ public class AnalyseurSyntaxique
 {
     private final AnalyseurLexical analex;
     private String uniteCourante;
-
-//    private String[] motsReserves;
+    private static final List<String> motsReserves = List.of("programme", "entier", "{", "}", "EOF");
 
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
         this.analex = new AnalyseurLexical(file);
-//        this.motsReserves = ["programme"]
     }
 
     public void analyse() throws ErreurSyntaxique {
@@ -53,12 +52,12 @@ public class AnalyseurSyntaxique
     }
 
     private boolean estIdf() {
-        return this.uniteCourante.matches("[a-zA-Z]+") && !this.uniteCourante.equals("programme") && !this.uniteCourante.equals("EOF");
+        return this.uniteCourante.matches("[a-zA-Z]+") && !motsReserves.contains(this.uniteCourante);
     }
 
     private void analyseBloc() throws ErreurSyntaxique {
         analyseTerminal("{");
-        analyseInstruction(); // tester si "entier"
+        analyseInstruction();
         analyseTerminal("}");
     }
 
