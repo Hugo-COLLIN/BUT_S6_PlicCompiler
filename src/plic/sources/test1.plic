@@ -1,4 +1,5 @@
 // truc
+// Déclaration de variables et affectation de valeurs
 
 programme test {
     entier i ; entier j ; // Déclaration de deux variables
