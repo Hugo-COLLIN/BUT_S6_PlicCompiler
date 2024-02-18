@@ -50,13 +50,14 @@ public class AnalyseurSyntaxique
 
     private void analyseBloc() throws ErreurSyntaxique {
         analyseTerminal("{");
-        // Itérer sur analyseDeclaration tant qu’il y a des déclarations (Tant que l’unité courante est entier)
-        while (this.uniteCourante.equals("entier")) {
-            analyseDeclaration();
-        }
-        // Itérer sur analyseInstruction tant qu’il y a des instructions (Tant que l’unité courante est un idf ou bien ecrire)
-        while (estIdf() || this.uniteCourante.equals("ecrire")) {
-            analyseInstruction();
+        while (!this.uniteCourante.equals("}")) {
+            if (this.uniteCourante.equals("entier")) {
+                analyseDeclaration();
+            } else if (estIdf() || this.uniteCourante.equals("ecrire")) {
+                analyseInstruction();
+            } else {
+                throw new ErreurSyntaxique("Instruction ou déclaration inattendue");
+            }
         }
         analyseTerminal("}");
     }
@@ -66,14 +67,6 @@ public class AnalyseurSyntaxique
         analyseIdentificateur();
         analyseTerminal(";");
     }
-
-//    private void analyseInstruction() throws ErreurSyntaxique {
-//        if (this.uniteCourante.equals("entier")) {
-//            this.uniteCourante = this.analex.next();
-//            analyseIdentificateur();
-//            analyseTerminal(";");
-//        }
-//    }
 
     private void analyseInstruction() throws ErreurSyntaxique {
         if (estIdf()) {
