@@ -3,9 +3,6 @@ package plic.analyse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
-//import java.util.ArrayList;
-//import java.util.Collection;
-//import java.util.List;
 
 public class AnalyseurSyntaxique
 {
@@ -57,7 +54,14 @@ public class AnalyseurSyntaxique
 
     private void analyseBloc() throws ErreurSyntaxique {
         analyseTerminal("{");
-        analyseInstruction();
+        // Itérer sur analyseDeclaration tant qu’il y a des déclarations (Tant que l’unité courante est entier)
+        while (this.uniteCourante.equals("entier")) {
+            analyseDeclaration();
+        }
+        // Itérer sur analyseInstruction tant qu’il y a des instructions (Tant que l’unité courante est un idf ou bien ecrire)
+        while (estIdf() || this.uniteCourante.equals("ecrire")) {
+            analyseInstruction();
+        }
         analyseTerminal("}");
     }
 
@@ -67,5 +71,11 @@ public class AnalyseurSyntaxique
             analyseIdentificateur();
             analyseTerminal(";");
         }
+    }
+
+    private void analyseDeclaration() throws ErreurSyntaxique {
+        analyseTerminal("entier");
+        analyseIdentificateur();
+        analyseTerminal(";");
     }
 }
