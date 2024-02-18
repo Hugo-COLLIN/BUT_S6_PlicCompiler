@@ -1,0 +1,8 @@
+programme testQuatre {
+    a := 5 ;
+    entier b ;
+    ecrire a ;
+    entier a ;
+    b := 3 ;
+    ecrire b ;
+}

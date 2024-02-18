@@ -8,7 +8,7 @@ public class AnalyseurSyntaxique
 {
     private final AnalyseurLexical analex;
     private String uniteCourante;
-    private static final List<String> motsReserves = List.of("programme", "entier", "{", "}", "EOF");
+    private static final List<String> motsReserves = List.of("programme", "entier", "{", "}", "EOF", "ecrire", ":=");
 
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
         this.analex = new AnalyseurLexical(file);
@@ -77,6 +77,7 @@ public class AnalyseurSyntaxique
             throw new ErreurSyntaxique("Instruction inattendue");
         }
     }
+
     private void analyseEcrire() throws ErreurSyntaxique {
         analyseTerminal("ecrire");
         analyseExpression();
