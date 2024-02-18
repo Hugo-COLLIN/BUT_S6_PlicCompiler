@@ -48,10 +48,6 @@ public class AnalyseurSyntaxique
         this.uniteCourante = this.analex.next();
     }
 
-    private boolean estIdf() {
-        return this.uniteCourante.matches("[a-zA-Z]+") && !motsReserves.contains(this.uniteCourante);
-    }
-
     private void analyseBloc() throws ErreurSyntaxique {
         analyseTerminal("{");
         // Itérer sur analyseDeclaration tant qu’il y a des déclarations (Tant que l’unité courante est entier)
@@ -65,17 +61,65 @@ public class AnalyseurSyntaxique
         analyseTerminal("}");
     }
 
-    private void analyseInstruction() throws ErreurSyntaxique {
-        if (this.uniteCourante.equals("entier")) {
-            this.uniteCourante = this.analex.next();
-            analyseIdentificateur();
-            analyseTerminal(";");
-        }
-    }
-
     private void analyseDeclaration() throws ErreurSyntaxique {
         analyseTerminal("entier");
         analyseIdentificateur();
         analyseTerminal(";");
+    }
+
+//    private void analyseInstruction() throws ErreurSyntaxique {
+//        if (this.uniteCourante.equals("entier")) {
+//            this.uniteCourante = this.analex.next();
+//            analyseIdentificateur();
+//            analyseTerminal(";");
+//        }
+//    }
+
+    private void analyseInstruction() throws ErreurSyntaxique {
+        if (estIdf()) {
+            analyseAffectation();
+        } else if (this.uniteCourante.equals("ecrire")) {
+            analyseEcrire();
+        } else {
+            throw new ErreurSyntaxique("Instruction inattendue");
+        }
+    }
+    private void analyseEcrire() throws ErreurSyntaxique {
+        analyseTerminal("ecrire");
+        analyseExpression();
+        analyseTerminal(";");
+    }
+
+    private void analyseAffectation() throws ErreurSyntaxique {
+        analyseIdentificateur();
+        analyseTerminal(":=");
+        analyseExpression();
+        analyseTerminal(";");
+    }
+
+    private void analyseExpression() throws ErreurSyntaxique {
+        analyseOperande();
+    }
+
+    private void analyseOperande() throws ErreurSyntaxique {
+        if (estCsteEntiere()) {
+            this.uniteCourante = this.analex.next();
+        } else if (estIdf()) {
+            analyseAcces();
+        } else {
+            throw new ErreurSyntaxique("Opérande inattendu");
+        }
+    }
+
+    private void analyseAcces() throws ErreurSyntaxique {
+        analyseIdentificateur();
+    }
+
+    private boolean estIdf() {
+        return this.uniteCourante.matches("[a-zA-Z]+") && !motsReserves.contains(this.uniteCourante);
+    }
+
+    private boolean estCsteEntiere() {
+        return this.uniteCourante.matches("\\d+");
     }
 }

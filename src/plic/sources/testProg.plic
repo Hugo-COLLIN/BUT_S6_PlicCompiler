@@ -1,4 +1,8 @@
 programme mmm {
     entier a ;
     entier b ;
+    a := 5 ;
+    b := 3 ;
+    // ecrire a ;
+    // ecrire b ;
 }
