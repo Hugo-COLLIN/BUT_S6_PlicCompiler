@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import plic.analyse.AnalyseurSyntaxique;
 
 public class Plic {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         if (args.length < 1) {
             System.err.println("ERREUR: Chemin du fichier source absent");
             System.exit(1);
@@ -16,11 +16,17 @@ public class Plic {
             System.exit(1);
         }
         if (!args[0].endsWith(".plic")) {
-            System.err.println("ERREUR: Suffixe incorrect (fichier .plic attendu)");
+            System.err.println("ERREUR: Chemin de fichier suffixé .plic attendu");
             System.exit(1);
         }
 
-        new Plic(args[0]);
+        try {
+            new Plic(args[0]);
+        }
+        catch (FileNotFoundException e) {
+            System.err.println("ERREUR: Fichier spécifié introuvable");
+            System.exit(1);
+        }
     }
 
     public Plic(String nomFichier) throws FileNotFoundException {
