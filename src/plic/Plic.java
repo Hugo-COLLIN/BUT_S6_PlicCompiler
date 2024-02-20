@@ -8,7 +8,7 @@ import plic.analyse.AnalyseurSyntaxique;
 public class Plic {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.err.println("ERREUR: Chemin du fichier source absent");
+            System.err.println("ERREUR: Chemin du fichier source attendu");
             System.exit(1);
         }
         if (args.length > 1) {
