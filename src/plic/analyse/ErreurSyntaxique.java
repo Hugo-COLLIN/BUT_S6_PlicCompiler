@@ -2,6 +2,6 @@ package plic.analyse;
 
 public class ErreurSyntaxique extends Exception {
     public ErreurSyntaxique(String message) {
-        super(message);
+        super("ERREUR: " + message);
     }
 }

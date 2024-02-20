@@ -1,0 +1,5 @@
+programme testCinq {
+    a := 5 ; entier b
+    ecrire a ;
+    entier a ;
+}

@@ -21,7 +21,7 @@ public class AnalyseurSyntaxique
         this.analyseProg();
         // Vérifier la fin du fichier
         if (!this.uniteCourante.equals("EOF")) {
-            throw new ErreurSyntaxique("Erreur: fin de fichier attendue");
+            throw new ErreurSyntaxique("fin de fichier attendue");
         }
         // Fermer le fichier
         this.analex.close();
@@ -36,14 +36,14 @@ public class AnalyseurSyntaxique
 
     private void analyseIdentificateur() throws ErreurSyntaxique {
         if (!this.estIdf()) {
-            throw new ErreurSyntaxique("Erreur: identificateur attendu (lettres uniquement)");
+            throw new ErreurSyntaxique("identificateur attendu (lettres uniquement)");
         }
         this.uniteCourante = this.analex.next();
     }
 
     private void analyseTerminal(String terminal) throws ErreurSyntaxique {
         if (!this.uniteCourante.equals(terminal)) {
-            throw new ErreurSyntaxique("Erreur: " + terminal + " attendu");
+            throw new ErreurSyntaxique(terminal + " attendu");
         }
         this.uniteCourante = this.analex.next();
     }
