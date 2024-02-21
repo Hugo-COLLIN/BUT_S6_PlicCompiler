@@ -1,5 +1,10 @@
 package plic.analyse;
 
+import plic.repint.DoubleDeclaration;
+import plic.repint.Entree;
+import plic.repint.Symbole;
+import plic.repint.TDS;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -9,12 +14,14 @@ public class AnalyseurSyntaxique
     private final AnalyseurLexical analex;
     private String uniteCourante;
     private static final List<String> motsReserves = List.of("programme", "entier", "{", "}", "EOF", "ecrire", ":=");
+    private TDS tds;
 
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
         this.analex = new AnalyseurLexical(file);
+        this.tds = TDS.getInstance();
     }
 
-    public void analyse() throws ErreurSyntaxique {
+    public void analyse() throws ErreurSyntaxique, DoubleDeclaration {
         // Demander la construction de la 1re unité lexicale
         this.uniteCourante = this.analex.next();
         //Analyser le texte
@@ -27,7 +34,7 @@ public class AnalyseurSyntaxique
         this.analex.close();
     }
 
-    private void analyseProg() throws ErreurSyntaxique {
+    private void analyseProg() throws ErreurSyntaxique, DoubleDeclaration {
         analyseTerminal("programme");
 
         analyseIdentificateur();
@@ -48,7 +55,7 @@ public class AnalyseurSyntaxique
         this.uniteCourante = this.analex.next();
     }
 
-    private void analyseBloc() throws ErreurSyntaxique {
+    private void analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
         analyseTerminal("{");
         while (!this.uniteCourante.equals("}")) {
             if (this.uniteCourante.equals("entier")) {
@@ -62,10 +69,13 @@ public class AnalyseurSyntaxique
         analyseTerminal("}");
     }
 
-    private void analyseDeclaration() throws ErreurSyntaxique {
+    private void analyseDeclaration() throws ErreurSyntaxique, DoubleDeclaration {
         analyseTerminal("entier");
+        var tempIdentificateur = this.uniteCourante;
         analyseIdentificateur();
         analyseTerminal(";");
+
+        tds.ajouter(new Entree(tempIdentificateur), new Symbole("entier"));
     }
 
     private void analyseInstruction() throws ErreurSyntaxique {

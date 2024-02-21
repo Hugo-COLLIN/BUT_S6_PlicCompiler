@@ -1,6 +1,7 @@
 package plic.repint;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TDS
 {
@@ -8,29 +9,23 @@ public class TDS
 
     private static TDS instance;
 
-    private List<Entree> entree;
-
-    private List<Symbole> symbole;
+    private Map<Entree, Symbole> entreeVersSymbole;
 
     private TDS() {
         this.cptDepl = 0;
-        this.entree = List.of();
-        this.symbole = List.of();
+        this.entreeVersSymbole = new HashMap<>();
     }
 
-    static TDS getInstance() {
+    public static TDS getInstance() {
         if (instance == null)
             instance = new TDS();
         return instance;
     }
 
-    void ajouter(Entree e, Symbole s) throws DoubleDeclaration {
-        if (this.entree.contains(e))
+    public void ajouter(Entree e, Symbole s) throws DoubleDeclaration {
+        if (this.entreeVersSymbole.containsKey(e))
             throw new DoubleDeclaration("dans Entree");
-        this.entree.add(e);
 
-        if (this.symbole.contains(s))
-            throw new DoubleDeclaration("dans Symbole");
-        this.symbole.add(s);
+        this.entreeVersSymbole.put(e, s);
     }
 }
