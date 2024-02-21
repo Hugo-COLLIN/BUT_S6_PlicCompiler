@@ -28,4 +28,12 @@ public class TDS
 
         this.entreeVersSymbole.put(e, s);
     }
+
+    @Override
+    public String toString() {
+        return "TDS{" +
+                "cptDepl=" + cptDepl +
+                ", entreeVersSymbole=" + entreeVersSymbole +
+                '}';
+    }
 }
