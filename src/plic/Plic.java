@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import plic.analyse.AnalyseurSyntaxique;
+import plic.repint.Bloc;
 
 public class Plic {
     public static void main(String[] args) {
@@ -36,7 +37,8 @@ public class Plic {
 
         // Analyser le fichier
         try {
-            anasynt.analyse();
+            Bloc bloc = anasynt.analyse();
+            System.out.println(bloc);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

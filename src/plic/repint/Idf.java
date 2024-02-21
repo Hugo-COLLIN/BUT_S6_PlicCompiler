@@ -3,7 +3,7 @@ package plic.repint;
 public class Idf extends Expression
 {
     String nom;
-    Idf(String n) {
+    public Idf(String n) {
         super();
         this.nom = n;
     }

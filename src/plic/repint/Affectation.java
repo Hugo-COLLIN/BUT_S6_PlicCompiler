@@ -4,7 +4,7 @@ public class Affectation extends Instruction
 {
     Idf idf;
 
-    Affectation(Expression e, Idf i) {
+    public Affectation(Expression e, Idf i) {
         super(e);
         this.idf = i;
     }

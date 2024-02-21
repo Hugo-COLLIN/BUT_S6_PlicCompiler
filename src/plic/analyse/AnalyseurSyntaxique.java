@@ -1,9 +1,6 @@
 package plic.analyse;
 
-import plic.repint.DoubleDeclaration;
-import plic.repint.Entree;
-import plic.repint.Symbole;
-import plic.repint.TDS;
+import plic.repint.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,24 +18,24 @@ public class AnalyseurSyntaxique
         this.tds = TDS.getInstance();
     }
 
-    public void analyse() throws ErreurSyntaxique, DoubleDeclaration {
+    public Bloc analyse() throws ErreurSyntaxique, DoubleDeclaration {
         // Demander la construction de la 1re unité lexicale
         this.uniteCourante = this.analex.next();
         //Analyser le texte
-        this.analyseProg();
+        var bloc = this.analyseProg();
         // Vérifier la fin du fichier
         if (!this.uniteCourante.equals("EOF")) {
             throw new ErreurSyntaxique("fin de fichier attendue");
         }
         // Fermer le fichier
         this.analex.close();
+        return bloc;
     }
 
-    private void analyseProg() throws ErreurSyntaxique, DoubleDeclaration {
+    private Bloc analyseProg() throws ErreurSyntaxique, DoubleDeclaration {
         analyseTerminal("programme");
-
         analyseIdentificateur();
-        this.analyseBloc();
+        return this.analyseBloc();
     }
 
     private void analyseIdentificateur() throws ErreurSyntaxique {
@@ -55,18 +52,20 @@ public class AnalyseurSyntaxique
         this.uniteCourante = this.analex.next();
     }
 
-    private void analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
+    private Bloc analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
+        Bloc bloc = new Bloc();
         analyseTerminal("{");
         while (!this.uniteCourante.equals("}")) {
             if (this.uniteCourante.equals("entier")) {
                 analyseDeclaration();
             } else if (estIdf() || this.uniteCourante.equals("ecrire")) {
-                analyseInstruction();
+                bloc.ajouter(analyseInstruction());
             } else {
                 throw new ErreurSyntaxique("Instruction ou déclaration inattendue");
             }
         }
         analyseTerminal("}");
+        return bloc;
     }
 
     private void analyseDeclaration() throws ErreurSyntaxique, DoubleDeclaration {
@@ -78,38 +77,45 @@ public class AnalyseurSyntaxique
         tds.ajouter(new Entree(tempIdentificateur), new Symbole("entier"));
     }
 
-    private void analyseInstruction() throws ErreurSyntaxique {
+    private Instruction analyseInstruction() throws ErreurSyntaxique {
         if (estIdf()) {
-            analyseAffectation();
+            return analyseAffectation();
         } else if (this.uniteCourante.equals("ecrire")) {
-            analyseEcrire();
+            return analyseEcrire();
         } else {
             throw new ErreurSyntaxique("Instruction inattendue");
         }
     }
 
-    private void analyseEcrire() throws ErreurSyntaxique {
+    private Ecrire analyseEcrire() throws ErreurSyntaxique {
         analyseTerminal("ecrire");
-        analyseExpression();
+        Expression expression = analyseExpression();
         analyseTerminal(";");
+        return new Ecrire(expression);
     }
 
-    private void analyseAffectation() throws ErreurSyntaxique {
+    private Affectation analyseAffectation() throws ErreurSyntaxique {
+        String idfNom = this.uniteCourante;
         analyseIdentificateur();
         analyseTerminal(":=");
-        analyseExpression();
+        Expression expression = analyseExpression();
         analyseTerminal(";");
+        return new Affectation(expression, new Idf(idfNom));
     }
 
-    private void analyseExpression() throws ErreurSyntaxique {
-        analyseOperande();
+    private Expression analyseExpression() throws ErreurSyntaxique {
+        return analyseOperande();
     }
 
-    private void analyseOperande() throws ErreurSyntaxique {
+    private Expression analyseOperande() throws ErreurSyntaxique {
         if (estCsteEntiere()) {
+            int valeur = Integer.parseInt(this.uniteCourante);
             this.uniteCourante = this.analex.next();
+            return new Nombre(valeur);
         } else if (estIdf()) {
+            String nom = this.uniteCourante;
             analyseAcces();
+            return new Idf(nom);
         } else {
             throw new ErreurSyntaxique("Opérande inattendu");
         }

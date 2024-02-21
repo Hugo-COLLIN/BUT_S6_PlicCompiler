@@ -4,7 +4,7 @@ public class Nombre extends Expression
 {
     int val;
 
-    Nombre(int v) {
+    public Nombre(int v) {
         super();
         this.val = v;
     }
