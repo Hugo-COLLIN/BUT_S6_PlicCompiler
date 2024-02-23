@@ -9,4 +9,13 @@ public class Affectation extends Instruction
         this.idf = i;
     }
 
+    @Override
+    public void verifier() {
+        // Vérifier l'identificateur de destination
+        idf.verifier();
+        // Vérifier l'expression à affecter
+        expression.verifier();
+    }
+
+
 }

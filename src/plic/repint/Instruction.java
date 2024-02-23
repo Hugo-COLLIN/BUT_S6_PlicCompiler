@@ -8,6 +8,8 @@ public abstract class Instruction
         this.expression = e;
     }
 
+    public abstract void verifier();
+
     @Override
     public String toString() {
         return "Instruction{" +

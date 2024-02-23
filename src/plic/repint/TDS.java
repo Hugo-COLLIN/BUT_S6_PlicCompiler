@@ -30,6 +30,7 @@ public class TDS
     }
 
     public Symbole identifier(Entree e) {
+        System.out.println(this.entreeVersSymbole);
         // Vérifie si l'entrée existe dans la TDS
         // Retourne le symbole associé à l'entrée si elle existe
         // Retourne null si l'identificateur n'est pas déclaré

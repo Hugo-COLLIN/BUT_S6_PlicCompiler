@@ -10,6 +10,11 @@ public class Nombre extends Expression
     }
 
     @Override
+    public void verifier() {
+        // Aucune vérification nécessaire
+    }
+
+    @Override
     public String toString() {
         return "Nombre{" +
                 "val=" + val +

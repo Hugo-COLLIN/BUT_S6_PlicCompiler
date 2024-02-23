@@ -6,6 +6,8 @@ public abstract class Expression
 
     }
 
+    public abstract void verifier();
+
     @Override
     public String toString() {
         return "Bloc{}";

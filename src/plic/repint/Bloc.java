@@ -15,6 +15,13 @@ public class Bloc
         this.instructions.add(i);
     }
 
+    public void verifier() {
+        for (Instruction instruction : instructions) {
+            instruction.verifier();
+        }
+    }
+
+
     @Override
     public String toString() {
         return "Bloc{" +

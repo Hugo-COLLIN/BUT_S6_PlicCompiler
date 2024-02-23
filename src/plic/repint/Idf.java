@@ -9,9 +9,23 @@ public class Idf extends Expression
     }
 
     @Override
+    public void verifier() {
+        // Vérifier que l'identificateur est déclaré
+        Symbole symbole = TDS.getInstance().identifier(new Entree(nom));
+        if (symbole == null) {
+            throw new RuntimeException("ERREUR: Identificateur non déclaré: " + nom);
+        }
+    }
+
+
+    @Override
     public String toString() {
         return "Idf{" +
                 "nom='" + nom + '\'' +
                 '}';
+    }
+
+    public String getNom() {
+        return nom;
     }
 }

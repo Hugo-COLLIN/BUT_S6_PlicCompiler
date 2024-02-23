@@ -6,4 +6,11 @@ public class Ecrire extends Instruction
         super(e);
     }
 
+    @Override
+    public void verifier() {
+        // Vérifier que l'expression est valide
+        expression.verifier();
+    }
+
+
 }

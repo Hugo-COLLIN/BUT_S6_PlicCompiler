@@ -38,6 +38,7 @@ public class Plic {
         // Analyser le fichier
         try {
             Bloc bloc = anasynt.analyse();
+            bloc.verifier();
             System.out.println(bloc);
         } catch (Exception e) {
             System.err.println(e.getMessage());

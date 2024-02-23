@@ -71,6 +71,7 @@ public class AnalyseurSyntaxique
     private void analyseDeclaration() throws ErreurSyntaxique, DoubleDeclaration {
         analyseTerminal("entier");
         var tempIdentificateur = this.uniteCourante;
+        System.out.println(tempIdentificateur);
         analyseIdentificateur();
         analyseTerminal(";");
 
