@@ -5,20 +5,20 @@ import java.util.List;
 
 public class Bloc
 {
-    List<Instruction> instruction;
+    List<Instruction> instructions;
 
     public Bloc() {
-        this.instruction = new ArrayList<>();
+        this.instructions = new ArrayList<>();
     }
 
     public void ajouter(Instruction i) {
-        this.instruction.add(i);
+        this.instructions.add(i);
     }
 
     @Override
     public String toString() {
         return "Bloc{" +
-                "instruction=" + instruction +
+                "instruction=" + instructions +
                 '}';
     }
 }
