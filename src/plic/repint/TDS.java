@@ -29,6 +29,14 @@ public class TDS
         this.entreeVersSymbole.put(e, s);
     }
 
+    public Symbole identifier(Entree e) {
+        // Vérifie si l'entrée existe dans la TDS
+        // Retourne le symbole associé à l'entrée si elle existe
+        // Retourne null si l'identificateur n'est pas déclaré
+        return this.entreeVersSymbole.getOrDefault(e, null);
+    }
+
+
     @Override
     public String toString() {
         return "TDS{" +
