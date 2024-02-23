@@ -1,7 +1,11 @@
-package plic.repint;
+package plic.tests.repint;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import plic.repint.DoubleDeclaration;
+import plic.repint.Entree;
+import plic.repint.Symbole;
+import plic.repint.TDS;
 
 import static org.junit.jupiter.api.Assertions.*;
 
