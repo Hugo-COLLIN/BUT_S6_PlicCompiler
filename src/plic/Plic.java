@@ -8,6 +8,9 @@ import plic.repint.Bloc;
 
 public class Plic {
     public static void main(String[] args) {
+        // Rediriger System.err vers System.out
+        System.setErr(System.out);
+
         if (args.length < 1) {
             System.err.println("ERREUR: Chemin du fichier source attendu");
             System.exit(1);
