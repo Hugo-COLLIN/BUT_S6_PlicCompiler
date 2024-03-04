@@ -2,7 +2,7 @@ package plic.tests.repint;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import plic.repint.DoubleDeclaration;
+import plic.exceptions.DoubleDeclaration;
 import plic.repint.Entree;
 import plic.repint.Symbole;
 import plic.repint.TDS;

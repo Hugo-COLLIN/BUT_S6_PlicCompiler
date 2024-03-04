@@ -1,5 +1,7 @@
 package plic.repint;
 
+import plic.exceptions.DoubleDeclaration;
+
 import java.util.HashMap;
 import java.util.Map;
 

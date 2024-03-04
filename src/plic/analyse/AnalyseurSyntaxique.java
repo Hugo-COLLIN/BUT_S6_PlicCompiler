@@ -1,5 +1,7 @@
 package plic.analyse;
 
+import plic.exceptions.DoubleDeclaration;
+import plic.exceptions.ErreurSyntaxique;
 import plic.repint.*;
 
 import java.io.File;
