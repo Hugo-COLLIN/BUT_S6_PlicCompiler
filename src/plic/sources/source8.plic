@@ -1,0 +1,7 @@
+programme test {
+    entier a ;
+    a := 5 ;
+    entier b ;
+    b := 3 ;
+    ecrire a ;
+}
