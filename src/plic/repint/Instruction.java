@@ -16,4 +16,6 @@ public abstract class Instruction
                 "expression=" + expression +
                 '}';
     }
+
+    public abstract String toMips();
 }

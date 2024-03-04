@@ -12,4 +12,6 @@ public abstract class Expression
     public String toString() {
         return "Bloc{}";
     }
+
+    public abstract String toMips();
 }

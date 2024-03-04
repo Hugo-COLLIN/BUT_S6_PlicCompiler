@@ -20,4 +20,9 @@ public class Nombre extends Expression
                 "val=" + val +
                 '}';
     }
+
+    @Override
+    public String toMips() {
+        return "li $v0, " + val + " # Chargement de la valeur " + val + "\n";
+    }
 }

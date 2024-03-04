@@ -12,5 +12,14 @@ public class Ecrire extends Instruction
         expression.verifier();
     }
 
-
+    @Override
+    public String toMips() {
+        return expression.toMips() +
+                "move $a0, $v0\n" +
+                "li $v0, 1\n" +
+                "syscall\n" +
+                "la $a0, linebreak\n" +
+                "li $v0, 4\n" +
+                "syscall # Affichage de la valeur de l'expression\n";
+    }
 }

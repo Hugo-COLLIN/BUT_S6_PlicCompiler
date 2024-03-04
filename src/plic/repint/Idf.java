@@ -28,4 +28,11 @@ public class Idf extends Expression
     public String getNom() {
         return nom;
     }
+
+    @Override
+    public String toMips() {
+        Symbole symbole = TDS.getInstance().identifier(new Entree(nom));
+        int deplacement = symbole.getDeplacement();
+        return "lw $v0, " + deplacement + "($s7) # Chargement de la valeur de " + nom + "\n";
+    }
 }

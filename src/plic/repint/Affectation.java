@@ -17,5 +17,11 @@ public class Affectation extends Instruction
         expression.verifier();
     }
 
-
+    @Override
+    public String toMips() {
+        Symbole symbole = TDS.getInstance().identifier(new Entree(idf.getNom()));
+        int deplacement = symbole.getDeplacement();
+        return expression.toMips() +
+                "sw $v0, " + deplacement + "($s7) # Affectation de la valeur à " + idf.getNom() + "\n";
+    }
 }

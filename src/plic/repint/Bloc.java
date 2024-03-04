@@ -28,4 +28,13 @@ public class Bloc
                 "instruction=" + instructions +
                 '}';
     }
+
+    public String toMips() {
+        StringBuilder sb = new StringBuilder();
+        for (Instruction instruction : instructions) {
+            sb.append(instruction.toMips());
+        }
+        return sb.toString();
+    }
+
 }

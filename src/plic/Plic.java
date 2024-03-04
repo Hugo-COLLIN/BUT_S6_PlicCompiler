@@ -23,8 +23,7 @@ public class Plic {
 
         try {
             new Plic(args[0]);
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("ERREUR: Fichier spécifié introuvable");
             System.exit(1);
         }
@@ -40,8 +39,24 @@ public class Plic {
             Bloc bloc = anasynt.analyse();
             bloc.verifier();
             System.out.println(bloc);
+            String code = generateMipsHeader() + bloc.toMips();
+            System.out.println(code);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
+
+    public static String generateMipsHeader() {
+        return """
+                .data
+                linebreak: \t.asciiz "\\n"
+
+                .text
+                main :
+                    move $s7, $sp
+                    add $sp, $sp, -16
+
+                """;
+    }
+
 }
