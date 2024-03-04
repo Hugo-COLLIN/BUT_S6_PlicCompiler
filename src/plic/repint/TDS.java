@@ -26,6 +26,7 @@ public class TDS
         if (this.entreeVersSymbole.containsKey(e))
             throw new DoubleDeclaration("dans Entree");
 
+        s.setDeplacement(-4 * (this.entreeVersSymbole.size() + 1)); // Calcule le déplacement pour la nouvelle variable
         this.entreeVersSymbole.put(e, s);
     }
 
