@@ -57,18 +57,26 @@ public class AnalyseurSyntaxique
     private Bloc analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
         Bloc bloc = new Bloc();
         analyseTerminal("{");
+
+        // Phase de déclaration
+        while (this.uniteCourante.equals("entier")) {
+            analyseDeclaration();
+        }
+
+        // Phase d'instruction
         while (!this.uniteCourante.equals("}")) {
-            if (this.uniteCourante.equals("entier")) {
-                analyseDeclaration();
-            } else if (estIdf() || this.uniteCourante.equals("ecrire")) {
+            if (estIdf() || this.uniteCourante.equals("ecrire")) {
                 bloc.ajouter(analyseInstruction());
             } else {
-                throw new ErreurSyntaxique("Instruction ou déclaration inattendue");
+                // Si on rencontre autre chose qu'une instruction valide, on lance une exception
+                throw new ErreurSyntaxique("Instruction inattendue");
             }
         }
+
         analyseTerminal("}");
         return bloc;
     }
+
 
     private void analyseDeclaration() throws ErreurSyntaxique, DoubleDeclaration {
         analyseTerminal("entier");
