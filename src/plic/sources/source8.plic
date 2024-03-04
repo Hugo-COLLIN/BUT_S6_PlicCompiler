@@ -4,4 +4,6 @@ programme test {
     entier b ;
     b := 3 ;
     ecrire a ;
+    ecrire b ;
+    ecrire a ;
 }
