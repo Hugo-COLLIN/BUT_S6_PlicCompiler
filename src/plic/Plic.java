@@ -62,10 +62,10 @@ public class Plic {
     public static String generateMipsFooter() {
         return """
                     
-                    # syscall attend un argument dans $v0 qui est 10 ; syscall récupère le contenu de $v0, 10 pour fin de programme
-                    end :
-                        li $v0, 10
-                        syscall
+                # syscall récupère le contenu de $v0, 10 pour fin de programme
+                end :
+                    li $v0, 10
+                    syscall
                 """;
     }
 

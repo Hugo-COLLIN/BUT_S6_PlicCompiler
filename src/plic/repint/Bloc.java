@@ -32,7 +32,11 @@ public class Bloc
     public String toMips() {
         StringBuilder sb = new StringBuilder();
         for (Instruction instruction : instructions) {
-            sb.append(instruction.toMips());
+            // Ajouter une indentation pour chaque instruction
+            String[] lines = instruction.toMips().split("\n");
+            for (String line : lines) {
+                sb.append("    ").append(line).append("\n");
+            }
         }
         return sb.toString();
     }
