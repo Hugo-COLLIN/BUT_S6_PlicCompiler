@@ -39,7 +39,7 @@ public class Plic {
             Bloc bloc = anasynt.analyse();
             bloc.verifier();
             System.out.println(bloc);
-            String code = generateMipsHeader() + bloc.toMips();
+            String code = generateMipsHeader() + bloc.toMips() + generateMipsFooter();
             System.out.println(code);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -56,6 +56,16 @@ public class Plic {
                     move $s7, $sp
                     add $sp, $sp, -16
 
+                """;
+    }
+
+    public static String generateMipsFooter() {
+        return """
+                    
+                    # syscall attend un argument dans $v0 qui est 10 ; syscall récupère le contenu de $v0, 10 pour fin de programme
+                    end :
+                        li $v0, 10
+                        syscall
                 """;
     }
 
