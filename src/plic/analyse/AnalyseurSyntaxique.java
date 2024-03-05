@@ -22,7 +22,7 @@ public class AnalyseurSyntaxique
 
     public Bloc analyse() throws ErreurSyntaxique, DoubleDeclaration {
         // Demander la construction de la 1re unité lexicale
-        this.uniteCourante = this.analex.next();
+        nextToken();
         //Analyser le texte
         var bloc = this.analyseProg();
         // Vérifier la fin du fichier
@@ -32,6 +32,10 @@ public class AnalyseurSyntaxique
         // Fermer le fichier
         this.analex.close();
         return bloc;
+    }
+
+    private void nextToken() {
+        this.uniteCourante = this.analex.next();
     }
 
     private Bloc analyseProg() throws ErreurSyntaxique, DoubleDeclaration {
@@ -44,14 +48,14 @@ public class AnalyseurSyntaxique
         if (!this.estIdf()) {
             throw new ErreurSyntaxique("identificateur attendu (lettres uniquement)");
         }
-        this.uniteCourante = this.analex.next();
+        nextToken();
     }
 
     private void analyseTerminal(String terminal) throws ErreurSyntaxique {
         if (!this.uniteCourante.equals(terminal)) {
             throw new ErreurSyntaxique(terminal + " attendu");
         }
-        this.uniteCourante = this.analex.next();
+        nextToken();
     }
 
     private Bloc analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
@@ -120,7 +124,7 @@ public class AnalyseurSyntaxique
     private Expression analyseOperande() throws ErreurSyntaxique {
         if (estCsteEntiere()) {
             int valeur = Integer.parseInt(this.uniteCourante);
-            this.uniteCourante = this.analex.next();
+            nextToken();
             return new Nombre(valeur);
         } else if (estIdf()) {
             String nom = this.uniteCourante;
