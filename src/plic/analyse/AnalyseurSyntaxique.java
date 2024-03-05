@@ -13,7 +13,7 @@ public class AnalyseurSyntaxique
     private final AnalyseurLexical analex;
     private String uniteCourante;
     private static final List<String> motsReserves = List.of("programme", "entier", "{", "}", "EOF", "ecrire", ":=");
-    private TDS tds;
+    private final TDS tds;
 
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
         this.analex = new AnalyseurLexical(file);
@@ -81,7 +81,6 @@ public class AnalyseurSyntaxique
     private void analyseDeclaration() throws ErreurSyntaxique, DoubleDeclaration {
         analyseTerminal("entier");
         var tempIdentificateur = this.uniteCourante;
-        System.out.println(tempIdentificateur);
         analyseIdentificateur();
         analyseTerminal(";");
 

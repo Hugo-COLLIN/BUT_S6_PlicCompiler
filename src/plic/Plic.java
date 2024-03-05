@@ -41,7 +41,6 @@ public class Plic {
         try {
             Bloc bloc = anasynt.analyse();
             bloc.verifier();
-            System.out.println(bloc);
             String code = generateMipsHeader() + bloc.toMips() + generateMipsFooter();
             System.out.println(code);
         } catch (Exception e) {
