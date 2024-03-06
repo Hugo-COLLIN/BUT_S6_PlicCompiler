@@ -1,11 +1,10 @@
-package plic.tests;
+package plic;
 
-import plic.Plic;
 import plic.repint.TDS;
 
 import java.io.File;
 
-public class TestPlicFiles {
+public class MoulinettePlic {
     /**
      * Chemin vers le dossier contenant les fichiers PLIC
       */
