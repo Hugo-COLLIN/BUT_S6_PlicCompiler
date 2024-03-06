@@ -47,4 +47,11 @@ public class TDS
                 ", entreeVersSymbole=" + entreeVersSymbole +
                 '}';
     }
+
+    // Utilisé uniquement dans les tests :
+    public void reinitialiser() {
+        this.cptDepl = 0; // Réinitialise le compteur de déplacement
+        this.entreeVersSymbole.clear(); // Vide la map
+    }
+
 }
