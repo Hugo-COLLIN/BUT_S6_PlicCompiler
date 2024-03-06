@@ -1,6 +1,7 @@
 package plic.tests;
 
 import plic.Plic;
+import plic.repint.TDS;
 
 import java.io.File;
 
@@ -11,7 +12,7 @@ public class TestPlicFiles {
     static String plicDirPath = "src/plic/sources";
 
     public static void main(String[] args) {
-        File plicFilesDir = new File(plicDirPath);
+        File plicFilesDir = new File(args.length > 0 ? args[0] : plicDirPath);
 
         // Vérifier si le dossier existe
         if (!plicFilesDir.exists() || !plicFilesDir.isDirectory()) {
@@ -34,6 +35,9 @@ public class TestPlicFiles {
     }
 
     private static void runPlicCompiler(String filePath) {
+        // Réinitialiser l'état de TDS avant chaque compilation
+        TDS.getInstance().reinitialiser();
+
         String[] args = {filePath};
         Plic.main(args);
     }
