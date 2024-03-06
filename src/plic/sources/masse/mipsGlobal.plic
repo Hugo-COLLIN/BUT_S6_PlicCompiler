@@ -1,0 +1,11 @@
+programme test {
+    entier toto ;
+    entier tata ;
+
+    toto := 5 ;
+    tata := toto ;
+
+    ecrire toto ;
+    ecrire tata ;
+    ecrire 7 ;
+}

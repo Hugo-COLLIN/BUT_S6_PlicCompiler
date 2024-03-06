@@ -1,0 +1,6 @@
+// Fichier syntaxiquement incorrecte
+programme progNeuf {
+    entier i ;
+    i := 57 ; $
+    ecrire i ;
+}

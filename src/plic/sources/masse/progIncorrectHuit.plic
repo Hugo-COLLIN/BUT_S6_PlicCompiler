@@ -1,0 +1,7 @@
+// Fichier syntaxiquement incorrect
+programme progHuit {
+    entier i ;
+    i := 57 ; #
+    ecrire i ;
+}
+// Problème avec lui

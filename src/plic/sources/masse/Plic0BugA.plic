@@ -1,0 +1,8 @@
+// Salut
+programme prog {
+    entier toto ; // Yo
+    toto := % ;
+    ecrire toto ;
+}
+// Bye
+// Poupou

@@ -1,0 +1,6 @@
+// Fichier syntaxiquement incorrecte
+programme progSix {
+    entier i6i ;
+    i6i := 57 ;
+    ecrire i6i ;
+}

@@ -1,0 +1,9 @@
+// Salut
+// identifiant incorrect
+programme prog {
+    entier toto1 ; // Yo
+    toto1 := 13 ;
+    ecrire toto1 ;
+}
+// Bye
+// Poupou

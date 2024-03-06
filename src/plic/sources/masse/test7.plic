@@ -1,0 +1,11 @@
+
+programme plic {
+    // On initialise nos variables
+    entier F ;
+
+    entier J ;
+
+    J := 100 ;
+
+    ecrire J ;
+}

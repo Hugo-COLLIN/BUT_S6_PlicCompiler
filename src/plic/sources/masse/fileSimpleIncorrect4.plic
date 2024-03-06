@@ -1,0 +1,9 @@
+// Prog
+programme aa {
+    entier a ;
+    entier b ;
+    entier c ;
+    a := 1 ;
+    a := b ;
+    b := c c c c ;
+}

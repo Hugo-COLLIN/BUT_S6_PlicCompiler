@@ -1,0 +1,13 @@
+//Je suis un programme Plic bonjour
+programme plicsecond {
+    // On initialise nos variables
+    entier S ;
+    entier K ;
+    entier T ;
+
+    T := 1 ; //On affecte 1 a T
+
+    ecrire T ;
+    //Fin du prog
+}
+//Juste au cas ou au revoir

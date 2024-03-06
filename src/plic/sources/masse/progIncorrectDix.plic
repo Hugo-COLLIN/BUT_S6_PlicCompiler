@@ -1,0 +1,6 @@
+// Fichier syntaxiquement incorrecte
+programme programme progDix {
+    entier i ;
+    i := 57 ;
+    ecrire i ;
+}

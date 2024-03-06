@@ -1,0 +1,14 @@
+programme progIncorrectDouze {
+    // Déclaration de variables
+    entier x ;
+    entier y ;
+
+    // Affectation de variables
+    x := 5 ; // Affectation de x
+    y := 3 ; // Affectation de y
+
+    // Affichage de variables
+    ecrire x ;
+    ecrire y ;
+    ecrire z ;
+}

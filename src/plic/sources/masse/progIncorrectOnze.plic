@@ -1,0 +1,19 @@
+programme progIncorrectOnze {
+    // Déclaration de variables
+    entier x ;
+    entier y ;
+    entier z ;
+    entier x ;
+
+    // Affectation de variables
+    x := 5 ; // Affectation de x
+    y := 3 ; // Affectation de y
+    z := 0 ; // Affectation de z
+
+    // Affichage de variables
+    ecrire x ;
+    ecrire y ;
+    ecrire z ;
+} // affiche 5 3 0
+// Fin du programme 2
+// Fini

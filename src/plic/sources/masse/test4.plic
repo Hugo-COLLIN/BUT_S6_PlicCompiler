@@ -1,0 +1,15 @@
+
+programme plic {
+    // On initialise nos variables
+    ecrire J ;
+
+    entier F ;
+    entier J ;
+    entier K ;
+
+    J := 10 ; //On affecte 10 a J
+    K := 9 ; //On affecte 9 a K
+
+
+
+}

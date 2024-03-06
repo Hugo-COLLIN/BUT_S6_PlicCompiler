@@ -1,0 +1,6 @@
+// Fichier syntaxiquement incorrecte
+programme progTrois {
+    entier i
+    i := 57 ;
+    ecrire i ;
+}

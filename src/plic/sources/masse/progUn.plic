@@ -1,0 +1,15 @@
+// Premier programme plic
+programme progUn {
+    // Déclaration
+    entier x ;
+    entier y ;
+
+    // Initialisation
+    x := 10 ;
+    y := 9 ;
+
+
+    // Affichage
+    ecrire x ;
+    ecrire y ;
+}
