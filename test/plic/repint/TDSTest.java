@@ -1,12 +1,8 @@
-package plic.tests.repint;
+package plic.repint;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import plic.exceptions.DoubleDeclaration;
-import plic.repint.Entree;
-import plic.repint.Symbole;
-import plic.repint.TDS;
 
 import static org.junit.jupiter.api.Assertions.*;
 

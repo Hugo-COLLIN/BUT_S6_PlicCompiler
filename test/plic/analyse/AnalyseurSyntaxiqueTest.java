@@ -1,8 +1,7 @@
-package plic.tests.analyse;
+package plic.analyse;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import plic.analyse.AnalyseurSyntaxique;
 import plic.exceptions.DoubleDeclaration;
 import plic.exceptions.ErreurSyntaxique;
 import plic.repint.Bloc;

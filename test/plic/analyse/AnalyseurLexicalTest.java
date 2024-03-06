@@ -1,9 +1,8 @@
-package plic.tests.analyse;
+package plic.analyse;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import plic.analyse.AnalyseurLexical;
 
 import java.io.File;
 import java.io.FileNotFoundException;
