@@ -20,6 +20,6 @@ public class Ecrire extends Instruction
                 "syscall\n" +
                 "la $a0, linebreak\n" +
                 "li $v0, 4\n" +
-                "syscall # Affichage de la valeur de l'expression\n";
+                "syscall\n";
     }
 }

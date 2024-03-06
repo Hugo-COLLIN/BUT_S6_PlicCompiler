@@ -23,6 +23,6 @@ public class Nombre extends Expression
 
     @Override
     public String toMips() {
-        return "li $v0, " + val + " # Chargement de la valeur " + val + "\n";
+        return "li $v0, " + val + "\n";
     }
 }

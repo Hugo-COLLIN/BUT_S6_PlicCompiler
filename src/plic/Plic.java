@@ -64,7 +64,6 @@ public class Plic {
     public static String generateMipsFooter() {
         return """
                     
-                # syscall récupère le contenu de $v0, 10 pour fin de programme
                 end :
                     li $v0, 10
                     syscall
