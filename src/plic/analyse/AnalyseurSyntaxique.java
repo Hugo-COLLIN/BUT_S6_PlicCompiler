@@ -12,7 +12,10 @@ public class AnalyseurSyntaxique
 {
     private final AnalyseurLexical analex;
     private String uniteCourante;
-    private static final List<String> motsReserves = List.of("programme", "entier", "{", "}", "EOF", "ecrire", ":=");
+    private static final List<String> motsReserves = List.of("programme", "entier", "tableau", "[", "]", "{", "}", "EOF", "ecrire", ":=");
+
+    private static final List<String> types = List.of("entier", "tableau");
+
     private final TDS tds;
 
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
@@ -58,37 +61,69 @@ public class AnalyseurSyntaxique
         nextToken();
     }
 
+    private String analyseTerminal(List<String> terminal) throws ErreurSyntaxique {
+        for (String t : terminal) {
+            if (this.uniteCourante.equals(t)) {
+                nextToken();
+                return t;
+            }
+        }
+        throw new ErreurSyntaxique("L'un des terminaux " + terminal + " attendu");
+    }
+
     private Bloc analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
         Bloc bloc = new Bloc();
         analyseTerminal("{");
 
         // Phase de déclaration
-        while (this.uniteCourante.equals("entier")) {
+        while (analyseType()) {
             analyseDeclaration();
         }
 
         // Phase d'instruction
         while (!this.uniteCourante.equals("}")) {
-            if (estIdf() || this.uniteCourante.equals("ecrire")) {
-                bloc.ajouter(analyseInstruction());
-            } else {
-                // Si on rencontre autre chose qu'une instruction valide, on lance une exception
-                throw new ErreurSyntaxique("Instruction inattendue");
-            }
+            bloc.ajouter(analyseInstruction());
         }
 
         analyseTerminal("}");
         return bloc;
     }
 
+    private boolean analyseType() {
+//        for (String t : types) {
+//            if (t.equals(type))
+//                return t;
+//        }
+        return types.contains(this.uniteCourante);
+    }
+
 
     private void analyseDeclaration() throws ErreurSyntaxique, DoubleDeclaration {
-        analyseTerminal("entier");
-        var tempIdentificateur = this.uniteCourante;
-        analyseIdentificateur();
-        analyseTerminal(";");
+        String identificateur = analyseTerminal(List.of("entier", "tableau"));
 
-        tds.ajouter(new Entree(tempIdentificateur), new Symbole("entier"));
+        if (identificateur.equals("entier")) {
+            var tempIdentificateur = this.uniteCourante;
+            analyseIdentificateur();
+            analyseTerminal(";");
+
+            tds.ajouter(new Entree(tempIdentificateur), new Symbole("entier"));
+        }
+        else if (identificateur.equals("tableau")) {
+            analyseTerminal("[");
+            if (!estCsteEntiere()) {
+                throw new ErreurSyntaxique("La taille du tableau doit être une constante entière");
+            }
+            int taille = Integer.parseInt(this.uniteCourante);
+            if (taille <= 0) {
+                throw new ErreurSyntaxique("La taille du tableau doit être supérieure à 0");
+            }
+            nextToken(); // Consomme la taille
+            analyseTerminal("]");
+            String idf = this.uniteCourante;
+            analyseIdentificateur();
+            analyseTerminal(";");
+            tds.ajouter(new Entree(idf), new Symbole("tableau", taille));
+        }
     }
 
     private Instruction analyseInstruction() throws ErreurSyntaxique {
@@ -97,7 +132,7 @@ public class AnalyseurSyntaxique
         } else if (this.uniteCourante.equals("ecrire")) {
             return analyseEcrire();
         } else {
-            throw new ErreurSyntaxique("Instruction inattendue");
+            throw new ErreurSyntaxique("Instruction inattendue: " + this.uniteCourante);
         }
     }
 
@@ -128,7 +163,12 @@ public class AnalyseurSyntaxique
             return new Nombre(valeur);
         } else if (estIdf()) {
             String nom = this.uniteCourante;
-            analyseAcces();
+            analyseAcces(); // Utilise analyseAcces pour gérer correctement les identifiants et les accès aux tableaux
+            if (this.uniteCourante.equals("[")) {
+                analyseTerminal("[");
+                Expression indice = analyseExpression();
+                analyseTerminal("]");
+            }
             return new Idf(nom);
         } else {
             throw new ErreurSyntaxique("Opérande inattendu");
