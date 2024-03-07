@@ -55,9 +55,6 @@ public class Plic {
 
                 .text
                 main :
-                    move $s7, $sp
-                    add $sp, $sp, -16
-
                 """;
     }
 
