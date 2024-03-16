@@ -49,18 +49,4 @@ public class Bloc
 
         return sb.toString();
     }
-
-
-//    public String toMips() {
-//        StringBuilder sb = new StringBuilder();
-//        for (Instruction instruction : instructions) {
-//            // Ajouter une indentation pour chaque instruction
-//            String[] lines = instruction.toMips().split("\n");
-//            for (String line : lines) {
-//                sb.append("    ").append(line).append("\n");
-//            }
-//        }
-//        return sb.toString();
-//    }
-
 }
