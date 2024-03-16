@@ -1,3 +1,6 @@
 programme test {
-    tableau [ 3 ] a ;
+    // entier b ;
+    // b := 3 ;
+    tableau [ 5 ] a ;
+    // a [ 1 ] := 3
 }
