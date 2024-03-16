@@ -140,14 +140,27 @@ public class AnalyseurSyntaxique
         return new Ecrire(expression);
     }
 
-    private Affectation analyseAffectation() throws ErreurSyntaxique {
+    private Instruction analyseAffectation() throws ErreurSyntaxique {
         String idfNom = this.uniteCourante;
         analyseIdentificateur();
-        analyseTerminal(":=");
-        Expression expression = analyseExpression();
-        analyseTerminal(";");
-        return new Affectation(expression, new Idf(idfNom));
+
+        // Vérifier si l'affectation concerne un tableau
+        if (this.uniteCourante.equals("[")) {
+            analyseTerminal("[");
+            Expression indice = analyseExpression(); // Analyser l'indice du tableau
+            analyseTerminal("]");
+            analyseTerminal(":=");
+            Expression expression = analyseExpression(); // Analyser l'expression à affecter
+            analyseTerminal(";");
+            return new AffectationTableau(new Idf(idfNom), indice, expression);
+        } else {
+            analyseTerminal(":=");
+            Expression expression = analyseExpression(); // Analyser l'expression à affecter
+            analyseTerminal(";");
+            return new Affectation(expression, new Idf(idfNom));
+        }
     }
+
 
     private Expression analyseExpression() throws ErreurSyntaxique {
         return analyseOperande();
@@ -160,17 +173,22 @@ public class AnalyseurSyntaxique
             return new Nombre(valeur);
         } else if (estIdf()) {
             String nom = this.uniteCourante;
-            analyseAcces(); // Utilise analyseAcces pour gérer correctement les identifiants et les accès aux tableaux
+            analyseIdentificateur();
+
+            // Gérer l'accès aux éléments de tableau
             if (this.uniteCourante.equals("[")) {
                 analyseTerminal("[");
                 Expression indice = analyseExpression();
                 analyseTerminal("]");
+                return new AccesTableau(new Idf(nom), indice);
             }
+
             return new Idf(nom);
         } else {
             throw new ErreurSyntaxique("Opérande inattendu");
         }
     }
+
 
     private void analyseAcces() throws ErreurSyntaxique {
         analyseIdentificateur();
