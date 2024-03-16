@@ -28,7 +28,12 @@ public class TDS
         if (this.entreeVersSymbole.containsKey(e))
             throw new DoubleDeclaration("dans Entree");
 
-        s.setDeplacement(-4 * (this.entreeVersSymbole.size() + 1)); // Calcule le déplacement pour la nouvelle variable
+        // Calculer le déplacement en prenant en compte la taille du tableau
+        int taille = s.getTaille();
+        int deplacement = -4 * taille; // Chaque élément du tableau occupe 4 octets
+        this.cptDepl += deplacement; // Mettre à jour le compteur de déplacement global
+        s.setDeplacement(this.cptDepl);
+
         this.entreeVersSymbole.put(e, s);
     }
 
