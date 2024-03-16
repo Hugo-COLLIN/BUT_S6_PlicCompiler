@@ -54,4 +54,13 @@ public class TDS
         this.entreeVersSymbole.clear(); // Vide la map
     }
 
+    public int calculerTailleTotale() {
+        int tailleTotale = 0;
+        for (Symbole symbole : this.entreeVersSymbole.values()) {
+            tailleTotale += symbole.getTaille();
+        }
+        return tailleTotale * 4; // Chaque unité de taille occupe 4 octets
+    }
+
+
 }
