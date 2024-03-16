@@ -49,7 +49,7 @@ public class AnalyseurSyntaxique
 
     private void analyseIdentificateur() throws ErreurSyntaxique {
         if (!this.estIdf()) {
-            throw new ErreurSyntaxique("identificateur attendu (lettres uniquement)");
+            throw new ErreurSyntaxique("identificateur attendu (lettres uniquement, n'est pas un mot réservé)");
         }
         nextToken();
     }
@@ -101,29 +101,26 @@ public class AnalyseurSyntaxique
     private void analyseDeclaration() throws ErreurSyntaxique, DoubleDeclaration {
         String identificateur = analyseTerminal(List.of("entier", "tableau"));
 
-        if (identificateur.equals("entier")) {
-            var tempIdentificateur = this.uniteCourante;
-            analyseIdentificateur();
-            analyseTerminal(";");
+        int taille = 1;
 
-            tds.ajouter(new Entree(tempIdentificateur), new Symbole("entier"));
-        }
-        else if (identificateur.equals("tableau")) {
+        if (identificateur.equals("tableau")) {
             analyseTerminal("[");
             if (!estCsteEntiere()) {
                 throw new ErreurSyntaxique("La taille du tableau doit être une constante entière");
             }
-            int taille = Integer.parseInt(this.uniteCourante);
+            taille = Integer.parseInt(this.uniteCourante);
             if (taille <= 0) {
                 throw new ErreurSyntaxique("La taille du tableau doit être supérieure à 0");
             }
             nextToken(); // Consomme la taille
             analyseTerminal("]");
-            String idf = this.uniteCourante;
-            analyseIdentificateur();
-            analyseTerminal(";");
-            tds.ajouter(new Entree(idf), new Symbole("tableau", taille));
         }
+
+        var tempIdentificateur = this.uniteCourante;
+        analyseIdentificateur();
+        analyseTerminal(";");
+
+        tds.ajouter(new Entree(tempIdentificateur), new Symbole(identificateur, taille));
     }
 
     private Instruction analyseInstruction() throws ErreurSyntaxique {
