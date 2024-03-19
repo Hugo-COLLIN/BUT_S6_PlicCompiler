@@ -5,4 +5,6 @@ programme test {
     b [ 2 ] := 1 ;
     ecrire a [ 1 ] ;
     ecrire b [ 2 ] ;
+    a [ 1 ] := 8 ;
+    ecrire a [ 1 ] ;
 }
