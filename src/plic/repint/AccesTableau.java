@@ -23,13 +23,12 @@ public class AccesTableau extends Expression {
         int deplacement = symbole.getDeplacement();
 
         sb.append(indice.toMips());
-        sb.append("# Calculer l'adresse de l'élément de tableau\n");
         sb.append("li $t1, 4\n");
         sb.append("mul $v0, $v0, $t1\n"); // Multiplier l'indice par 4 (taille d'un entier)
         sb.append("li $t2, ").append(deplacement).append("\n");
         sb.append("add $t2, $t2, $v0\n"); // Ajouter le déplacement de base du tableau
         sb.append("add $t2, $t2, $s7\n"); // Ajouter le déplacement relatif à $s7
-        sb.append("lw $v0, 0($t2)\n"); // Charger la valeur à l'adresse calculée
+        sb.append("lw $v0, 0($t2)\n\n"); // Charger la valeur à l'adresse calculée
 
         return sb.toString();
     }

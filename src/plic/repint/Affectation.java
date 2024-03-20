@@ -22,6 +22,6 @@ public class Affectation extends Instruction
         Symbole symbole = TDS.getInstance().identifier(new Entree(idf.getNom()));
         int deplacement = symbole.getDeplacement();
         return expression.toMips() +
-                "sw $v0, " + deplacement + "($s7)\n";
+                "sw $v0, " + deplacement + "($s7)\n\n";
     }
 }

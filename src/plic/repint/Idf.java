@@ -33,6 +33,6 @@ public class Idf extends Expression
     public String toMips() {
         Symbole symbole = TDS.getInstance().identifier(new Entree(nom));
         int deplacement = symbole.getDeplacement();
-        return "lw $v0, " + deplacement + "($s7)\n";
+        return "lw $v0, " + deplacement + "($s7)\n\n";
     }
 }
