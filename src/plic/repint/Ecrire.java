@@ -49,8 +49,6 @@ public class Ecrire extends Instruction
             sb.append("addi $t4, $t4, 1\n"); // Incrémenter l'index de boucle
             sb.append("j ").append(loopLabel).append("\n\n"); // Retour au début de la boucle
             sb.append(endLoopLabel).append(":\n");
-            sb.append("la $a0, linebreak\n");
-            sb.append("syscall\n"); // Saut de ligne après le dernier élément
         } else {
             // Générer le code MIPS pour afficher une valeur simple ou un élément de tableau
             sb.append(expression.toMips());
@@ -58,9 +56,10 @@ public class Ecrire extends Instruction
             sb.append("li $v0, 1\n");
             sb.append("syscall\n");
             sb.append("li $v0, 4\n");
-            sb.append("la $a0, linebreak\n");
-            sb.append("syscall\n"); // Saut de ligne
         }
+        // Saut de ligne
+        sb.append("la $a0, linebreak\n");
+        sb.append("syscall\n");
 
         return sb.toString();
     }
