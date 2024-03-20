@@ -1,0 +1,7 @@
+programme test {
+    tableau [ 5 ] a ;
+    tableau [ 8 ] b ;
+    b [ 5 ] := 46 ;
+    a [ 4 ] := b [ 5 ] ;
+    ecrire a [ 4 ] ;
+}
