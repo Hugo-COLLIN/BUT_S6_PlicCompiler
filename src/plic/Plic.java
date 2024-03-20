@@ -52,6 +52,7 @@ public class Plic {
         return """
                 .data
                 linebreak: \t.asciiz "\\n"
+                separator: \t.asciiz ", "
 
                 .text
                 main :
