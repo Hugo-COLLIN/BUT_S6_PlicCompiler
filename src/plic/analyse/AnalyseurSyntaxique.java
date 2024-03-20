@@ -90,10 +90,6 @@ public class AnalyseurSyntaxique
     }
 
     private boolean analyseType() {
-//        for (String t : types) {
-//            if (t.equals(type))
-//                return t;
-//        }
         return types.contains(this.uniteCourante);
     }
 
@@ -185,7 +181,7 @@ public class AnalyseurSyntaxique
 
             return new Idf(nom);
         } else {
-            throw new ErreurSyntaxique("Opérande inattendu");
+            throw new ErreurSyntaxique("Opérande inattendu: " + this.uniteCourante);
         }
     }
 
