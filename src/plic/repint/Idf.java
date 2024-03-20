@@ -35,4 +35,13 @@ public class Idf extends Expression
         int deplacement = symbole.getDeplacement();
         return "lw $v0, " + deplacement + "($s7)\n\n";
     }
+
+    @Override
+    public String getType() {
+        Symbole symbole = TDS.getInstance().identifier(new Entree(nom));
+        if (symbole == null) {
+            throw new RuntimeException("ERREUR: Identificateur non déclaré: " + nom);
+        }
+        return symbole.getType();
+    }
 }

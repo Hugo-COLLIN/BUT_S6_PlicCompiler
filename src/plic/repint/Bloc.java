@@ -1,5 +1,7 @@
 package plic.repint;
 
+import plic.exceptions.ErreurSemantique;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class Bloc
         this.instructions.add(i);
     }
 
-    public void verifier() {
+    public void verifier() throws ErreurSemantique {
         for (Instruction instruction : instructions) {
             instruction.verifier();
         }

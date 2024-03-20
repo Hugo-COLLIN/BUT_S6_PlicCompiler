@@ -33,4 +33,15 @@ public class AccesTableau extends Expression {
         return sb.toString();
     }
 
+    @Override
+    public String getType() {
+        Symbole symbole = TDS.getInstance().identifier(new Entree(idf.getNom()));
+        if (symbole == null) {
+            throw new RuntimeException("ERREUR: Identificateur non déclaré: " + idf.getNom());
+        }
+        // Supposons que le type du tableau est stocké dans la propriété 'type' du symbole
+        // et que le type des éléments du tableau est 'entier'
+        return "entier"; // Remplacez ceci par la logique réelle pour déterminer le type
+    }
+
 }

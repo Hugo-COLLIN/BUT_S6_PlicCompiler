@@ -1,5 +1,7 @@
 package plic.repint;
 
+import plic.exceptions.ErreurSemantique;
+
 public abstract class Instruction
 {
     Expression expression;
@@ -8,7 +10,7 @@ public abstract class Instruction
         this.expression = e;
     }
 
-    public abstract void verifier();
+    public abstract void verifier() throws ErreurSemantique;
 
     @Override
     public String toString() {
