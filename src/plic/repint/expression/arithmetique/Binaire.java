@@ -12,7 +12,10 @@ public abstract class Binaire extends Expression {
     }
 
     @Override
-    public abstract void verifier();
+    public void verifier() {
+        this.opDroit.verifier();
+        this.opGauche.verifier();
+    }
 
     @Override
     public abstract String toMips();

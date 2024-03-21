@@ -8,12 +8,6 @@ public class Somme extends Binaire {
     }
 
     @Override
-    public void verifier() {
-        this.opDroit.verifier();
-        this.opGauche.verifier();
-    }
-
-    @Override
     public String toMips() {
         return opGauche.toMips() +      // Générer le code MIPS pour évaluer l'opérande gauche et le stocker dans $t0. Le résultat de l'addition est maintenant dans $v0, prêt à être utilisé ou stocké
                 "move $t0, $v0\n" +     // Sauvegarder le résultat de l'opérande gauche dans $t0
