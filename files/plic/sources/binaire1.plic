@@ -2,4 +2,6 @@ programme test {
     entier i ; entier j ;
     i := 3 + 4 ;
     ecrire i ;
+    j := i + 1 ;
+    ecrire j ;
 }

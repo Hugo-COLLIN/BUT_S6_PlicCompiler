@@ -3,8 +3,8 @@ package plic.repint.expression.arithmetique;
 import plic.repint.expression.Expression;
 
 public abstract class Binaire extends Expression {
-    private Expression opGauche;
-    private Expression opDroit;
+    protected Expression opGauche;
+    protected Expression opDroit;
 
     public Binaire(Expression opGauche, Expression opDroit) {
         this.opGauche = opGauche;
