@@ -12,14 +12,11 @@ public abstract class Binaire extends Expression {
     }
 
     @Override
-    public void verifier() {
-
-    }
+    public abstract void verifier();
 
     @Override
     public abstract String toMips();
 
+    @Override
     public abstract String getType();
-
-    // Méthodes pour évaluer ou afficher l'expression, selon vos besoins
 }
