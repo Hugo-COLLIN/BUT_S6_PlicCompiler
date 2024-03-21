@@ -14,6 +14,7 @@ public abstract class Binaire extends Expression {
     @Override
     public void verifier() {
         this.opDroit.verifier();
+//        this.opDroit.getType().equals("entier");
         this.opGauche.verifier();
     }
 

@@ -2,6 +2,6 @@ programme test {
     entier i ; entier j ;
     i := 3 - 6 ;
     ecrire i ;
-    j := i + 1 ;
+    j := i * 2 ;
     ecrire j ;
 }

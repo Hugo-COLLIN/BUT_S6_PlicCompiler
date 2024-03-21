@@ -8,6 +8,7 @@ import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
 import plic.repint.expression.Nombre;
 import plic.repint.expression.arithmetique.Difference;
+import plic.repint.expression.arithmetique.Produit;
 import plic.repint.expression.arithmetique.Somme;
 import plic.repint.instruction.Affectation;
 import plic.repint.instruction.AffectationTableau;
@@ -174,13 +175,17 @@ public class AnalyseurSyntaxique
         switch (this.uniteCourante) {
             case "+":
             case "-":
+            case "*":
                 String operateur = this.uniteCourante;
                 nextToken();
                 exprDroit = analyseOperande(); // Analyse l'opérande droit
-                if (operateur.equals("+"))
-                    exprGauche = new Somme(exprGauche, exprDroit); // Crée une nouvelle expression binaire
-                else
-                    exprGauche = new Difference(exprGauche, exprDroit); // Crée une nouvelle expression binaire
+                // Crée une nouvelle expression binaire
+                exprGauche = switch (operateur) {
+                    case "+" -> new Somme(exprGauche, exprDroit);
+                    case "-" -> new Difference(exprGauche, exprDroit);
+                    case "*" -> new Produit(exprGauche, exprDroit);
+                    default -> exprGauche;
+                };
                 break;
 //            case null, default:
         }
