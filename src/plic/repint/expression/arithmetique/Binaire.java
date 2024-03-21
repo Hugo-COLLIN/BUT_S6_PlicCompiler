@@ -2,15 +2,13 @@ package plic.repint.expression.arithmetique;
 
 import plic.repint.expression.Expression;
 
-public class Binaire extends Expression {
+public abstract class Binaire extends Expression {
     private Expression opGauche;
     private Expression opDroit;
-    private String operateur;
 
-    public Binaire(Expression opGauche, Expression opDroit, String operateur) {
+    public Binaire(Expression opGauche, Expression opDroit) {
         this.opGauche = opGauche;
         this.opDroit = opDroit;
-        this.operateur = operateur;
     }
 
     @Override
@@ -19,14 +17,9 @@ public class Binaire extends Expression {
     }
 
     @Override
-    public String toMips() {
-        return null;
-    }
+    public abstract String toMips();
 
-    @Override
-    public String getType() {
-        return null;
-    }
+    public abstract String getType();
 
     // Méthodes pour évaluer ou afficher l'expression, selon vos besoins
 }

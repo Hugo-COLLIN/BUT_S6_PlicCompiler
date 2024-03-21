@@ -8,6 +8,7 @@ import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
 import plic.repint.expression.Nombre;
 import plic.repint.expression.arithmetique.Binaire;
+import plic.repint.expression.arithmetique.Somme;
 import plic.repint.instruction.Affectation;
 import plic.repint.instruction.AffectationTableau;
 import plic.repint.instruction.Ecrire;
@@ -172,7 +173,7 @@ public class AnalyseurSyntaxique
         if (this.uniteCourante.equals("+")) { // Gère l'addition
             nextToken(); // Consomme le '+'
             Expression exprDroit = analyseOperande(); // Analyse l'opérande droit
-            exprGauche = new Binaire(exprGauche, exprDroit, "+"); // Crée une nouvelle expression binaire
+            exprGauche = new Somme(exprGauche, exprDroit); // Crée une nouvelle expression binaire
         }
         return exprGauche;
     }
