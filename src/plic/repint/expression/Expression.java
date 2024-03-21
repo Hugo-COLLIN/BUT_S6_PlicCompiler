@@ -2,10 +2,6 @@ package plic.repint.expression;
 
 public abstract class Expression
 {
-//    Expression() {
-//
-//    }
-
     public abstract void verifier();
 
     @Override

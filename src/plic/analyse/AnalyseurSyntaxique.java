@@ -7,6 +7,7 @@ import plic.repint.expression.AccesTableau;
 import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
 import plic.repint.expression.Nombre;
+import plic.repint.expression.arithmetique.Binaire;
 import plic.repint.instruction.Affectation;
 import plic.repint.instruction.AffectationTableau;
 import plic.repint.instruction.Ecrire;
@@ -167,7 +168,13 @@ public class AnalyseurSyntaxique
 
 
     private Expression analyseExpression() throws ErreurSyntaxique {
-        return analyseOperande();
+        Expression exprGauche = analyseOperande();
+        if (this.uniteCourante.equals("+")) { // Gère l'addition
+            nextToken(); // Consomme le '+'
+            Expression exprDroit = analyseOperande(); // Analyse l'opérande droit
+            exprGauche = new Binaire(exprGauche, exprDroit, "+"); // Crée une nouvelle expression binaire
+        }
+        return exprGauche;
     }
 
     private Expression analyseOperande() throws ErreurSyntaxique {
