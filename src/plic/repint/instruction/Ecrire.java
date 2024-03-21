@@ -1,4 +1,8 @@
-package plic.repint;
+package plic.repint.instruction;
+
+import plic.repint.*;
+import plic.repint.expression.Expression;
+import plic.repint.expression.Idf;
 
 public class Ecrire extends Instruction
 {

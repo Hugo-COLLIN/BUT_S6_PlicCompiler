@@ -3,6 +3,14 @@ package plic.analyse;
 import plic.exceptions.DoubleDeclaration;
 import plic.exceptions.ErreurSyntaxique;
 import plic.repint.*;
+import plic.repint.expression.AccesTableau;
+import plic.repint.expression.Expression;
+import plic.repint.expression.Idf;
+import plic.repint.expression.Nombre;
+import plic.repint.instruction.Affectation;
+import plic.repint.instruction.AffectationTableau;
+import plic.repint.instruction.Ecrire;
+import plic.repint.instruction.Instruction;
 
 import java.io.File;
 import java.io.FileNotFoundException;

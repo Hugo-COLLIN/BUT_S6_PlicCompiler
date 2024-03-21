@@ -1,4 +1,8 @@
-package plic.repint;
+package plic.repint.expression;
+
+import plic.repint.Entree;
+import plic.repint.Symbole;
+import plic.repint.TDS;
 
 public class Idf extends Expression
 {

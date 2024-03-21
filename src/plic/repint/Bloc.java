@@ -1,6 +1,7 @@
 package plic.repint;
 
 import plic.exceptions.ErreurSemantique;
+import plic.repint.instruction.Instruction;
 
 import java.util.ArrayList;
 import java.util.List;

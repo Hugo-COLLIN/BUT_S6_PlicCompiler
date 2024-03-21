@@ -1,4 +1,4 @@
-package plic.repint;
+package plic.repint.expression;
 
 public class Nombre extends Expression
 {

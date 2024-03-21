@@ -1,6 +1,7 @@
-package plic.repint;
+package plic.repint.instruction;
 
 import plic.exceptions.ErreurSemantique;
+import plic.repint.expression.Expression;
 
 public abstract class Instruction
 {

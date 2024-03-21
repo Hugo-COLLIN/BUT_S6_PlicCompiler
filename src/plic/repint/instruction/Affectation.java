@@ -1,6 +1,9 @@
-package plic.repint;
+package plic.repint.instruction;
 
 import plic.exceptions.ErreurSemantique;
+import plic.repint.*;
+import plic.repint.expression.Expression;
+import plic.repint.expression.Idf;
 
 public class Affectation extends Instruction
 {
