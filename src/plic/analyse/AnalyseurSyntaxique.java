@@ -8,6 +8,7 @@ import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
 import plic.repint.expression.Nombre;
 import plic.repint.expression.operateurs.arithmetique.Difference;
+import plic.repint.expression.operateurs.arithmetique.Oppose;
 import plic.repint.expression.operateurs.arithmetique.Produit;
 import plic.repint.expression.operateurs.arithmetique.Somme;
 import plic.repint.expression.operateurs.booleen.Et;
@@ -175,28 +176,34 @@ public class AnalyseurSyntaxique
 
 
     private Expression analyseExpression() throws ErreurSyntaxique {
-        Expression expr = analyseExpressionPrimaire();
-
-        if (operateurs.contains(this.uniteCourante)) {
-            String operateur = this.uniteCourante;
+        if (this.uniteCourante.equals("-")) {
             nextToken();
-            Expression exprDroit = analyseExpressionPrimaire();
-            return switch (operateur) {
-                case "+" -> new Somme(expr, exprDroit);
-                case "-" -> new Difference(expr, exprDroit);
-                case "*" -> new Produit(expr, exprDroit);
-                case "<" -> new Inferieur(expr, exprDroit);
-                case ">" -> new Superieur(expr, exprDroit);
-                case "<=" -> new InferieurOuEgal(expr, exprDroit);
-                case ">=" -> new SuperieurOuEgal(expr, exprDroit);
-                case "=" -> new Egal(expr, exprDroit);
-                case "#" -> new Different(expr, exprDroit);
-                case "et" -> new Et(expr, exprDroit);
-                case "ou" -> new Ou(expr, exprDroit);
-                default -> expr; // Ne devrait jamais arriver
-            };
+            Expression expr = analyseExpression(); // Analyse l'expression entre parenthèses
+            return new Oppose(expr); // Crée une nouvelle expression représentant l'opération unaire
+        } else {
+            Expression expr = analyseExpressionPrimaire();
+
+            if (operateurs.contains(this.uniteCourante)) {
+                String operateur = this.uniteCourante;
+                nextToken();
+                Expression exprDroit = analyseExpressionPrimaire();
+                return switch (operateur) {
+                    case "+" -> new Somme(expr, exprDroit);
+                    case "-" -> new Difference(expr, exprDroit);
+                    case "*" -> new Produit(expr, exprDroit);
+                    case "<" -> new Inferieur(expr, exprDroit);
+                    case ">" -> new Superieur(expr, exprDroit);
+                    case "<=" -> new InferieurOuEgal(expr, exprDroit);
+                    case ">=" -> new SuperieurOuEgal(expr, exprDroit);
+                    case "=" -> new Egal(expr, exprDroit);
+                    case "#" -> new Different(expr, exprDroit);
+                    case "et" -> new Et(expr, exprDroit);
+                    case "ou" -> new Ou(expr, exprDroit);
+                    default -> expr; // Ne devrait jamais arriver
+                };
+            }
+            return expr;
         }
-        return expr;
     }
 
     private Expression analyseExpressionPrimaire() throws ErreurSyntaxique {
