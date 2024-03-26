@@ -1,5 +1,6 @@
 package plic.repint.instruction;
 
+import plic.exceptions.ErreurSemantique;
 import plic.repint.*;
 import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
@@ -11,7 +12,7 @@ public class Ecrire extends Instruction
     }
 
     @Override
-    public void verifier() {
+    public void verifier() throws ErreurSemantique {
         // Vérifier que l'expression est valide
         expression.verifier();
     }

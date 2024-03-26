@@ -1,5 +1,6 @@
-package plic.repint.expression.arithmetique;
+package plic.repint.expression.operateurs;
 
+import plic.exceptions.ErreurSemantique;
 import plic.repint.expression.Expression;
 
 public abstract class Binaire extends Expression {
@@ -12,11 +13,7 @@ public abstract class Binaire extends Expression {
     }
 
     @Override
-    public void verifier() {
-        this.opDroit.verifier();
-//        this.opDroit.getType().equals("entier");
-        this.opGauche.verifier();
-    }
+    public abstract void verifier() throws ErreurSemantique;
 
     @Override
     public abstract String toMips();

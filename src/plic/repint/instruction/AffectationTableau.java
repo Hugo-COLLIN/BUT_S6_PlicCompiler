@@ -1,5 +1,6 @@
 package plic.repint.instruction;
 
+import plic.exceptions.ErreurSemantique;
 import plic.repint.*;
 import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
@@ -17,7 +18,7 @@ public class AffectationTableau extends Instruction {
     }
 
     @Override
-    public void verifier() {
+    public void verifier() throws ErreurSemantique {
         // Vérifier l'identificateur de tableau, l'indice et la valeur
         idf.verifier();
         indice.verifier();

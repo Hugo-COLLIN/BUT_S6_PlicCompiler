@@ -1,5 +1,6 @@
 package plic.repint.expression;
 
+import plic.exceptions.ErreurSemantique;
 import plic.repint.Entree;
 import plic.repint.Symbole;
 import plic.repint.TDS;
@@ -14,7 +15,7 @@ public class AccesTableau extends Expression {
     }
 
     @Override
-    public void verifier() {
+    public void verifier() throws ErreurSemantique {
         // Vérifier l'identificateur de tableau et l'indice
         idf.verifier();
         indice.verifier();

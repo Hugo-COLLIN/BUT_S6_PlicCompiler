@@ -1,0 +1,7 @@
+programme sommeUn {
+    entier i ; entier j ; entier k ;
+    i := 1 ;
+    j := 1 ;
+    k := i + j ; // gud
+    ecrire k ;
+}
