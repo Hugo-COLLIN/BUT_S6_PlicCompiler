@@ -16,9 +16,4 @@ public class Produit extends Arithmetique {
                 "mul $v0, $t0, $v0\n";  // Le résultat de la soustraction est maintenant dans $v0, prêt à être utilisé ou stocké
     }
     //TODO: bouger le registre $sp au lieu d'affceter à $v0
-
-    @Override
-    public String getType() {
-        return "entier";
-    }
 }

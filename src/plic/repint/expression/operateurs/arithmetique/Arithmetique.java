@@ -22,5 +22,7 @@ public abstract class Arithmetique extends Binaire {
     public abstract String toMips();
 
     @Override
-    public abstract String getType();
+    public String getType() {
+        return "entier";
+    }
 }
