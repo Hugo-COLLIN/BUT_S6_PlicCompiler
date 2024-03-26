@@ -10,6 +10,7 @@ import plic.repint.expression.Nombre;
 import plic.repint.expression.operateurs.arithmetique.Difference;
 import plic.repint.expression.operateurs.arithmetique.Produit;
 import plic.repint.expression.operateurs.arithmetique.Somme;
+import plic.repint.expression.operateurs.booleen.Et;
 import plic.repint.expression.operateurs.comparaison.*;
 import plic.repint.instruction.Affectation;
 import plic.repint.instruction.AffectationTableau;
@@ -24,7 +25,7 @@ public class AnalyseurSyntaxique
 {
     private final AnalyseurLexical analex;
     private String uniteCourante;
-    private static final List<String> motsReserves = List.of("programme", "entier", "tableau", "[", "]", "{", "}", "EOF", "ecrire", ":=");
+    private static final List<String> motsReserves = List.of("programme", "entier", "tableau", "[", "]", "{", "}", "(", ")", "EOF", "ecrire", ":=");
 
     private static final List<String> types = List.of("entier", "tableau");
 
@@ -171,39 +172,59 @@ public class AnalyseurSyntaxique
 
 
     private Expression analyseExpression() throws ErreurSyntaxique {
-        Expression exprGauche = analyseOperande();
-        Expression exprDroit;
-        switch (this.uniteCourante) {
-            case "+":
-            case "-":
-            case "*":
-            case "<":
-            case ">":
-            case "<=":
-            case ">=":
-            case "=":
-            case "#":
-                String operateur = this.uniteCourante;
-                nextToken();
-                exprDroit = analyseOperande(); // Analyse l'opérande droit
-                // Crée une nouvelle expression binaire
-                exprGauche = switch (operateur) {
-                    case "+" -> new Somme(exprGauche, exprDroit);
-                    case "-" -> new Difference(exprGauche, exprDroit);
-                    case "*" -> new Produit(exprGauche, exprDroit);
-                    case "<" -> new Inferieur(exprGauche, exprDroit);
-                    case ">" -> new Superieur(exprGauche, exprDroit);
-                    case "<=" -> new InferieurOuEgal(exprGauche, exprDroit);
-                    case ">=" -> new SuperieurOuEgal(exprGauche, exprDroit);
-                    case "=" -> new Egal(exprGauche, exprDroit);
-                    case "#" -> new Different(exprGauche, exprDroit);
-                    default -> exprGauche;
-                };
-                break;
-//            case null, default:
+        Expression expr = analyseExpressionPrimaire();
+
+        while (true) {
+            switch (this.uniteCourante) {
+                case "+":
+                case "-":
+                case "*":
+                case "<":
+                case ">":
+                case "<=":
+                case ">=":
+                case "=":
+                case "#":
+                case "et":
+                    String operateur = this.uniteCourante;
+                    nextToken();
+                    Expression exprDroit = analyseExpressionPrimaire();
+                    expr = switch (operateur) {
+                        case "+" -> new Somme(expr, exprDroit);
+                        case "-" -> new Difference(expr, exprDroit);
+                        case "*" -> new Produit(expr, exprDroit);
+                        case "<" -> new Inferieur(expr, exprDroit);
+                        case ">" -> new Superieur(expr, exprDroit);
+                        case "<=" -> new InferieurOuEgal(expr, exprDroit);
+                        case ">=" -> new SuperieurOuEgal(expr, exprDroit);
+                        case "=" -> new Egal(expr, exprDroit);
+                        case "#" -> new Different(expr, exprDroit);
+                        case "et" -> new Et(expr, exprDroit);
+                        default -> expr; // Ne devrait jamais arriver
+                    };
+                    break;
+                default:
+                    return expr;
+            }
         }
-        return exprGauche;
     }
+
+    private Expression analyseExpressionPrimaire() throws ErreurSyntaxique {
+        if (this.uniteCourante.equals("(")) {
+            return analyseExpressionParenthesee();
+        } else {
+            return analyseOperande();
+        }
+    }
+
+
+    private Expression analyseExpressionParenthesee() throws ErreurSyntaxique {
+        analyseTerminal("("); // Vérifie et consomme la parenthèse ouvrante
+        Expression expr = analyseExpression(); // Analyse l'expression interne
+        analyseTerminal(")"); // Vérifie et consomme la parenthèse fermante
+        return expr;
+    }
+
 
     private Expression analyseOperande() throws ErreurSyntaxique {
         if (estCsteEntiere()) {
