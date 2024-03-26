@@ -11,6 +11,7 @@ import plic.repint.expression.operateurs.arithmetique.Difference;
 import plic.repint.expression.operateurs.arithmetique.Produit;
 import plic.repint.expression.operateurs.arithmetique.Somme;
 import plic.repint.expression.operateurs.booleen.Et;
+import plic.repint.expression.operateurs.booleen.Ou;
 import plic.repint.expression.operateurs.comparaison.*;
 import plic.repint.instruction.Affectation;
 import plic.repint.instruction.AffectationTableau;
@@ -185,6 +186,7 @@ public class AnalyseurSyntaxique
             case "=":
             case "#":
             case "et":
+            case "ou":
                 String operateur = this.uniteCourante;
                 nextToken();
                 Expression exprDroit = analyseExpressionPrimaire();
@@ -199,6 +201,7 @@ public class AnalyseurSyntaxique
                     case "=" -> new Egal(expr, exprDroit);
                     case "#" -> new Different(expr, exprDroit);
                     case "et" -> new Et(expr, exprDroit);
+                    case "ou" -> new Ou(expr, exprDroit);
                     default -> expr; // Ne devrait jamais arriver
                 };
             default:

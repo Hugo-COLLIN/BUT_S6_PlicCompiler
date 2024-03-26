@@ -1,0 +1,6 @@
+programme test {
+    ecrire ( 3 = 3 ) ou ( 8 > 3 ) ;
+    ecrire ( 3 = 2 ) ou ( 8 > 3 ) ;
+    ecrire ( 3 = 3 ) ou ( 8 > 10 ) ;
+    ecrire ( 3 = 2 ) ou ( 8 > 10 ) ;
+}
