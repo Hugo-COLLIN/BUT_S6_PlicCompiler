@@ -12,6 +12,7 @@ import plic.repint.expression.operateurs.arithmetique.Oppose;
 import plic.repint.expression.operateurs.arithmetique.Produit;
 import plic.repint.expression.operateurs.arithmetique.Somme;
 import plic.repint.expression.operateurs.booleen.Et;
+import plic.repint.expression.operateurs.booleen.Non;
 import plic.repint.expression.operateurs.booleen.Ou;
 import plic.repint.expression.operateurs.comparaison.*;
 import plic.repint.instruction.Affectation;
@@ -176,12 +177,17 @@ public class AnalyseurSyntaxique
 
 
     private Expression analyseExpression() throws ErreurSyntaxique {
+        Expression expr;
         if (this.uniteCourante.equals("-")) {
             nextToken();
-            Expression expr = analyseExpression(); // Analyse l'expression entre parenthèses
+            expr = analyseExpression(); // Analyse l'expression entre parenthèses
             return new Oppose(expr); // Crée une nouvelle expression représentant l'opération unaire
+        } else if (this.uniteCourante.equals("non")) {
+            nextToken();
+            expr = analyseExpression();
+            return new Non(expr);
         } else {
-            Expression expr = analyseExpressionPrimaire();
+            expr = analyseExpressionPrimaire();
 
             if (operateurs.contains(this.uniteCourante)) {
                 String operateur = this.uniteCourante;
