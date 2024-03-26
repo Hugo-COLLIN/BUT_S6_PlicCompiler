@@ -174,38 +174,35 @@ public class AnalyseurSyntaxique
     private Expression analyseExpression() throws ErreurSyntaxique {
         Expression expr = analyseExpressionPrimaire();
 
-        while (true) {
-            switch (this.uniteCourante) {
-                case "+":
-                case "-":
-                case "*":
-                case "<":
-                case ">":
-                case "<=":
-                case ">=":
-                case "=":
-                case "#":
-                case "et":
-                    String operateur = this.uniteCourante;
-                    nextToken();
-                    Expression exprDroit = analyseExpressionPrimaire();
-                    expr = switch (operateur) {
-                        case "+" -> new Somme(expr, exprDroit);
-                        case "-" -> new Difference(expr, exprDroit);
-                        case "*" -> new Produit(expr, exprDroit);
-                        case "<" -> new Inferieur(expr, exprDroit);
-                        case ">" -> new Superieur(expr, exprDroit);
-                        case "<=" -> new InferieurOuEgal(expr, exprDroit);
-                        case ">=" -> new SuperieurOuEgal(expr, exprDroit);
-                        case "=" -> new Egal(expr, exprDroit);
-                        case "#" -> new Different(expr, exprDroit);
-                        case "et" -> new Et(expr, exprDroit);
-                        default -> expr; // Ne devrait jamais arriver
-                    };
-                    break;
-                default:
-                    return expr;
-            }
+        switch (this.uniteCourante) {
+            case "+":
+            case "-":
+            case "*":
+            case "<":
+            case ">":
+            case "<=":
+            case ">=":
+            case "=":
+            case "#":
+            case "et":
+                String operateur = this.uniteCourante;
+                nextToken();
+                Expression exprDroit = analyseExpressionPrimaire();
+                return switch (operateur) {
+                    case "+" -> new Somme(expr, exprDroit);
+                    case "-" -> new Difference(expr, exprDroit);
+                    case "*" -> new Produit(expr, exprDroit);
+                    case "<" -> new Inferieur(expr, exprDroit);
+                    case ">" -> new Superieur(expr, exprDroit);
+                    case "<=" -> new InferieurOuEgal(expr, exprDroit);
+                    case ">=" -> new SuperieurOuEgal(expr, exprDroit);
+                    case "=" -> new Egal(expr, exprDroit);
+                    case "#" -> new Different(expr, exprDroit);
+                    case "et" -> new Et(expr, exprDroit);
+                    default -> expr; // Ne devrait jamais arriver
+                };
+            default:
+                return expr;
         }
     }
 
