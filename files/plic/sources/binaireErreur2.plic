@@ -1,0 +1,5 @@
+programme test {
+    entier i ;
+    i := 2 < 3 ;
+    ecrire 2 > 3 ;
+}
