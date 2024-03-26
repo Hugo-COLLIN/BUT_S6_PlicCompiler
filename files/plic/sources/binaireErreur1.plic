@@ -1,0 +1,7 @@
+programme test {
+    entier i ;
+    tableau [ 3 ] j ;
+    i := 3 - j ;
+    ecrire i ;
+    ecrire j ;
+}
