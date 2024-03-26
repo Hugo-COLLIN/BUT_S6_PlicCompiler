@@ -1,4 +1,6 @@
 programme test {
     ecrire 2 < 3 ;
     ecrire non ( 2 < 3 ) ;
+    ecrire non ( 2 > 3 ) ;
 }
+// expected : 1 0 1
