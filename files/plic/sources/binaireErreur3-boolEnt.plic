@@ -1,0 +1,9 @@
+programme test {
+    entier i ;
+    tableau [ 3 ] j ;
+    entier k ;
+
+    i := 4 ;
+    j [ 2 ] := 1 ;
+    ecrire ( ( i > j [ 2 ] ) * i ) + 100 ;
+}
