@@ -1,0 +1,4 @@
+programme test {
+    ecrire ( 9 - 2 ) * ( 1 + 2 ) ;
+    ecrire ( ( 1 + 5 ) - 2 ) * ( 1 + 2 ) ;
+}
