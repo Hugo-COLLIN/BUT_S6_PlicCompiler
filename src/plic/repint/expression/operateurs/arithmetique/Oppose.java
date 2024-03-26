@@ -12,6 +12,8 @@ public class Oppose extends Unaire {
     @Override
     public void verifier() throws ErreurSemantique {
         op.verifier();
+        if (!this.op.getType().equals("entier"))
+            throw new ErreurSemantique("L'expression doit être de type entier");
     }
 
     @Override

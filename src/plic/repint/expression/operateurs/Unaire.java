@@ -8,7 +8,6 @@ public abstract class Unaire extends Expression {
 
     public Unaire(Expression op) {
         this.op = op;
-        // TODO verif si de type entier (en combinant avec arithmetique ?)
     }
 
     @Override
