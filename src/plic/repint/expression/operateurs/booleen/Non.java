@@ -24,6 +24,6 @@ public class Non extends Unaire {
 
     @Override
     public String getType() {
-        return "entier";
+        return "booleen";
     }
 }
