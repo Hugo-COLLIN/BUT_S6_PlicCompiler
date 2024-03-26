@@ -1,4 +1,10 @@
 programme test {
     ecrire 2 > 3 ;
     ecrire 3 > 2 ;
+    ecrire 3 <= 3 ;
+    ecrire 3 >= 3 ;
+    ecrire 3 >= 2 ;
+    ecrire 2 >= 3 ;
+    ecrire 3 <= 2 ;
+    ecrire 2 <= 3 ;
 }

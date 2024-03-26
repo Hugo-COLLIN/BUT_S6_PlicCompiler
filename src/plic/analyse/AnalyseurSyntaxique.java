@@ -11,7 +11,9 @@ import plic.repint.expression.operateurs.arithmetique.Difference;
 import plic.repint.expression.operateurs.arithmetique.Produit;
 import plic.repint.expression.operateurs.arithmetique.Somme;
 import plic.repint.expression.operateurs.comparaison.Inferieur;
+import plic.repint.expression.operateurs.comparaison.InferieurOuEgal;
 import plic.repint.expression.operateurs.comparaison.Superieur;
+import plic.repint.expression.operateurs.comparaison.SuperieurOuEgal;
 import plic.repint.instruction.Affectation;
 import plic.repint.instruction.AffectationTableau;
 import plic.repint.instruction.Ecrire;
@@ -180,6 +182,8 @@ public class AnalyseurSyntaxique
             case "*":
             case "<":
             case ">":
+            case "<=":
+            case ">=":
                 String operateur = this.uniteCourante;
                 nextToken();
                 exprDroit = analyseOperande(); // Analyse l'opérande droit
@@ -190,6 +194,8 @@ public class AnalyseurSyntaxique
                     case "*" -> new Produit(exprGauche, exprDroit);
                     case "<" -> new Inferieur(exprGauche, exprDroit);
                     case ">" -> new Superieur(exprGauche, exprDroit);
+                    case "<=" -> new InferieurOuEgal(exprGauche, exprDroit);
+                    case ">=" -> new SuperieurOuEgal(exprGauche, exprDroit);
                     default -> exprGauche;
                 };
                 break;
