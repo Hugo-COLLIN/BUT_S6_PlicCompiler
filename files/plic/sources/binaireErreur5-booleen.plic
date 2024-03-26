@@ -1,0 +1,9 @@
+programme test {
+    entier i ;
+    entier j ;
+    entier k ;
+
+    i := 23 ;
+    j := i - 8 ;
+    k := i > j ;
+}
