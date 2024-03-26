@@ -1,9 +1,8 @@
 package plic.repint.expression.operateurs.arithmetique;
 
 import plic.repint.expression.Expression;
-import plic.repint.expression.operateurs.Binaire;
 
-public class Produit extends Arithmetique {
+public class Produit extends ArithmetiqueBinaire {
     public Produit(Expression opGauche, Expression opDroit) {
         super(opGauche, opDroit);
     }

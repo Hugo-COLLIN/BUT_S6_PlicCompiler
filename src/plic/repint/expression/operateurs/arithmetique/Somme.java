@@ -2,7 +2,7 @@ package plic.repint.expression.operateurs.arithmetique;
 
 import plic.repint.expression.Expression;
 
-public class Somme extends Arithmetique {
+public class Somme extends ArithmetiqueBinaire {
     public Somme(Expression opGauche, Expression opDroit) {
         super(opGauche, opDroit);
     }

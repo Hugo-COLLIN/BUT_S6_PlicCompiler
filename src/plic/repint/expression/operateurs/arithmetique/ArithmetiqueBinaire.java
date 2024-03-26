@@ -4,9 +4,9 @@ import plic.exceptions.ErreurSemantique;
 import plic.repint.expression.Expression;
 import plic.repint.expression.operateurs.Binaire;
 
-public abstract class Arithmetique extends Binaire {
+public abstract class ArithmetiqueBinaire extends Binaire {
 
-    public Arithmetique(Expression opGauche, Expression opDroit) {
+    public ArithmetiqueBinaire(Expression opGauche, Expression opDroit) {
         super(opGauche, opDroit);
     }
 

@@ -2,7 +2,7 @@ package plic.repint.expression.operateurs.booleen;
 
 import plic.repint.expression.Expression;
 
-public class Ou extends Booleen {
+public class Ou extends BooleenBinaire {
     public Ou(Expression opGauche, Expression opDroit) {
         super(opGauche, opDroit);
     }

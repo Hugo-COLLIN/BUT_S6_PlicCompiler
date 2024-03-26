@@ -1,9 +1,8 @@
 package plic.repint.expression.operateurs.booleen;
 
 import plic.repint.expression.Expression;
-import plic.repint.expression.operateurs.arithmetique.Arithmetique;
 
-public class Et extends Booleen {
+public class Et extends BooleenBinaire {
     public Et(Expression opGauche, Expression opDroit) {
         super(opGauche, opDroit);
     }

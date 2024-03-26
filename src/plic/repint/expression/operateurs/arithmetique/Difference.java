@@ -1,9 +1,8 @@
 package plic.repint.expression.operateurs.arithmetique;
 
 import plic.repint.expression.Expression;
-import plic.repint.expression.operateurs.Binaire;
 
-public class Difference extends Arithmetique {
+public class Difference extends ArithmetiqueBinaire {
     public Difference(Expression opGauche, Expression opDroit) {
         super(opGauche, opDroit);
     }

@@ -4,9 +4,9 @@ import plic.exceptions.ErreurSemantique;
 import plic.repint.expression.Expression;
 import plic.repint.expression.operateurs.Binaire;
 
-public abstract class Booleen extends Binaire {
+public abstract class BooleenBinaire extends Binaire {
 
-    public Booleen(Expression opGauche, Expression opDroit) {
+    public BooleenBinaire(Expression opGauche, Expression opDroit) {
         super(opGauche, opDroit);
     }
 
