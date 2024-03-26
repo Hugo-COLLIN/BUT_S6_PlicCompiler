@@ -30,6 +30,8 @@ public class AnalyseurSyntaxique
 
     private static final List<String> types = List.of("entier", "tableau");
 
+    private static final List<String> operateurs = List.of("+", "-", "*", "<", ">", "<=", ">=", "=", "#", "et", "ou");
+
     private final TDS tds;
 
     public AnalyseurSyntaxique(File file) throws FileNotFoundException {
@@ -175,38 +177,26 @@ public class AnalyseurSyntaxique
     private Expression analyseExpression() throws ErreurSyntaxique {
         Expression expr = analyseExpressionPrimaire();
 
-        switch (this.uniteCourante) {
-            case "+":
-            case "-":
-            case "*":
-            case "<":
-            case ">":
-            case "<=":
-            case ">=":
-            case "=":
-            case "#":
-            case "et":
-            case "ou":
-                String operateur = this.uniteCourante;
-                nextToken();
-                Expression exprDroit = analyseExpressionPrimaire();
-                return switch (operateur) {
-                    case "+" -> new Somme(expr, exprDroit);
-                    case "-" -> new Difference(expr, exprDroit);
-                    case "*" -> new Produit(expr, exprDroit);
-                    case "<" -> new Inferieur(expr, exprDroit);
-                    case ">" -> new Superieur(expr, exprDroit);
-                    case "<=" -> new InferieurOuEgal(expr, exprDroit);
-                    case ">=" -> new SuperieurOuEgal(expr, exprDroit);
-                    case "=" -> new Egal(expr, exprDroit);
-                    case "#" -> new Different(expr, exprDroit);
-                    case "et" -> new Et(expr, exprDroit);
-                    case "ou" -> new Ou(expr, exprDroit);
-                    default -> expr; // Ne devrait jamais arriver
-                };
-            default:
-                return expr;
+        if (operateurs.contains(this.uniteCourante)) {
+            String operateur = this.uniteCourante;
+            nextToken();
+            Expression exprDroit = analyseExpressionPrimaire();
+            return switch (operateur) {
+                case "+" -> new Somme(expr, exprDroit);
+                case "-" -> new Difference(expr, exprDroit);
+                case "*" -> new Produit(expr, exprDroit);
+                case "<" -> new Inferieur(expr, exprDroit);
+                case ">" -> new Superieur(expr, exprDroit);
+                case "<=" -> new InferieurOuEgal(expr, exprDroit);
+                case ">=" -> new SuperieurOuEgal(expr, exprDroit);
+                case "=" -> new Egal(expr, exprDroit);
+                case "#" -> new Different(expr, exprDroit);
+                case "et" -> new Et(expr, exprDroit);
+                case "ou" -> new Ou(expr, exprDroit);
+                default -> expr; // Ne devrait jamais arriver
+            };
         }
+        return expr;
     }
 
     private Expression analyseExpressionPrimaire() throws ErreurSyntaxique {
