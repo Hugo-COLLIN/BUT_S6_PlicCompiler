@@ -1,12 +1,14 @@
 package plic;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.combinations.CombinationApprovals;
 import org.junit.jupiter.api.Test;
 import plic.repint.TDS;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 public class MoulinettePlicTest {
     static String plicDirPath = "./files/plic/sources";
@@ -15,7 +17,6 @@ public class MoulinettePlicTest {
     public void testPlicFiles() {
         File plicFilesDir = new File(plicDirPath);
 
-        // Assurez-vous que le dossier existe et est un dossier
         assert plicFilesDir.exists() && plicFilesDir.isDirectory() : "Le dossier spécifié n'existe pas ou n'est pas un dossier.";
 
         // Récupérer tous les fichiers .plic dans le dossier
@@ -23,33 +24,46 @@ public class MoulinettePlicTest {
 
         assert plicFiles != null && plicFiles.length > 0 : "Aucun fichier .plic trouvé dans le dossier spécifié.";
 
-        for (File plicFile : plicFiles) {
-            // Capturer la sortie standard et d'erreur
-            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-            ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-            PrintStream originalOut = System.out;
-            PrintStream originalErr = System.err;
-            System.setOut(new PrintStream(outContent));
-            System.setErr(new PrintStream(errContent));
+        String[] plicContent = Arrays.stream(plicFiles)
+                .map(File::getAbsolutePath).toArray(String[]::new);
 
-            // Exécuter le compilateur
-            runPlicCompiler(plicFile.getAbsolutePath());
+//        System.out.println(plicContent);
 
-            // Restaurer les sorties standard et d'erreur
-            System.setOut(originalOut);
-            System.setErr(originalErr);
-
-            // Vérifier la sortie avec ApprovalTests
-            String testName = plicFile.getName().replace(".plic", "");
-            Approvals.verify(outContent.toString() + "\n" + errContent.toString(), testName);
-        }
+        CombinationApprovals.verifyAllCombinations(
+            this::runPlicCompiler,
+            plicContent
+        );
     }
 
-    private static void runPlicCompiler(String filePath) {
+    private String runPlicCompiler(String filePath) {
         // Réinitialiser l'état de TDS avant chaque compilation
         TDS.getInstance().reinitialiser();
 
+        // --- Capturer la sortie standard de Plic.main ---
+        // Sauvegarde de la sortie standard originale
+        PrintStream originalStdout = System.out;
+
+        // Création d'un flux de sortie pour capturer la sortie standard
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream captureStream = new PrintStream(outputStream);
+
+        // Redirection de la sortie standard vers le flux de capture
+        System.setOut(captureStream);
+
+        // --- Exécution de Plic.main avec la sortie standard capturée ---
+        // Exécution de Plic.main avec la sortie standard capturée
         String[] args = {filePath};
         Plic.main(args);
+
+        // --- Restaurer les paramètres de sortie standard ---
+        // Restauration de la sortie standard originale
+        System.setOut(originalStdout);
+
+        // Conversion de la sortie capturée en chaîne de caractères
+        String capturedOutput = outputStream.toString();
+
+        // Affichage ou utilisation de la sortie capturée
+        System.out.println("Captured output for " + filePath + ": " + capturedOutput);
+        return capturedOutput;
     }
 }

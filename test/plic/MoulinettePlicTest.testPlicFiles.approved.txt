@@ -1,0 +1,1459 @@
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire1.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -8
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 4
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    lw $v0, -4($s7)
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 1
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, -8($s7)
+    lw $v0, -8($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire10-parenthVars.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -20
+    li $v0, 4
+    
+    sw $v0, -4($s7)
+    li $v0, 1
+    
+    move $t0, $v0
+    li $v0, 2
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -16
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    lw $v0, -4($s7)
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -16
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    lw $v0, -4($s7)
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 100
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire11-moinsParenth.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 3
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    neg $v0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 3
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 3
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    neg $v0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire12-non.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire2.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -8
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 6
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    sub $v0, $t0, $v0
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    lw $v0, -4($s7)
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    sw $v0, -8($s7)
+    lw $v0, -8($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire3.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire4.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire5.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    xori $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire6-parentheses.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 3
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 3
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 3
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 1
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire7-Et.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    and $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    and $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 10
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    and $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 10
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    and $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire8-Ou.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    or $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    or $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 3
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 10
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    or $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    sub $v0, $v0, $t0
+    sltiu $v0, $v0, 1
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 8
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 10
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $v0, $t0
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    or $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire9-parenthesesC.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 9
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    sub $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 1
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 1
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 5
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    sub $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 1
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur1.plic] => ERREUR: Les deux operateurs doivent être de type entier
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur3-boolEnt.plic] => ERREUR: Les deux operateurs doivent être de type entier
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur4-moinsParenth.plic] => ERREUR: L'expression doit être de type entier
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\source1.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -8
+    li $v0, 57
+    
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\source2.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -4
+    li $v0, 2
+    
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 3
+    
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\source3.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -0
+    li $v0, 42
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur1.plic] => ERREUR: Instruction inattendue: entier
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur2.plic] => ERREUR: Instruction inattendue: entier
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur3.plic] => ERREUR: Instruction inattendue: entier
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur4.plic] => ERREUR: Instruction inattendue: ;
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur5.plic] => ERREUR: Instruction inattendue: ;
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur6.plic] => ERREUR: Instruction inattendue: entier
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux1.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -20
+    li $v0, 3
+    
+    move $t0, $v0
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux2.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -40
+    li $v0, 3
+    
+    move $t0, $v0
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 1
+    
+    move $t0, $v0
+    li $v0, 2
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -40
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 2
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -40
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 8
+    
+    move $t0, $v0
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux3.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -52
+    li $v0, 3
+    
+    move $t0, $v0
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 1
+    
+    move $t0, $v0
+    li $v0, 5
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -52
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 5
+    
+    move $t0, $v0
+    li $v0, 4
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 5
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -52
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 4
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -52
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 4
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -52
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux4.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -52
+    li $v0, 46
+    
+    move $t0, $v0
+    li $v0, 5
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -52
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 5
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -52
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $t0, $v0
+    li $v0, 4
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 4
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux5.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -20
+    li $v0, 2
+    
+    move $t0, $v0
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 83
+    
+    move $t0, $v0
+    li $v0, 3
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $t4, 0
+    li $t5, 5
+    loop306123060:
+    bge $t4, $t5, endLoop306123060
+    li $t1, 4
+    mul $t2, $t4, $t1
+    add $t2, $t2, -20
+    add $t2, $t2, $s7
+    lw $a0, 0($t2)
+    li $v0, 1
+    syscall
+    li $v0, 4
+    addi $t6, $t4, 1
+    bge $t6, $t5, endLoop306123060
+    la $a0, separator
+    syscall
+    addi $t4, $t4, 1
+    j loop306123060
+    
+    endLoop306123060:
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableauxErreur1.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := tableau)
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableauxErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (tableau := entier)
+ 
