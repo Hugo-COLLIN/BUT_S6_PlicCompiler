@@ -7,6 +7,8 @@ import plic.repint.TDS;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class PlicTest {
@@ -23,18 +25,19 @@ public class PlicTest {
 
         assert plicFiles != null && plicFiles.length > 0 : "Aucun fichier .plic trouvé dans le dossier spécifié.";
 
-        String[] plicContent = Arrays.stream(plicFiles)
-                .map(File::getAbsolutePath).toArray(String[]::new);
+        Path basePath = Paths.get(plicDirPath).toAbsolutePath();
 
-//        System.out.println(plicContent);
+        String[] plicContent = Arrays.stream(plicFiles)
+                .map(file -> basePath.relativize(file.toPath().toAbsolutePath()).toString())
+                .toArray(String[]::new);
 
         CombinationApprovals.verifyAllCombinations(
-            this::runPlicCompiler,
-            plicContent
+                this::runPlicCompiler,
+                plicContent
         );
     }
 
-    private String runPlicCompiler(String filePath) {
+    private String runPlicCompiler(String relativeFilePath) {
         // Réinitialiser l'état de TDS avant chaque compilation
         TDS.getInstance().reinitialiser();
 
@@ -50,8 +53,9 @@ public class PlicTest {
         System.setOut(captureStream);
 
         // --- Exécution de Plic.main avec la sortie standard capturée ---
-        // Exécution de Plic.main avec la sortie standard capturée
-        String[] args = {filePath};
+        // Conversion du chemin relatif en chemin absolu et exécution de Plic.main avec la sortie standard capturée
+        String absoluteFilePath = Paths.get(plicDirPath, relativeFilePath).toAbsolutePath().toString();
+        String[] args = {absoluteFilePath};
         Plic.main(args);
 
         // --- Restaurer les paramètres de sortie standard ---
@@ -61,8 +65,6 @@ public class PlicTest {
         // Conversion de la sortie capturée en chaîne de caractères
         String capturedOutput = outputStream.toString();
 
-        // Affichage ou utilisation de la sortie capturée
-//        System.out.println("Captured output for " + filePath + ": " + capturedOutput);
         return capturedOutput;
     }
 }

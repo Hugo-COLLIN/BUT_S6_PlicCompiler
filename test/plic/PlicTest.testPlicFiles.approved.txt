@@ -1,4 +1,4 @@
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire1.plic] => .data
+[binaire1.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -48,7 +48,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire10-parenthVars.plic] => .data
+[binaire10-parenthVars.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -113,7 +113,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire11-moinsParenth.plic] => .data
+[binaire11-moinsParenth.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -166,7 +166,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire12-non.plic] => .data
+[binaire12-non.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -227,7 +227,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire2.plic] => .data
+[binaire2.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -277,7 +277,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire3.plic] => .data
+[binaire3.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -321,7 +321,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire4.plic] => .data
+[binaire4.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -461,7 +461,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire5.plic] => .data
+[binaire5.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -541,7 +541,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire6-parentheses.plic] => .data
+[binaire6-parentheses.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -622,7 +622,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire7-Et.plic] => .data
+[binaire7-Et.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -756,7 +756,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire8-Ou.plic] => .data
+[binaire8-Ou.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -890,7 +890,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaire9-parenthesesC.plic] => .data
+[binaire9-parenthesesC.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -969,17 +969,17 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur1.plic] => ERREUR: Les deux operateurs doivent être de type entier
+[binaireErreur1.plic] => ERREUR: Les deux operateurs doivent être de type entier
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
+[binaireErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur3-boolEnt.plic] => ERREUR: Les deux operateurs doivent être de type entier
+[binaireErreur3-boolEnt.plic] => ERREUR: Les deux operateurs doivent être de type entier
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur4-moinsParenth.plic] => ERREUR: L'expression doit être de type entier
+[binaireErreur4-moinsParenth.plic] => ERREUR: L'expression doit être de type entier
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
+[binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\source1.plic] => .data
+[source1.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1004,7 +1004,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\source2.plic] => .data
+[source2.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1040,7 +1040,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\source3.plic] => .data
+[source3.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1062,19 +1062,19 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur1.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur1.plic] => ERREUR: Instruction inattendue: entier
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur2.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur2.plic] => ERREUR: Instruction inattendue: entier
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur3.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur3.plic] => ERREUR: Instruction inattendue: entier
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur4.plic] => ERREUR: Instruction inattendue: ;
+[sourceErreur4.plic] => ERREUR: Instruction inattendue: ;
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur5.plic] => ERREUR: Instruction inattendue: ;
+[sourceErreur5.plic] => ERREUR: Instruction inattendue: ;
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\sourceErreur6.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur6.plic] => ERREUR: Instruction inattendue: entier
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux1.plic] => .data
+[tableaux1.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1115,7 +1115,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux2.plic] => .data
+[tableaux2.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1210,7 +1210,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux3.plic] => .data
+[tableaux3.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1333,7 +1333,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux4.plic] => .data
+[tableaux4.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1393,7 +1393,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux5.plic] => .data
+[tableaux5.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1453,7 +1453,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux6.plic] => .data
+[tableaux6.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
@@ -1559,7 +1559,7 @@ end :
     syscall
 
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableauxErreur1.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := tableau)
+[tableauxErreur1.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := tableau)
  
-[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableauxErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (tableau := entier)
+[tableauxErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (tableau := entier)
  
