@@ -5,30 +5,31 @@ import org.junit.jupiter.api.Test;
 import plic.repint.TDS;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.PrintStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
+import java.nio.file.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlicTest {
     static String plicDirPath = "./files/plic/sources";
 
     @Test
-    public void testPlicFiles() {
-        File plicFilesDir = new File(plicDirPath);
+    public void testPlicFiles() throws Exception {
+        Path plicFilesDirPath = Paths.get(plicDirPath);
 
-        assert plicFilesDir.exists() && plicFilesDir.isDirectory() : "Le dossier spécifié n'existe pas ou n'est pas un dossier.";
+        assert Files.exists(plicFilesDirPath) && Files.isDirectory(plicFilesDirPath) : "Le dossier spécifié n'existe pas ou n'est pas un dossier.";
 
-        // Récupérer tous les fichiers .plic dans le dossier
-        File[] plicFiles = plicFilesDir.listFiles((dir, name) -> name.endsWith(".plic"));
+        // Utiliser Files.walk pour récupérer tous les fichiers .plic dans le dossier et sous-dossiers
+        List<Path> plicFilesPaths = Files.walk(plicFilesDirPath)
+                .filter(path -> path.toString().endsWith(".plic"))
+                .collect(Collectors.toList());
 
-        assert plicFiles != null && plicFiles.length > 0 : "Aucun fichier .plic trouvé dans le dossier spécifié.";
+        assert plicFilesPaths != null && !plicFilesPaths.isEmpty() : "Aucun fichier .plic trouvé dans le dossier spécifié.";
 
-        Path basePath = Paths.get(plicDirPath).toAbsolutePath();
+        Path basePath = plicFilesDirPath.toAbsolutePath();
 
-        String[] plicContent = Arrays.stream(plicFiles)
-                .map(file -> basePath.relativize(file.toPath().toAbsolutePath()).toString())
+        String[] plicContent = plicFilesPaths.stream()
+                .map(path -> basePath.relativize(path.toAbsolutePath()).toString())
                 .toArray(String[]::new);
 
         CombinationApprovals.verifyAllCombinations(

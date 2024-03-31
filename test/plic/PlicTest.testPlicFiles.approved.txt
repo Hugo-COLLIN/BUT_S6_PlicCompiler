@@ -979,6 +979,264 @@ end :
  
 [binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
  
+[masse\fileSimpleCorrect.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -4
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[masse\fileSimpleIncorrect2.plic] => ERREUR: Identificateur non déclaré: a
+ 
+[masse\fileSimpleIncorrect3.plic] => ERREUR: Instruction inattendue: entier
+ 
+[masse\fileSimpleIncorrect4.plic] => ERREUR: ; attendu
+ 
+[masse\mipsGlobal.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -8
+    li $v0, 5
+    
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    sw $v0, -8($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    lw $v0, -8($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 7
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[masse\Plic0BugA.plic] => ERREUR: Opérande inattendu: %
+ 
+[masse\Plic0BugB.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
+[masse\Plic0BugC.plic] => ERREUR: Instruction inattendue: :=
+ 
+[masse\Plic0BugD.plic] => ERREUR: Instruction inattendue: :=
+ 
+[masse\progDeux.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -12
+    li $v0, 5
+    
+    sw $v0, -4($s7)
+    li $v0, 3
+    
+    sw $v0, -8($s7)
+    li $v0, 0
+    
+    sw $v0, -12($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    lw $v0, -8($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    lw $v0, -12($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[masse\progIncorrectCinq.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
+[masse\progIncorrectDeux.plic] => ERREUR: { attendu
+ 
+[masse\progIncorrectDix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
+[masse\progIncorrectDouze.plic] => ERREUR: Identificateur non déclaré: z
+ 
+[masse\progIncorrectHuit.plic] => ERREUR: Instruction inattendue: #
+ 
+[masse\progIncorrectNeuf.plic] => ERREUR: Instruction inattendue: $
+ 
+[masse\progIncorrectOnze.plic] => ERREUR: Double déclaration dans Entree
+ 
+[masse\progIncorrectQuatre.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
+[masse\progIncorrectSept.plic] => ERREUR: Opérande inattendu: i6i
+ 
+[masse\progIncorrectSix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
+[masse\progIncorrectTrois.plic] => ERREUR: ; attendu
+ 
+[masse\progIncorrectUn.plic] => ERREUR: programme attendu
+ 
+[masse\progTest1.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
+[masse\progUn.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -8
+    li $v0, 10
+    
+    sw $v0, -4($s7)
+    li $v0, 9
+    
+    sw $v0, -8($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    lw $v0, -8($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[masse\somme1.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -12
+    li $v0, 1
+    
+    sw $v0, -4($s7)
+    li $v0, 1
+    
+    sw $v0, -8($s7)
+    lw $v0, -4($s7)
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    lw $v0, -8($s7)
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    add $v0, $t0, $v0
+    sw $v0, -12($s7)
+    lw $v0, -12($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[masse\test1.plic] => ERREUR: Instruction inattendue: //On
+ 
+[masse\test2.plic] => ERREUR: programme attendu
+ 
+[masse\test3.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
+[masse\test4.plic] => ERREUR: Instruction inattendue: entier
+ 
+[masse\test5.plic] => ERREUR: programme attendu
+ 
+[masse\test6.plic] => ERREUR: programme attendu
+ 
+[masse\test7.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -8
+    li $v0, 100
+    
+    sw $v0, -8($s7)
+    lw $v0, -8($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[masse\test8.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+ 
 [source1.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
