@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.PrintStream;
 import java.util.Arrays;
 
-public class MoulinettePlicTest {
+public class PlicTest {
     static String plicDirPath = "./files/plic/sources";
 
     @Test
