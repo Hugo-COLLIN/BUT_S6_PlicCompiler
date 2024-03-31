@@ -62,7 +62,7 @@ public class MoulinettePlicTest {
         String capturedOutput = outputStream.toString();
 
         // Affichage ou utilisation de la sortie capturée
-        System.out.println("Captured output for " + filePath + ": " + capturedOutput);
+//        System.out.println("Captured output for " + filePath + ": " + capturedOutput);
         return capturedOutput;
     }
 }

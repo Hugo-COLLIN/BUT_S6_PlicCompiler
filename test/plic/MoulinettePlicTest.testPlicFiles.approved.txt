@@ -1427,8 +1427,8 @@ main :
     sw $v0, 0($t2)
     li $t4, 0
     li $t5, 5
-    loop306123060:
-    bge $t4, $t5, endLoop306123060
+    loopTab1:
+    bge $t4, $t5, endLoopTab1
     li $t1, 4
     mul $t2, $t4, $t1
     add $t2, $t2, -20
@@ -1438,13 +1438,119 @@ main :
     syscall
     li $v0, 4
     addi $t6, $t4, 1
-    bge $t6, $t5, endLoop306123060
+    bge $t6, $t5, endLoopTab1
     la $a0, separator
     syscall
     addi $t4, $t4, 1
-    j loop306123060
+    j loopTab1
     
-    endLoop306123060:
+    endLoopTab1:
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[C:\Documents\HugoC\Git\BUT\BUT_S6_PLIC\.\files\plic\sources\tableaux6.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -32
+    li $v0, 2
+    
+    move $t0, $v0
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 83
+    
+    move $t0, $v0
+    li $v0, 3
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -20
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $t4, 0
+    li $t5, 5
+    loopTab1:
+    bge $t4, $t5, endLoopTab1
+    li $t1, 4
+    mul $t2, $t4, $t1
+    add $t2, $t2, -20
+    add $t2, $t2, $s7
+    lw $a0, 0($t2)
+    li $v0, 1
+    syscall
+    li $v0, 4
+    addi $t6, $t4, 1
+    bge $t6, $t5, endLoopTab1
+    la $a0, separator
+    syscall
+    addi $t4, $t4, 1
+    j loopTab1
+    
+    endLoopTab1:
+    la $a0, linebreak
+    syscall
+    li $v0, 58
+    
+    move $t0, $v0
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -32
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $v0, 12
+    
+    move $t0, $v0
+    li $v0, 0
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -32
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    move $v0, $t0
+    sw $v0, 0($t2)
+    li $t4, 0
+    li $t5, 3
+    loopTab2:
+    bge $t4, $t5, endLoopTab2
+    li $t1, 4
+    mul $t2, $t4, $t1
+    add $t2, $t2, -32
+    add $t2, $t2, $s7
+    lw $a0, 0($t2)
+    li $v0, 1
+    syscall
+    li $v0, 4
+    addi $t6, $t4, 1
+    bge $t6, $t5, endLoopTab2
+    la $a0, separator
+    syscall
+    addi $t4, $t4, 1
+    j loopTab2
+    
+    endLoopTab2:
     la $a0, linebreak
     syscall
 

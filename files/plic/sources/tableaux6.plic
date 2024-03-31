@@ -1,0 +1,12 @@
+programme test {
+    tableau [ 5 ] a ;
+    tableau [ 3 ] b ;
+
+    a [ 1 ] := 2 ;
+    a [ 3 ] := 83 ;
+    ecrire a ;
+
+    b [ 1 ] := 58 ;
+    b [ 0 ] := 12 ;
+    ecrire b ;
+}
