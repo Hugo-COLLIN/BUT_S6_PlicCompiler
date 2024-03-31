@@ -5,10 +5,14 @@ import plic.repint.*;
 import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
 
-public class Ecrire extends Instruction
-{
+public class Ecrire extends Instruction {
+
+    // Compteur statique pour suivre le nombre d'écritures de tableau
+    private static int tableauEcritureCompteur = 0;
+
     public Ecrire(Expression e) {
         super(e);
+        tableauEcritureCompteur = 0; // Réinitialiser le compteur entre chaque exécution du compilateur
     }
 
     @Override
@@ -22,7 +26,12 @@ public class Ecrire extends Instruction
         StringBuilder sb = new StringBuilder();
         String expressionType = expression.getType();
 
-        if (expressionType.equals("tableau")) { // C'est un tableau
+        if (expressionType.equals("tableau")) {
+            // Incrémenter le compteur et générer les noms de labels basés sur ce compteur
+            tableauEcritureCompteur++;
+            String loopLabel = "loopTab" + tableauEcritureCompteur;
+            String endLoopLabel = "endLoopTab" + tableauEcritureCompteur;
+
             Idf idf = (Idf) expression;
             Symbole symbole = TDS.getInstance().identifier(new Entree(idf.getNom()));
 
@@ -31,8 +40,6 @@ public class Ecrire extends Instruction
 
             sb.append("li $t4, 0\n"); // Index de boucle
             sb.append("li $t5, ").append(taille).append("\n"); // Taille du tableau
-            String loopLabel = "loop" + System.identityHashCode(this);
-            String endLoopLabel = "endLoop" + System.identityHashCode(this);
             sb.append(loopLabel).append(":\n");
             sb.append("bge $t4, $t5, ").append(endLoopLabel).append("\n"); // Si $t4 >= taille, fin de la boucle
             sb.append("li $t1, 4\n");
