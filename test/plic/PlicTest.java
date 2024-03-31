@@ -1,3 +1,4 @@
+// Copyright © 2024 Hugo COLLIN
 package plic;
 
 import org.approvaltests.combinations.CombinationApprovals;
@@ -8,7 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.file.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PlicTest {
     static String plicDirPath = "./files/plic/sources";
@@ -22,9 +22,9 @@ public class PlicTest {
         // Utiliser Files.walk pour récupérer tous les fichiers .plic dans le dossier et sous-dossiers
         List<Path> plicFilesPaths = Files.walk(plicFilesDirPath)
                 .filter(path -> path.toString().endsWith(".plic"))
-                .collect(Collectors.toList());
+                .toList();
 
-        assert plicFilesPaths != null && !plicFilesPaths.isEmpty() : "Aucun fichier .plic trouvé dans le dossier spécifié.";
+        assert !plicFilesPaths.isEmpty() : "Aucun fichier .plic trouvé dans le dossier spécifié.";
 
         Path basePath = plicFilesDirPath.toAbsolutePath();
 
@@ -64,8 +64,6 @@ public class PlicTest {
         System.setOut(originalStdout);
 
         // Conversion de la sortie capturée en chaîne de caractères
-        String capturedOutput = outputStream.toString();
-
-        return capturedOutput;
+        return outputStream.toString();
     }
 }
