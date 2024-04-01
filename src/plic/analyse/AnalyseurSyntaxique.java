@@ -175,41 +175,72 @@ public class AnalyseurSyntaxique
         }
     }
 
-
     private Expression analyseExpression() throws ErreurSyntaxique {
-        Expression expr;
         if (this.uniteCourante.equals("-")) {
             nextToken();
-            expr = analyseExpression(); // Analyse l'expression entre parenthèses
-            return new Oppose(expr); // Crée une nouvelle expression représentant l'opération unaire
+            Expression expr = analyseTerme(); // Analyse le terme suivant l'opérateur unaire
+            return new Oppose(expr); // Applique l'opération d'opposition
         } else if (this.uniteCourante.equals("non")) {
             nextToken();
-            expr = analyseExpression();
-            return new Non(expr);
+            Expression expr = analyseTerme(); // Analyse le terme suivant l'opérateur unaire
+            return new Non(expr); // Applique l'opération de négation logique
         } else {
-            expr = analyseExpressionPrimaire();
-
-            if (operateurs.contains(this.uniteCourante)) {
-                String operateur = this.uniteCourante;
-                nextToken();
-                Expression exprDroit = analyseExpressionPrimaire();
-                return switch (operateur) {
-                    case "+" -> new Somme(expr, exprDroit);
-                    case "-" -> new Difference(expr, exprDroit);
-                    case "*" -> new Produit(expr, exprDroit);
-                    case "<" -> new Inferieur(expr, exprDroit);
-                    case ">" -> new Superieur(expr, exprDroit);
-                    case "<=" -> new InferieurOuEgal(expr, exprDroit);
-                    case ">=" -> new SuperieurOuEgal(expr, exprDroit);
-                    case "=" -> new Egal(expr, exprDroit);
-                    case "#" -> new Different(expr, exprDroit);
-                    case "et" -> new Et(expr, exprDroit);
-                    case "ou" -> new Ou(expr, exprDroit);
-                    default -> expr; // Ne devrait jamais arriver
-                };
-            }
-            return expr;
+            Expression terme = analyseTerme();
+            return analyseSuiteExp(terme);
         }
+    }
+
+    private Expression analyseSuiteExp(Expression gauche) throws ErreurSyntaxique {
+        if (this.uniteCourante.equals("+") || this.uniteCourante.equals("-") || this.uniteCourante.equals("ou")) {
+            String op = analyseTerminal(operateurs);
+            Expression terme = analyseTerme();
+            Expression droite = switch (op) {
+                case "+" -> new Somme(gauche, terme);
+                case "-" -> new Difference(gauche, terme);
+                case "ou" -> new Ou(gauche, terme);
+                default -> throw new ErreurSyntaxique("Opérateur inattendu: " + op);
+            };
+            return analyseSuiteExp(droite);
+        }
+        return gauche;
+    }
+
+    private Expression analyseTerme() throws ErreurSyntaxique {
+        Expression facteur = analyseFacteur();
+        return analyseSuiteTerme(facteur);
+    }
+
+    private Expression analyseSuiteTerme(Expression gauche) throws ErreurSyntaxique {
+        if (this.uniteCourante.equals("*") || this.uniteCourante.equals("/") || this.uniteCourante.equals("et")) {
+            String op = analyseTerminal(operateurs);
+            Expression facteur = analyseFacteur();
+            Expression droite = switch (op) {
+                case "*" -> new Produit(gauche, facteur);
+//                case "/" -> new Division(gauche, facteur);
+                case "et" -> new Et(gauche, facteur);
+                default -> throw new ErreurSyntaxique("Opérateur inattendu: " + op);
+            };
+            return analyseSuiteTerme(droite);
+        }
+        return gauche;
+    }
+
+    private Expression analyseFacteur() throws ErreurSyntaxique {
+        Expression expr = analyseExpressionPrimaire();
+        if (this.uniteCourante.equals(">") || this.uniteCourante.equals("<") || this.uniteCourante.equals("<=") || this.uniteCourante.equals(">=") || this.uniteCourante.equals("=") || this.uniteCourante.equals("#")) {
+            String op = analyseTerminal(operateurs);
+            Expression droite = analyseExpressionPrimaire();
+            return switch (op) {
+                case ">" -> new Superieur(expr, droite);
+                case "<" -> new Inferieur(expr, droite);
+                case "<=" -> new InferieurOuEgal(expr, droite);
+                case ">=" -> new SuperieurOuEgal(expr, droite);
+                case "=" -> new Egal(expr, droite);
+                case "#" -> new Different(expr, droite);
+                default -> throw new ErreurSyntaxique("Opérateur de comparaison inattendu: " + op);
+            };
+        }
+        return expr;
     }
 
     private Expression analyseExpressionPrimaire() throws ErreurSyntaxique {
@@ -237,15 +268,12 @@ public class AnalyseurSyntaxique
         } else if (estIdf()) {
             String nom = this.uniteCourante;
             analyseIdentificateur();
-
-            // Gérer l'accès aux éléments de tableau
             if (this.uniteCourante.equals("[")) {
                 analyseTerminal("[");
                 Expression indice = analyseExpression();
                 analyseTerminal("]");
                 return new AccesTableau(new Idf(nom), indice);
             }
-
             return new Idf(nom);
         } else {
             throw new ErreurSyntaxique("Opérande inattendu: " + this.uniteCourante);
