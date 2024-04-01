@@ -176,17 +176,19 @@ public class AnalyseurSyntaxique
     }
 
     private Expression analyseExpression() throws ErreurSyntaxique {
+        Expression expr;
+        // Gestion des expressions unaires négatives
         if (this.uniteCourante.equals("-")) {
             nextToken();
-            Expression expr = analyseTerme(); // Analyse le terme suivant l'opérateur unaire
-            return new Oppose(expr); // Applique l'opération d'opposition
+            expr = analyseExpression(); // Applique l'opération d'opposition immédiatement à l'expression analysée
+            return new Oppose(expr); // Assure que l'effet de la négation est appliqué directement
         } else if (this.uniteCourante.equals("non")) {
             nextToken();
-            Expression expr = analyseTerme(); // Analyse le terme suivant l'opérateur unaire
-            return new Non(expr); // Applique l'opération de négation logique
+            expr = analyseExpression(); // Applique l'opération de négation logique immédiatement
+            return new Non(expr);
         } else {
-            Expression terme = analyseTerme();
-            return analyseSuiteExp(terme);
+            expr = analyseTerme();
+            return analyseSuiteExp(expr);
         }
     }
 
@@ -246,6 +248,10 @@ public class AnalyseurSyntaxique
     private Expression analyseExpressionPrimaire() throws ErreurSyntaxique {
         if (this.uniteCourante.equals("(")) {
             return analyseExpressionParenthesee();
+        } else if (this.uniteCourante.equals("-")) {
+            nextToken();
+            Expression expr = analyseExpressionPrimaire(); // Applique récursivement pour gérer les cas unaires multiples
+            return new Oppose(expr);
         } else {
             return analyseOperande();
         }
