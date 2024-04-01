@@ -177,14 +177,14 @@ public class AnalyseurSyntaxique
 
     private Expression analyseExpression() throws ErreurSyntaxique {
         Expression expr;
-        // Gestion des expressions unaires négatives
+        // Gestion des expressions unaires
         if (this.uniteCourante.equals("-")) {
             nextToken();
-            expr = analyseExpression(); // Applique l'opération d'opposition immédiatement à l'expression analysée
-            return new Oppose(expr); // Assure que l'effet de la négation est appliqué directement
+            expr = analyseExpression();
+            return new Oppose(expr);
         } else if (this.uniteCourante.equals("non")) {
             nextToken();
-            expr = analyseExpression(); // Applique l'opération de négation logique immédiatement
+            expr = analyseExpression();
             return new Non(expr);
         } else {
             expr = analyseTerme();
