@@ -202,7 +202,7 @@ public class AnalyseurSyntaxique
             Expression facteur = analyseFacteur();
             Expression droite = switch (op) {
                 case "*" -> new Produit(gauche, facteur);
-                // case "/" -> new Division(gauche, facteur); // Assurez-vous d'avoir une classe Division si vous utilisez cet opérateur
+                // case "/" -> new Division(gauche, facteur);
                 case "et" -> new Et(gauche, facteur);
                 default -> throw new ErreurSyntaxique("Opérateur inattendu: " + op);
             };
@@ -223,8 +223,7 @@ public class AnalyseurSyntaxique
                     Expression expr = analyseExpressionParenthesee();
                     return new Oppose(expr);
                 }
-                Expression expr = analyseExpression(); // Applique récursivement pour gérer les cas unaires multiples
-                return new Oppose(expr);
+                throw new ErreurSyntaxique("Expression parenthésée attendue après le signe moins");
             }
             case "non" -> {
                 nextToken();
