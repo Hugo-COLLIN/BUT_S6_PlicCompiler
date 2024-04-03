@@ -8,13 +8,10 @@ main :
     add $sp, $sp, -8
     li $v0, 3
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 4
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     sw $v0, -4($s7)
     lw $v0, -4($s7)
     
@@ -26,13 +23,10 @@ main :
     syscall
     lw $v0, -4($s7)
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 1
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     sw $v0, -8($s7)
     lw $v0, -8($s7)
     
@@ -73,8 +67,7 @@ main :
     sw $v0, 0($t2)
     lw $v0, -4($s7)
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 2
     
     li $t1, 4
@@ -84,9 +77,7 @@ main :
     add $t2, $t2, $s7
     lw $v0, 0($t2)
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     lw $v0, -4($s7)
@@ -94,13 +85,10 @@ main :
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 100
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     move $a0, $v0
     li $v0, 1
     syscall
@@ -139,20 +127,14 @@ main :
     syscall
     li $v0, 3
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 3
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    add $v0, $t1, $v0
+    move $t1, $v0
     li $v0, 3
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     neg $v0, $v0
     move $a0, $v0
     li $v0, 1
@@ -227,6 +209,114 @@ end :
     syscall
 
  
+[binaire13-arithNops.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -8
+    li $v0, 2
+    
+    move $t1, $v0
+    li $v0, 5
+    
+    add $v0, $t1, $v0
+    move $t1, $v0
+    li $v0, 4
+    
+    sub $v0, $t1, $v0
+    move $t1, $v0
+    li $v0, 1
+    
+    add $v0, $t1, $v0
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $v0, 4
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 3
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    li $v0, 2
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    sw $v0, -8($s7)
+    lw $v0, -8($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[binaire14-arithPriorite.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -16
+    li $v0, 2
+    
+    sw $v0, -8($s7)
+    li $v0, 9
+    
+    sw $v0, -12($s7)
+    li $v0, 2
+    
+    sw $v0, -16($s7)
+    lw $v0, -8($s7)
+    
+    move $t1, $v0
+    lw $v0, -12($s7)
+    
+    sub $v0, $t1, $v0
+    move $t1, $v0
+    li $v0, 2
+    
+    sw $v0, 0($sp)
+    addi $sp, $sp, -4
+    lw $v0, -16($s7)
+    
+    addi $sp, $sp, 4
+    lw $t0, 0($sp)
+    mul $v0, $t0, $v0
+    add $v0, $t1, $v0
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
 [binaire2.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -237,13 +327,10 @@ main :
     add $sp, $sp, -8
     li $v0, 3
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 6
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    sub $v0, $t0, $v0
+    sub $v0, $t1, $v0
     sw $v0, -4($s7)
     lw $v0, -4($s7)
     
@@ -567,20 +654,14 @@ main :
     syscall
     li $v0, 3
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 3
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    add $v0, $t1, $v0
+    move $t1, $v0
     li $v0, 3
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     move $a0, $v0
     li $v0, 1
     syscall
@@ -589,27 +670,18 @@ main :
     syscall
     li $v0, 3
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 3
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    add $v0, $t1, $v0
+    move $t1, $v0
     li $v0, 1
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 2
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
+    add $v0, $t1, $v0
     move $a0, $v0
     li $v0, 1
     syscall
@@ -900,24 +972,18 @@ main :
     add $sp, $sp, -0
     li $v0, 9
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 2
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    sub $v0, $t0, $v0
+    sub $v0, $t1, $v0
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 1
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 2
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
@@ -929,31 +995,22 @@ main :
     syscall
     li $v0, 1
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 5
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    add $v0, $t1, $v0
+    move $t1, $v0
     li $v0, 2
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    sub $v0, $t0, $v0
+    sub $v0, $t1, $v0
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 1
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     li $v0, 2
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
@@ -978,6 +1035,8 @@ end :
 [binaireErreur4-moinsParenth.plic] => ERREUR: L'expression doit être de type entier
  
 [binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
+ 
+[binaireErreur6-entierBool.plic] => ERREUR: Les deux operateurs doivent être de type entier
  
 [masse\fileSimpleCorrect.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1176,13 +1235,10 @@ main :
     sw $v0, -8($s7)
     lw $v0, -4($s7)
     
-    sw $v0, 0($sp)
-    addi $sp, $sp, -4
+    move $t1, $v0
     lw $v0, -8($s7)
     
-    addi $sp, $sp, 4
-    lw $t0, 0($sp)
-    add $v0, $t0, $v0
+    add $v0, $t1, $v0
     sw $v0, -12($s7)
     lw $v0, -12($s7)
     
