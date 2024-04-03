@@ -1,5 +1,5 @@
 programme test {
     ecrire - ( 3 * 3 ) ;
-    ecrire - ( 3 + 3 ) + 3 ;
+    ecrire - ( 3 + 4 ) + 5 ;
 }
-// expected: -9 -3
+// expected: -9 -2

@@ -7,14 +7,14 @@ main :
     move $s7, $sp
     add $sp, $sp, -8
     li $v0, 3
-
+    
     move $t1, $v0
     li $v0, 4
-
+    
     add $v0, $t1, $v0
     sw $v0, -4($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -22,14 +22,14 @@ main :
     la $a0, linebreak
     syscall
     lw $v0, -4($s7)
-
+    
     move $t1, $v0
     li $v0, 1
-
+    
     add $v0, $t1, $v0
     sw $v0, -8($s7)
     lw $v0, -8($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -41,7 +41,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire10-parenthVars.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -51,13 +51,13 @@ main :
     move $s7, $sp
     add $sp, $sp, -20
     li $v0, 4
-
+    
     sw $v0, -4($s7)
     li $v0, 1
-
+    
     move $t0, $v0
     li $v0, 2
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -16
@@ -66,28 +66,28 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     lw $v0, -4($s7)
-
+    
     move $t1, $v0
     li $v0, 2
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -16
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     add $v0, $t1, $v0
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     lw $v0, -4($s7)
-
+    
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
     move $t1, $v0
     li $v0, 100
-
+    
     add $v0, $t1, $v0
     move $a0, $v0
     li $v0, 1
@@ -100,7 +100,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire11-moinsParenth.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -110,11 +110,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 3
-
+    
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
@@ -126,14 +126,16 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     move $t1, $v0
-    li $v0, 3
-
+    li $v0, 4
+    
     add $v0, $t1, $v0
     neg $v0, $v0
-    li $t2, 3
-    add $v0, $v0, $t2
+    move $t1, $v0
+    li $v0, 5
+    
+    add $v0, $t1, $v0
     move $a0, $v0
     li $v0, 1
     syscall
@@ -145,7 +147,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire12-non.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -155,11 +157,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $t0, $v0
@@ -170,11 +172,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $t0, $v0
@@ -186,11 +188,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -206,7 +208,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire13-arithNops.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -216,22 +218,22 @@ main :
     move $s7, $sp
     add $sp, $sp, -8
     li $v0, 2
-
+    
     move $t1, $v0
     li $v0, 5
-
+    
     add $v0, $t1, $v0
     move $t1, $v0
     li $v0, 4
-
+    
     sub $v0, $t1, $v0
     move $t1, $v0
     li $v0, 1
-
+    
     add $v0, $t1, $v0
     sw $v0, -4($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -239,24 +241,24 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 4
-
+    
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 3
-
+    
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 2
-
+    
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
     sw $v0, -8($s7)
     lw $v0, -8($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -268,7 +270,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire14-arithPriorite.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -278,27 +280,27 @@ main :
     move $s7, $sp
     add $sp, $sp, -16
     li $v0, 2
-
+    
     sw $v0, -8($s7)
     li $v0, 9
-
+    
     sw $v0, -12($s7)
     li $v0, 2
-
+    
     sw $v0, -16($s7)
     lw $v0, -8($s7)
-
+    
     move $t1, $v0
     lw $v0, -12($s7)
-
+    
     sub $v0, $t1, $v0
     move $t1, $v0
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     lw $v0, -16($s7)
-
+    
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
@@ -314,7 +316,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire2.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -324,14 +326,14 @@ main :
     move $s7, $sp
     add $sp, $sp, -8
     li $v0, 3
-
+    
     move $t1, $v0
     li $v0, 6
-
+    
     sub $v0, $t1, $v0
     sw $v0, -4($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -339,17 +341,17 @@ main :
     la $a0, linebreak
     syscall
     lw $v0, -4($s7)
-
+    
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 2
-
+    
     addi $sp, $sp, 4
     lw $t0, 0($sp)
     mul $v0, $t0, $v0
     sw $v0, -8($s7)
     lw $v0, -8($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -361,7 +363,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire3.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -371,11 +373,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $t0, $v0
@@ -386,11 +388,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $t0, $v0
@@ -405,7 +407,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire4.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -415,11 +417,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -430,11 +432,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -445,11 +447,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -461,11 +463,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $t0, $v0
@@ -477,11 +479,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $t0, $v0
@@ -493,11 +495,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $t0, $v0
@@ -509,11 +511,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -525,11 +527,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -545,7 +547,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire5.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -555,11 +557,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -571,11 +573,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 2
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -587,11 +589,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -604,11 +606,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -625,7 +627,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire6-parentheses.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -635,11 +637,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -651,14 +653,14 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     move $t1, $v0
     li $v0, 3
-
+    
     add $v0, $t1, $v0
     move $t1, $v0
     li $v0, 3
-
+    
     add $v0, $t1, $v0
     move $a0, $v0
     li $v0, 1
@@ -667,17 +669,17 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     move $t1, $v0
     li $v0, 3
-
+    
     add $v0, $t1, $v0
     move $t1, $v0
     li $v0, 1
-
+    
     move $t1, $v0
     li $v0, 2
-
+    
     add $v0, $t1, $v0
     add $v0, $t1, $v0
     move $a0, $v0
@@ -691,7 +693,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire7-Et.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -701,11 +703,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -713,11 +715,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -731,11 +733,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -743,11 +745,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -761,11 +763,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -773,11 +775,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 10
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -791,11 +793,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -803,11 +805,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 10
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -825,7 +827,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire8-Ou.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -835,11 +837,11 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -847,11 +849,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -865,11 +867,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -877,11 +879,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -895,11 +897,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 3
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -907,11 +909,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 10
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -925,11 +927,11 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 2
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     sub $v0, $v0, $t0
@@ -937,11 +939,11 @@ main :
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 8
-
+    
     sw $v0, 0($sp)
     addiu $sp, $sp, -4
     li $v0, 10
-
+    
     lw $t0, 4($sp)
     addiu $sp, $sp, 4
     slt $v0, $v0, $t0
@@ -959,7 +961,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaire9-parenthesesC.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -969,18 +971,18 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 9
-
+    
     move $t1, $v0
     li $v0, 2
-
+    
     sub $v0, $t1, $v0
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 1
-
+    
     move $t1, $v0
     li $v0, 2
-
+    
     add $v0, $t1, $v0
     addi $sp, $sp, 4
     lw $t0, 0($sp)
@@ -992,22 +994,22 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 1
-
+    
     move $t1, $v0
     li $v0, 5
-
+    
     add $v0, $t1, $v0
     move $t1, $v0
     li $v0, 2
-
+    
     sub $v0, $t1, $v0
     sw $v0, 0($sp)
     addi $sp, $sp, -4
     li $v0, 1
-
+    
     move $t1, $v0
     li $v0, 2
-
+    
     add $v0, $t1, $v0
     addi $sp, $sp, 4
     lw $t0, 0($sp)
@@ -1023,19 +1025,19 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [binaireErreur1.plic] => ERREUR: Les deux operateurs doivent être de type entier
-
+ 
 [binaireErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
-
+ 
 [binaireErreur3-boolEnt.plic] => ERREUR: Les deux operateurs doivent être de type entier
-
+ 
 [binaireErreur4-moinsParenth.plic] => ERREUR: L'expression doit être de type entier
-
+ 
 [binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
-
+ 
 [binaireErreur6-entierBool.plic] => ERREUR: Les deux operateurs doivent être de type entier
-
+ 
 [masse\fileSimpleCorrect.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1049,13 +1051,13 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [masse\fileSimpleIncorrect2.plic] => ERREUR: Identificateur non déclaré: a
-
+ 
 [masse\fileSimpleIncorrect3.plic] => ERREUR: Instruction inattendue: entier
-
+ 
 [masse\fileSimpleIncorrect4.plic] => ERREUR: ; attendu
-
+ 
 [masse\mipsGlobal.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1065,13 +1067,13 @@ main :
     move $s7, $sp
     add $sp, $sp, -8
     li $v0, 5
-
+    
     sw $v0, -4($s7)
     lw $v0, -4($s7)
-
+    
     sw $v0, -8($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1079,7 +1081,7 @@ main :
     la $a0, linebreak
     syscall
     lw $v0, -8($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1087,7 +1089,7 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 7
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1099,15 +1101,15 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [masse\Plic0BugA.plic] => ERREUR: Opérande inattendu: %
-
+ 
 [masse\Plic0BugB.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [masse\Plic0BugC.plic] => ERREUR: Instruction inattendue: :=
-
+ 
 [masse\Plic0BugD.plic] => ERREUR: Instruction inattendue: :=
-
+ 
 [masse\progDeux.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1117,16 +1119,16 @@ main :
     move $s7, $sp
     add $sp, $sp, -12
     li $v0, 5
-
+    
     sw $v0, -4($s7)
     li $v0, 3
-
+    
     sw $v0, -8($s7)
     li $v0, 0
-
+    
     sw $v0, -12($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1134,7 +1136,7 @@ main :
     la $a0, linebreak
     syscall
     lw $v0, -8($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1142,7 +1144,7 @@ main :
     la $a0, linebreak
     syscall
     lw $v0, -12($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1154,33 +1156,33 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [masse\progIncorrectCinq.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [masse\progIncorrectDeux.plic] => ERREUR: { attendu
-
+ 
 [masse\progIncorrectDix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [masse\progIncorrectDouze.plic] => ERREUR: Identificateur non déclaré: z
-
+ 
 [masse\progIncorrectHuit.plic] => ERREUR: Instruction inattendue: #
-
+ 
 [masse\progIncorrectNeuf.plic] => ERREUR: Instruction inattendue: $
-
+ 
 [masse\progIncorrectOnze.plic] => ERREUR: Double déclaration dans Entree
-
+ 
 [masse\progIncorrectQuatre.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [masse\progIncorrectSept.plic] => ERREUR: Opérande inattendu: i6i
-
+ 
 [masse\progIncorrectSix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [masse\progIncorrectTrois.plic] => ERREUR: ; attendu
-
+ 
 [masse\progIncorrectUn.plic] => ERREUR: programme attendu
-
+ 
 [masse\progTest1.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [masse\progUn.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1190,13 +1192,13 @@ main :
     move $s7, $sp
     add $sp, $sp, -8
     li $v0, 10
-
+    
     sw $v0, -4($s7)
     li $v0, 9
-
+    
     sw $v0, -8($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1204,7 +1206,7 @@ main :
     la $a0, linebreak
     syscall
     lw $v0, -8($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1216,7 +1218,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [masse\somme1.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1226,20 +1228,20 @@ main :
     move $s7, $sp
     add $sp, $sp, -12
     li $v0, 1
-
+    
     sw $v0, -4($s7)
     li $v0, 1
-
+    
     sw $v0, -8($s7)
     lw $v0, -4($s7)
-
+    
     move $t1, $v0
     lw $v0, -8($s7)
-
+    
     add $v0, $t1, $v0
     sw $v0, -12($s7)
     lw $v0, -12($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1251,19 +1253,19 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [masse\test1.plic] => ERREUR: Instruction inattendue: //On
-
+ 
 [masse\test2.plic] => ERREUR: programme attendu
-
+ 
 [masse\test3.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [masse\test4.plic] => ERREUR: Instruction inattendue: entier
-
+ 
 [masse\test5.plic] => ERREUR: programme attendu
-
+ 
 [masse\test6.plic] => ERREUR: programme attendu
-
+ 
 [masse\test7.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1273,10 +1275,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -8
     li $v0, 100
-
+    
     sw $v0, -8($s7)
     lw $v0, -8($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1288,9 +1290,9 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [masse\test8.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
-
+ 
 [source1.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1300,10 +1302,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -8
     li $v0, 57
-
+    
     sw $v0, -4($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1315,7 +1317,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [source2.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1325,10 +1327,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -4
     li $v0, 2
-
+    
     sw $v0, -4($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1336,10 +1338,10 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 3
-
+    
     sw $v0, -4($s7)
     lw $v0, -4($s7)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1351,7 +1353,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [source3.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1361,7 +1363,7 @@ main :
     move $s7, $sp
     add $sp, $sp, -0
     li $v0, 42
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1373,19 +1375,19 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [sourceErreur1.plic] => ERREUR: Instruction inattendue: entier
-
+ 
 [sourceErreur2.plic] => ERREUR: Instruction inattendue: entier
-
+ 
 [sourceErreur3.plic] => ERREUR: Instruction inattendue: entier
-
+ 
 [sourceErreur4.plic] => ERREUR: Instruction inattendue: ;
-
+ 
 [sourceErreur5.plic] => ERREUR: Instruction inattendue: ;
-
+ 
 [sourceErreur6.plic] => ERREUR: Instruction inattendue: entier
-
+ 
 [tableaux1.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1395,10 +1397,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -20
     li $v0, 3
-
+    
     move $t0, $v0
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1407,14 +1409,14 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1426,7 +1428,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [tableaux2.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1436,10 +1438,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -40
     li $v0, 3
-
+    
     move $t0, $v0
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1448,10 +1450,10 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 1
-
+    
     move $t0, $v0
     li $v0, 2
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -40
@@ -1460,14 +1462,14 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1475,14 +1477,14 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 2
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -40
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1490,10 +1492,10 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 8
-
+    
     move $t0, $v0
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1502,14 +1504,14 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1521,7 +1523,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [tableaux3.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1531,10 +1533,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -52
     li $v0, 3
-
+    
     move $t0, $v0
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1543,10 +1545,10 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 1
-
+    
     move $t0, $v0
     li $v0, 5
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -52
@@ -1555,10 +1557,10 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 5
-
+    
     move $t0, $v0
     li $v0, 4
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1567,21 +1569,21 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 5
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -52
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1589,28 +1591,28 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 4
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -52
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1618,21 +1620,21 @@ main :
     la $a0, linebreak
     syscall
     li $v0, 4
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -52
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1644,7 +1646,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [tableaux4.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1654,10 +1656,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -52
     li $v0, 46
-
+    
     move $t0, $v0
     li $v0, 5
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -52
@@ -1666,17 +1668,17 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 5
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -52
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $t0, $v0
     li $v0, 4
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1685,14 +1687,14 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 4
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
     add $t2, $t2, $v0
     add $t2, $t2, $s7
     lw $v0, 0($t2)
-
+    
     move $a0, $v0
     li $v0, 1
     syscall
@@ -1704,7 +1706,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [tableaux5.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1714,10 +1716,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -20
     li $v0, 2
-
+    
     move $t0, $v0
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1726,10 +1728,10 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 83
-
+    
     move $t0, $v0
     li $v0, 3
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1755,7 +1757,7 @@ main :
     syscall
     addi $t4, $t4, 1
     j loopTab1
-
+    
     endLoopTab1:
     la $a0, linebreak
     syscall
@@ -1764,7 +1766,7 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [tableaux6.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
@@ -1774,10 +1776,10 @@ main :
     move $s7, $sp
     add $sp, $sp, -32
     li $v0, 2
-
+    
     move $t0, $v0
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1786,10 +1788,10 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 83
-
+    
     move $t0, $v0
     li $v0, 3
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -20
@@ -1815,15 +1817,15 @@ main :
     syscall
     addi $t4, $t4, 1
     j loopTab1
-
+    
     endLoopTab1:
     la $a0, linebreak
     syscall
     li $v0, 58
-
+    
     move $t0, $v0
     li $v0, 1
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -32
@@ -1832,10 +1834,10 @@ main :
     move $v0, $t0
     sw $v0, 0($t2)
     li $v0, 12
-
+    
     move $t0, $v0
     li $v0, 0
-
+    
     li $t1, 4
     mul $v0, $v0, $t1
     li $t2, -32
@@ -1861,7 +1863,7 @@ main :
     syscall
     addi $t4, $t4, 1
     j loopTab2
-
+    
     endLoopTab2:
     la $a0, linebreak
     syscall
@@ -1870,8 +1872,8 @@ end :
     li $v0, 10
     syscall
 
-
+ 
 [tableauxErreur1.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := tableau)
-
+ 
 [tableauxErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (tableau := entier)
-
+ 
