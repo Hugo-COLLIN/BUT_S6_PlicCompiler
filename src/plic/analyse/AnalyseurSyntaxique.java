@@ -223,7 +223,7 @@ public class AnalyseurSyntaxique
                     Expression expr = analyseExpressionParenthesee();
                     return new Oppose(expr);
                 }
-                throw new ErreurSyntaxique("Expression parenthésée attendue après le signe moins");
+                throw new ErreurSyntaxique("Expression parenthésée attendue après le signe moins", this.uniteCourante);
             }
             case "non" -> {
                 nextToken();
