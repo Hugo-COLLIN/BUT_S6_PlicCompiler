@@ -176,20 +176,8 @@ public class AnalyseurSyntaxique
     }
 
     private Expression analyseExpression() throws ErreurSyntaxique {
-        Expression expr;
-        // Gestion des expressions unaires
-        if (this.uniteCourante.equals("-")) {
-            nextToken();
-            expr = analyseExpression();
-            return new Oppose(expr);
-        } else if (this.uniteCourante.equals("non")) {
-            nextToken();
-            expr = analyseExpression();
-            return new Non(expr);
-        } else {
-            expr = analyseTerme();
-            return analyseSuiteExp(expr);
-        }
+        Expression terme = analyseTerme();
+        return analyseSuiteExp(terme);
     }
 
     private Expression analyseSuiteExp(Expression gauche) throws ErreurSyntaxique {
@@ -204,6 +192,7 @@ public class AnalyseurSyntaxique
             };
             return analyseSuiteExp(droite);
         }
+        // Si aucun opérateur n'est trouvé, retourne l'expression gauche (epsilon)
         return gauche;
     }
 
@@ -218,42 +207,49 @@ public class AnalyseurSyntaxique
             Expression facteur = analyseFacteur();
             Expression droite = switch (op) {
                 case "*" -> new Produit(gauche, facteur);
-//                case "/" -> new Division(gauche, facteur);
+                // case "/" -> new Division(gauche, facteur); // Assurez-vous d'avoir une classe Division si vous utilisez cet opérateur
                 case "et" -> new Et(gauche, facteur);
                 default -> throw new ErreurSyntaxique("Opérateur inattendu: " + op);
             };
             return analyseSuiteTerme(droite);
         }
+        // Si aucun opérateur n'est trouvé, retourne l'expression gauche (epsilon)
         return gauche;
     }
 
     private Expression analyseFacteur() throws ErreurSyntaxique {
-        Expression expr = analyseExpressionPrimaire();
-        if (this.uniteCourante.equals(">") || this.uniteCourante.equals("<") || this.uniteCourante.equals("<=") || this.uniteCourante.equals(">=") || this.uniteCourante.equals("=") || this.uniteCourante.equals("#")) {
-            String op = analyseTerminal(operateurs);
-            Expression droite = analyseExpressionPrimaire();
-            return switch (op) {
-                case ">" -> new Superieur(expr, droite);
-                case "<" -> new Inferieur(expr, droite);
-                case "<=" -> new InferieurOuEgal(expr, droite);
-                case ">=" -> new SuperieurOuEgal(expr, droite);
-                case "=" -> new Egal(expr, droite);
-                case "#" -> new Different(expr, droite);
-                default -> throw new ErreurSyntaxique("Opérateur de comparaison inattendu: " + op);
-            };
-        }
-        return expr;
-    }
+        switch (this.uniteCourante) {
+            case "(" -> {
+                return analyseExpressionParenthesee();
+            }
+            case "-" -> {
+                nextToken();
+                Expression expr = analyseExpression(); // Applique récursivement pour gérer les cas unaires multiples
 
-    private Expression analyseExpressionPrimaire() throws ErreurSyntaxique {
-        if (this.uniteCourante.equals("(")) {
-            return analyseExpressionParenthesee();
-        } else if (this.uniteCourante.equals("-")) {
-            nextToken();
-            Expression expr = analyseExpressionPrimaire(); // Applique récursivement pour gérer les cas unaires multiples
-            return new Oppose(expr);
-        } else {
-            return analyseOperande();
+                return new Oppose(expr);
+            }
+            case "non" -> {
+                nextToken();
+                Expression expr = analyseExpression();
+                return new Non(expr);
+            }
+            default -> {
+                Expression operande = analyseOperande();
+                if (this.uniteCourante.equals(">") || this.uniteCourante.equals("<") || this.uniteCourante.equals("<=") || this.uniteCourante.equals(">=") || this.uniteCourante.equals("=") || this.uniteCourante.equals("#")) {
+                    String op = analyseTerminal(operateurs);
+                    Expression droite = analyseOperande();
+                    return switch (op) {
+                        case ">" -> new Superieur(operande, droite);
+                        case "<" -> new Inferieur(operande, droite);
+                        case "<=" -> new InferieurOuEgal(operande, droite);
+                        case ">=" -> new SuperieurOuEgal(operande, droite);
+                        case "=" -> new Egal(operande, droite);
+                        case "#" -> new Different(operande, droite);
+                        default -> throw new ErreurSyntaxique("Opérateur de comparaison inattendu: " + op);
+                    };
+                }
+                return operande;
+            }
         }
     }
 
