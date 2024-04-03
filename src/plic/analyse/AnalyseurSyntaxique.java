@@ -7,13 +7,8 @@ import plic.repint.expression.AccesTableau;
 import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
 import plic.repint.expression.Nombre;
-import plic.repint.expression.operateurs.arithmetique.Difference;
-import plic.repint.expression.operateurs.arithmetique.Oppose;
-import plic.repint.expression.operateurs.arithmetique.Produit;
-import plic.repint.expression.operateurs.arithmetique.Somme;
-import plic.repint.expression.operateurs.booleen.Et;
-import plic.repint.expression.operateurs.booleen.Non;
-import plic.repint.expression.operateurs.booleen.Ou;
+import plic.repint.expression.operateurs.arithmetique.*;
+import plic.repint.expression.operateurs.booleen.*;
 import plic.repint.expression.operateurs.comparaison.*;
 import plic.repint.instruction.Affectation;
 import plic.repint.instruction.AffectationTableau;
@@ -224,8 +219,11 @@ public class AnalyseurSyntaxique
             }
             case "-" -> {
                 nextToken();
+                if (this.uniteCourante.equals("(")) {
+                    Expression expr = analyseExpressionParenthesee();
+                    return new Oppose(expr);
+                }
                 Expression expr = analyseExpression(); // Applique récursivement pour gérer les cas unaires multiples
-
                 return new Oppose(expr);
             }
             case "non" -> {
@@ -247,7 +245,7 @@ public class AnalyseurSyntaxique
                         case "#" -> new Different(operande, droite);
                         default -> throw new ErreurSyntaxique("Opérateur de comparaison inattendu: " + op);
                     };
-                }
+                } // Calcul + ou - ou ou ???
                 return operande;
             }
         }
