@@ -1038,6 +1038,8 @@ end :
  
 [binaireErreur6-entierBool.plic] => ERREUR: Les deux operateurs doivent être de type entier
  
+[binaireErreur7-OpposePasParenth.plic] => ERREUR: Expression parenthésée attendue après le signe moins - token "1"
+ 
 [masse\fileSimpleCorrect.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
