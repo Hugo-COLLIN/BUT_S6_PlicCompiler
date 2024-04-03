@@ -1,0 +1,10 @@
+programme test {
+    entier x ; entier y ;
+
+    x := 2 + 5 - 4 + 1 ;
+    ecrire x ;
+
+    y := 4 * 3 * 2 ;
+    ecrire y ;
+}
+// expected : 4 24

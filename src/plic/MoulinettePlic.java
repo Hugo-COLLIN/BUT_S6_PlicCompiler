@@ -8,7 +8,7 @@ public class MoulinettePlic {
     /**
      * Chemin vers le dossier contenant les fichiers PLIC
       */
-    static String plicDirPath = "src/plic/sources";
+    static String plicDirPath = "files/plic/sources";
 
     public static void main(String[] args) {
         File plicFilesDir = new File(args.length > 0 ? args[0] : plicDirPath);

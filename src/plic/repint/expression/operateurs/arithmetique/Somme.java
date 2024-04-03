@@ -10,11 +10,8 @@ public class Somme extends ArithmetiqueBinaire {
     @Override
     public String toMips() {
         return opGauche.toMips() +
-                "sw $v0, 0($sp)\n" +
-                "addi $sp, $sp, -4\n" +
+                "move $t1, $v0\n" + // Stocker temporairement le résultat de opGauche
                 opDroit.toMips() +
-                "addi $sp, $sp, 4\n" +
-                "lw $t0, 0($sp)\n" +
-                "add $v0, $t0, $v0\n";
+                "add $v0, $t1, $v0\n"; // Utiliser le résultat temporaire pour l'addition
     }
 }
