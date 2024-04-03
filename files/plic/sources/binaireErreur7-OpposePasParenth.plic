@@ -1,0 +1,4 @@
+programme test {
+    ecrire - 1 + 2 ;
+}
+// expected :
