@@ -5,3 +5,4 @@ programme test {
     j := i + 1 ;
     ecrire j ;
 }
+// expected : 7 8

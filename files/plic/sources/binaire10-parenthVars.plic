@@ -7,3 +7,4 @@ programme test {
     j [ 2 ] := 1 ;
     ecrire ( ( i + j [ 2 ] ) * i ) + 100 ;
 }
+// expected : 120

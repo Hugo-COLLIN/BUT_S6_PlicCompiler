@@ -4,3 +4,4 @@ programme test {
     ecrire 3 # 3 ;
     ecrire 3 # 2 ;
 }
+// expected : 1 0 0 1

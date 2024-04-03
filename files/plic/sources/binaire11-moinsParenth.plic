@@ -2,3 +2,4 @@ programme test {
     ecrire - ( 3 * 3 ) ;
     ecrire - ( 3 + 3 ) + 3 ;
 }
+// expected: -9 -3

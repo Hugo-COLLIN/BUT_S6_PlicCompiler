@@ -4,3 +4,4 @@ programme test {
     ecrire ( 3 = 3 ) et ( 8 > 10 ) ;
     ecrire ( 3 = 2 ) et ( 8 > 10 ) ;
 }
+// expected : 1 0 0 0

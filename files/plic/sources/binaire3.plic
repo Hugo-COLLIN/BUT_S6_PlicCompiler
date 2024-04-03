@@ -2,3 +2,4 @@ programme test {
     ecrire 2 < 3 ;
     ecrire 3 < 2 ;
 }
+// expected : 1 0
