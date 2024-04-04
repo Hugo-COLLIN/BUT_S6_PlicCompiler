@@ -70,6 +70,7 @@ public class AnalyseurSyntaxique
             throw new ErreurSyntaxique(terminal + " attendu");
         }
         nextToken();
+//        System.out.println(this.uniteCourante);
     }
 
     private String analyseTerminal(List<String> terminal) throws ErreurSyntaxique {
@@ -149,17 +150,26 @@ public class AnalyseurSyntaxique
         return new Ecrire(expression);
     }
 
-    private Lire analyseLire() throws ErreurSyntaxique {
+    private Instruction analyseLire() throws ErreurSyntaxique {
         analyseTerminal("lire");
-        if (!estIdf()) {
-            throw new ErreurSyntaxique("Identificateur attendu après 'lire'");
-        }
         Idf idf = new Idf(this.uniteCourante);
-        nextToken(); // Consomme l'identificateur
-        analyseTerminal(";");
-        return new Lire(idf);
-    }
+        analyseIdentificateur(); // Consomme l'identificateur
 
+        Expression indice = null;
+        if (this.uniteCourante.equals("[")) {
+            analyseTerminal("[");
+            indice = analyseExpression(); // Analyser l'indice du tableau
+            analyseTerminal("]");
+        }
+
+        analyseTerminal(";");
+
+        if (indice == null) {
+            return new Lire(idf);
+        } else {
+            return new Lire(new AccesTableau(idf, indice));
+        }
+    }
 
     private Instruction analyseAffectation() throws ErreurSyntaxique {
         String idfNom = this.uniteCourante;
@@ -256,7 +266,7 @@ public class AnalyseurSyntaxique
                         case "#" -> new Different(operande, droite);
                         default -> throw new ErreurSyntaxique("Opérateur de comparaison inattendu: " + op);
                     };
-                } // Calcul + ou - ou ou ???
+                }
                 return operande;
             }
         }
