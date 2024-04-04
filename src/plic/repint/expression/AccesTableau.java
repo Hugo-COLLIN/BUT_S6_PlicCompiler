@@ -2,10 +2,11 @@ package plic.repint.expression;
 
 import plic.exceptions.ErreurSemantique;
 import plic.repint.Entree;
+import plic.repint.GenererLecture;
 import plic.repint.Symbole;
 import plic.repint.TDS;
 
-public class AccesTableau extends Expression {
+public class AccesTableau extends Expression implements GenererLecture {
     private Idf idf;
     private Expression indice;
 
@@ -49,4 +50,23 @@ public class AccesTableau extends Expression {
         return "entier"; // Remplacez ceci par la logique réelle pour déterminer le type
     }
 
+    public Idf getIdf() {
+        return idf;
+    }
+
+    public Expression getIndice() {
+        return indice;
+    }
+
+    // solve casting issue
+    @Override
+    public String genererCodeLecture() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.toMips());
+        sb.append("li $v0, 5\n"); // Code système pour lire un entier
+        sb.append("syscall\n"); // Lire l'entier
+        sb.append("sw $v0, 0($t2)\n"); // Stocker l'entier lu à l'adresse calculée
+
+        return sb.toString();
+    }
 }

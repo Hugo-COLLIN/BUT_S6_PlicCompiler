@@ -1,0 +1,7 @@
+programme test {
+    tableau [ 4 ] a ;
+    lire a [ 1 ] ;
+    ecrire a [ 1 ] ;
+    ecrire a ;
+}
+// expected : valeur de a [ 1 ] et de a

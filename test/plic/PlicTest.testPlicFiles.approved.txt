@@ -1026,19 +1026,109 @@ end :
     syscall
 
  
-[binaireErreur1.plic] => ERREUR: Les deux operateurs doivent être de type entier
+[binaireErreur1.plic] => ERREUR: Les deux operateurs doivent être de type entier (Sémantique)
  
-[binaireErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
+[binaireErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen) (Sémantique)
  
-[binaireErreur3-boolEnt.plic] => ERREUR: Les deux operateurs doivent être de type entier
+[binaireErreur3-boolEnt.plic] => ERREUR: Les deux operateurs doivent être de type entier (Sémantique)
  
-[binaireErreur4-moinsParenth.plic] => ERREUR: L'expression doit être de type entier
+[binaireErreur4-moinsParenth.plic] => ERREUR: L'expression doit être de type entier (Sémantique)
  
-[binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen)
+[binaireErreur5-booleen.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := booleen) (Sémantique)
  
-[binaireErreur6-entierBool.plic] => ERREUR: Les deux operateurs doivent être de type entier
+[binaireErreur6-entierBool.plic] => ERREUR: Les deux operateurs doivent être de type entier (Sémantique)
  
-[binaireErreur7-OpposePasParenth.plic] => ERREUR: Expression parenthésée attendue après le signe moins - token "1"
+[binaireErreur7-OpposePasParenth.plic] => ERREUR: Expression parenthésée attendue après le signe moins - token "1" (Syntaxe)
+ 
+[controle1-lire.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -4
+    li $v0, 5
+    syscall
+    sw $v0, -4($s7)
+    lw $v0, -4($s7)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[controle1-lireEltTab.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -16
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -16
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    li $v0, 5
+    syscall
+    sw $v0, 0($t2)
+    li $v0, 1
+    
+    li $t1, 4
+    mul $v0, $v0, $t1
+    li $t2, -16
+    add $t2, $t2, $v0
+    add $t2, $t2, $s7
+    lw $v0, 0($t2)
+    
+    move $a0, $v0
+    li $v0, 1
+    syscall
+    li $v0, 4
+    la $a0, linebreak
+    syscall
+    li $t4, 0
+    li $t5, 4
+    loopTab1:
+    bge $t4, $t5, endLoopTab1
+    li $t1, 4
+    mul $t2, $t4, $t1
+    add $t2, $t2, -16
+    add $t2, $t2, $s7
+    lw $a0, 0($t2)
+    li $v0, 1
+    syscall
+    li $v0, 4
+    addi $t6, $t4, 1
+    bge $t6, $t5, endLoopTab1
+    la $a0, separator
+    syscall
+    addi $t4, $t4, 1
+    j loopTab1
+    
+    endLoopTab1:
+    la $a0, linebreak
+    syscall
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[controleErreur1-lireVarNonDeclare.plic] => ERREUR: Identificateur non déclaré: a
  
 [masse\fileSimpleCorrect.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1056,9 +1146,9 @@ end :
  
 [masse\fileSimpleIncorrect2.plic] => ERREUR: Identificateur non déclaré: a
  
-[masse\fileSimpleIncorrect3.plic] => ERREUR: Instruction inattendue: entier
+[masse\fileSimpleIncorrect3.plic] => ERREUR: Instruction inattendue: entier (Syntaxe)
  
-[masse\fileSimpleIncorrect4.plic] => ERREUR: ; attendu
+[masse\fileSimpleIncorrect4.plic] => ERREUR: ; attendu (Syntaxe)
  
 [masse\mipsGlobal.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1104,13 +1194,13 @@ end :
     syscall
 
  
-[masse\Plic0BugA.plic] => ERREUR: Opérande inattendu: %
+[masse\Plic0BugA.plic] => ERREUR: Opérande inattendu: % (Syntaxe)
  
-[masse\Plic0BugB.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\Plic0BugB.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
-[masse\Plic0BugC.plic] => ERREUR: Instruction inattendue: :=
+[masse\Plic0BugC.plic] => ERREUR: Instruction inattendue: := (Syntaxe)
  
-[masse\Plic0BugD.plic] => ERREUR: Instruction inattendue: :=
+[masse\Plic0BugD.plic] => ERREUR: Instruction inattendue: := (Syntaxe)
  
 [masse\progDeux.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1159,31 +1249,31 @@ end :
     syscall
 
  
-[masse\progIncorrectCinq.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\progIncorrectCinq.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
-[masse\progIncorrectDeux.plic] => ERREUR: { attendu
+[masse\progIncorrectDeux.plic] => ERREUR: { attendu (Syntaxe)
  
-[masse\progIncorrectDix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\progIncorrectDix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
 [masse\progIncorrectDouze.plic] => ERREUR: Identificateur non déclaré: z
  
-[masse\progIncorrectHuit.plic] => ERREUR: Instruction inattendue: #
+[masse\progIncorrectHuit.plic] => ERREUR: Instruction inattendue: # (Syntaxe)
  
-[masse\progIncorrectNeuf.plic] => ERREUR: Instruction inattendue: $
+[masse\progIncorrectNeuf.plic] => ERREUR: Instruction inattendue: $ (Syntaxe)
  
 [masse\progIncorrectOnze.plic] => ERREUR: Double déclaration dans Entree
  
-[masse\progIncorrectQuatre.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\progIncorrectQuatre.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
-[masse\progIncorrectSept.plic] => ERREUR: Opérande inattendu: i6i
+[masse\progIncorrectSept.plic] => ERREUR: Opérande inattendu: i6i (Syntaxe)
  
-[masse\progIncorrectSix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\progIncorrectSix.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
-[masse\progIncorrectTrois.plic] => ERREUR: ; attendu
+[masse\progIncorrectTrois.plic] => ERREUR: ; attendu (Syntaxe)
  
-[masse\progIncorrectUn.plic] => ERREUR: programme attendu
+[masse\progIncorrectUn.plic] => ERREUR: programme attendu (Syntaxe)
  
-[masse\progTest1.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\progTest1.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
 [masse\progUn.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1256,17 +1346,17 @@ end :
     syscall
 
  
-[masse\test1.plic] => ERREUR: Instruction inattendue: //On
+[masse\test1.plic] => ERREUR: Instruction inattendue: //On (Syntaxe)
  
-[masse\test2.plic] => ERREUR: programme attendu
+[masse\test2.plic] => ERREUR: programme attendu (Syntaxe)
  
-[masse\test3.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\test3.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
-[masse\test4.plic] => ERREUR: Instruction inattendue: entier
+[masse\test4.plic] => ERREUR: Instruction inattendue: entier (Syntaxe)
  
-[masse\test5.plic] => ERREUR: programme attendu
+[masse\test5.plic] => ERREUR: programme attendu (Syntaxe)
  
-[masse\test6.plic] => ERREUR: programme attendu
+[masse\test6.plic] => ERREUR: programme attendu (Syntaxe)
  
 [masse\test7.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1293,7 +1383,7 @@ end :
     syscall
 
  
-[masse\test8.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé)
+[masse\test8.plic] => ERREUR: identificateur attendu (lettres uniquement, n'est pas un mot réservé) (Syntaxe)
  
 [source1.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1378,17 +1468,17 @@ end :
     syscall
 
  
-[sourceErreur1.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur1.plic] => ERREUR: Instruction inattendue: entier (Syntaxe)
  
-[sourceErreur2.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur2.plic] => ERREUR: Instruction inattendue: entier (Syntaxe)
  
-[sourceErreur3.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur3.plic] => ERREUR: Instruction inattendue: entier (Syntaxe)
  
-[sourceErreur4.plic] => ERREUR: Instruction inattendue: ;
+[sourceErreur4.plic] => ERREUR: Instruction inattendue: ; (Syntaxe)
  
-[sourceErreur5.plic] => ERREUR: Instruction inattendue: ;
+[sourceErreur5.plic] => ERREUR: Instruction inattendue: ; (Syntaxe)
  
-[sourceErreur6.plic] => ERREUR: Instruction inattendue: entier
+[sourceErreur6.plic] => ERREUR: Instruction inattendue: entier (Syntaxe)
  
 [tableaux1.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1875,7 +1965,7 @@ end :
     syscall
 
  
-[tableauxErreur1.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := tableau)
+[tableauxErreur1.plic] => ERREUR: Affectation entre des types différents non autorisée (entier := tableau) (Sémantique)
  
-[tableauxErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (tableau := entier)
+[tableauxErreur2.plic] => ERREUR: Affectation entre des types différents non autorisée (tableau := entier) (Sémantique)
  
