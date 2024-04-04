@@ -11,6 +11,7 @@ import plic.repint.expression.operateurs.arithmetique.*;
 import plic.repint.expression.operateurs.booleen.*;
 import plic.repint.expression.operateurs.comparaison.*;
 import plic.repint.instruction.*;
+import plic.repint.instruction.controle.Condition;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -131,17 +132,66 @@ public class AnalyseurSyntaxique
         tds.ajouter(new Entree(tempIdentificateur), new Symbole(identificateur, taille));
     }
 
-    private Instruction analyseInstruction() throws ErreurSyntaxique {
-        if (estIdf()) {
-            return analyseAffectation();
-        } else if (this.uniteCourante.equals("ecrire")) {
-            return analyseEcrire();
-        } else if (this.uniteCourante.equals("lire")) {
-            return analyseLire();
-        } else {
-            throw new ErreurSyntaxique("Instruction inattendue: " + this.uniteCourante);
+    private Instruction analyseInstruction() throws ErreurSyntaxique, DoubleDeclaration {
+        switch (this.uniteCourante) {
+            case "lire":
+                return analyseLire();
+            case "ecrire":
+                return analyseEcrire();
+            case "si":
+                return analyseCondition();
+//            case "pour":
+//            case "tantque":
+//                return analyseIteration();
+            default:
+                if (estIdf()) {
+                    return analyseAffectation();
+                } else {
+                    throw new ErreurSyntaxique("Instruction inattendue: " + this.uniteCourante);
+                }
         }
     }
+
+    private Instruction analyseCondition() throws ErreurSyntaxique, DoubleDeclaration {
+        analyseTerminal("si");
+        analyseTerminal("(");
+        Expression condition = analyseExpression();
+        analyseTerminal(")");
+        analyseTerminal("alors");
+        Bloc alorsBloc = analyseBloc();
+        Bloc sinonBloc = null;
+        if (this.uniteCourante.equals("sinon")) {
+            nextToken(); // Consomme "sinon"
+            sinonBloc = analyseBloc();
+        }
+        return new Condition(condition, alorsBloc, sinonBloc);
+    }
+
+//    private Instruction analyseIteration() throws ErreurSyntaxique {
+//        if (this.uniteCourante.equals("pour")) {
+//            nextToken(); // Consomme "pour"
+//            String idfNom = this.uniteCourante;
+//            analyseIdentificateur();
+//            analyseTerminal("dans");
+//            Expression debut = analyseExpression();
+//            analyseTerminal("..");
+//            Expression fin = analyseExpression();
+//            analyseTerminal("repeter");
+//            Bloc bloc = analyseBloc();
+//            return new Pour(new Idf(idfNom), debut, fin, bloc);
+//        } else if (this.uniteCourante.equals("tantque")) {
+//            nextToken(); // Consomme "tantque"
+//            analyseTerminal("(");
+//            Expression condition = analyseExpression();
+//            analyseTerminal(")");
+//            analyseTerminal("repeter");
+//            Bloc bloc = analyseBloc();
+//            return new TantQue(condition, bloc);
+//        } else {
+//            throw new ErreurSyntaxique("Instruction d'itération inattendue: " + this.uniteCourante);
+//        }
+//    }
+
 
     private Ecrire analyseEcrire() throws ErreurSyntaxique {
         analyseTerminal("ecrire");

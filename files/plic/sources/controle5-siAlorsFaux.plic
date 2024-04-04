@@ -1,0 +1,11 @@
+programme test {
+    entier a ;
+    a := 5 ;
+
+    si ( 3 < 2 ) alors {
+        ecrire 46 ;
+    }
+
+    a := 3 ;
+}
+// expected :

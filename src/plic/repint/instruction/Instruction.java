@@ -5,9 +5,9 @@ import plic.repint.expression.Expression;
 
 public abstract class Instruction
 {
-    Expression expression;
+    protected Expression expression;
 
-    Instruction(Expression e) {
+    protected Instruction(Expression e) {
         this.expression = e;
     }
 
