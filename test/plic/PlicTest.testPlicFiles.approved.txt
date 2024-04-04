@@ -1128,6 +1128,198 @@ end :
     syscall
 
  
+[controle4-siAlorsVrai.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -4
+    li $v0, 5
+    
+    sw $v0, -4($s7)
+    li $v0, 1
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    beqz $v0, sinonBloc1
+        move $s7, $sp
+        add $sp, $sp, -4
+        li $v0, 46
+        
+        move $a0, $v0
+        li $v0, 1
+        syscall
+        li $v0, 4
+        la $a0, linebreak
+        syscall
+    j finCondition1
+    sinonBloc1:
+    finCondition1:
+    li $v0, 3
+    
+    sw $v0, -4($s7)
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[controle5-siAlorsFaux.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -4
+    li $v0, 5
+    
+    sw $v0, -4($s7)
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    beqz $v0, sinonBloc1
+        move $s7, $sp
+        add $sp, $sp, -4
+        li $v0, 46
+        
+        move $a0, $v0
+        li $v0, 1
+        syscall
+        li $v0, 4
+        la $a0, linebreak
+        syscall
+    j finCondition1
+    sinonBloc1:
+    finCondition1:
+    li $v0, 3
+    
+    sw $v0, -4($s7)
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[controle6-siAlorsSinonVrai.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -4
+    li $v0, 5
+    
+    sw $v0, -4($s7)
+    li $v0, 1
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    beqz $v0, sinonBloc1
+        move $s7, $sp
+        add $sp, $sp, -4
+        li $v0, 46
+        
+        move $a0, $v0
+        li $v0, 1
+        syscall
+        li $v0, 4
+        la $a0, linebreak
+        syscall
+    j finCondition1
+    sinonBloc1:
+        move $s7, $sp
+        add $sp, $sp, -4
+        li $v0, 7
+        
+        move $a0, $v0
+        li $v0, 1
+        syscall
+        li $v0, 4
+        la $a0, linebreak
+        syscall
+    finCondition1:
+    li $v0, 3
+    
+    sw $v0, -4($s7)
+
+end :
+    li $v0, 10
+    syscall
+
+ 
+[controle7-siAlorsSinonFaux.plic] => .data
+linebreak: 	.asciiz "\n"
+separator: 	.asciiz ", "
+
+.text
+main :
+    move $s7, $sp
+    add $sp, $sp, -4
+    li $v0, 5
+    
+    sw $v0, -4($s7)
+    li $v0, 3
+    
+    sw $v0, 0($sp)
+    addiu $sp, $sp, -4
+    li $v0, 2
+    
+    lw $t0, 4($sp)
+    addiu $sp, $sp, 4
+    slt $v0, $t0, $v0
+    beqz $v0, sinonBloc1
+        move $s7, $sp
+        add $sp, $sp, -4
+        li $v0, 46
+        
+        move $a0, $v0
+        li $v0, 1
+        syscall
+        li $v0, 4
+        la $a0, linebreak
+        syscall
+    j finCondition1
+    sinonBloc1:
+        move $s7, $sp
+        add $sp, $sp, -4
+        li $v0, 7
+        
+        move $a0, $v0
+        li $v0, 1
+        syscall
+        li $v0, 4
+        la $a0, linebreak
+        syscall
+    finCondition1:
+    li $v0, 3
+    
+    sw $v0, -4($s7)
+
+end :
+    li $v0, 10
+    syscall
+
+ 
 [controleErreur1-lireVarNonDeclare.plic] => ERREUR: Identificateur non déclaré: a
  
 [masse\fileSimpleCorrect.plic] => .data
