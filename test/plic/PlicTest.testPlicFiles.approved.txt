@@ -1065,7 +1065,7 @@ end :
     syscall
 
  
-[controle1-lireEltTab.plic] => .data
+[controle2-lireEltTab.plic] => .data
 linebreak: 	.asciiz "\n"
 separator: 	.asciiz ", "
 
