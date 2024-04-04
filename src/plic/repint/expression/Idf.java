@@ -63,11 +63,8 @@ public class Idf extends Expression implements GenererLecture
         Symbole symbole = TDS.getInstance().identifier(new Entree(nom));
         int deplacement = symbole.getDeplacement();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("li $v0, 5\n"); // Code système pour lire un entier
-        sb.append("syscall\n"); // Lire l'entier
-        sb.append("sw $v0, ").append(deplacement).append("($s7)\n"); // Stocker l'entier lu dans l'identificateur
-
-        return sb.toString();
+        return "li $v0, 5\n" + // Code système pour lire un entier
+                "syscall\n" + // Lire l'entier
+                "sw $v0, " + deplacement + "($s7)\n";
     }
 }

@@ -61,12 +61,9 @@ public class AccesTableau extends Expression implements GenererLecture {
     // solve casting issue
     @Override
     public String genererCodeLecture() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.toMips());
-        sb.append("li $v0, 5\n"); // Code système pour lire un entier
-        sb.append("syscall\n"); // Lire l'entier
-        sb.append("sw $v0, 0($t2)\n"); // Stocker l'entier lu à l'adresse calculée
-
-        return sb.toString();
+        return this.toMips() +
+                "li $v0, 5\n" + // Code système pour lire un entier
+                "syscall\n" + // Lire l'entier
+                "sw $v0, 0($t2)\n";
     }
 }
