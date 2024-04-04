@@ -9,10 +9,14 @@ public class Condition extends Instruction {
     private Bloc blocAlors;
     private Bloc blocSinon;
 
+    // Compteur statique pour suivre le nombre d'écritures de tableau
+    private static int conditionsCompteur = 0;
+
     public Condition(Expression expression, Bloc blocAlors, Bloc blocSinon) {
         super(expression);
         this.blocAlors = blocAlors;
         this.blocSinon = blocSinon;
+        // Ne réinitialisez pas le compteur ici pour permettre l'unicité des labels
     }
 
     @Override
@@ -24,19 +28,47 @@ public class Condition extends Instruction {
         }
     }
 
+    //COMPIL ERROR ::::
+//    @Override
+//    public String toMips() {
+//        StringBuilder sb = new StringBuilder();
+//
+//        conditionsCompteur++;
+//        String finLabel = "finCondition" + conditionsCompteur;
+//        String sinonLabel = "sinonBloc" + conditionsCompteur;
+//
+//        sb.append(expression.toMips());
+//        sb.append("beqz $v0, ").append(sinonLabel).append("\n");
+//        sb.append(blocAlors.toMips());
+//        if (blocSinon != null) {
+//            sb.append("j ").append(finLabel).append("\n");
+//            sb.append(sinonLabel).append(":\n");
+//            sb.append(blocSinon.toMips());
+//        }
+//        sb.append(finLabel).append(":\n");
+//
+//        return sb.toString();
+//    }
+
     @Override
     public String toMips() {
         StringBuilder sb = new StringBuilder();
-        String finLabel = "finCondition" + this.hashCode();
-        String sinonLabel = "sinonBloc" + this.hashCode();
+
+        // Incrémenter le compteur et générer les noms de labels basés sur ce compteur
+        conditionsCompteur++;
+        String finLabel = "finCondition" + conditionsCompteur;
+        String sinonLabel = "sinonBloc" + conditionsCompteur;
 
         sb.append(expression.toMips());
         sb.append("beqz $v0, ").append(sinonLabel).append("\n");
         sb.append(blocAlors.toMips());
-        sb.append("j ").append(finLabel).append("\n");
-        sb.append(sinonLabel).append(":\n");
         if (blocSinon != null) {
+            sb.append("j ").append(finLabel).append("\n");
+            sb.append(sinonLabel).append(":\n");
             sb.append(blocSinon.toMips());
+        }
+        else {
+            sb.append(sinonLabel).append(":\n");
         }
         sb.append(finLabel).append(":\n");
 
