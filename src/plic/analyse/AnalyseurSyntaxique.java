@@ -10,10 +10,7 @@ import plic.repint.expression.Nombre;
 import plic.repint.expression.operateurs.arithmetique.*;
 import plic.repint.expression.operateurs.booleen.*;
 import plic.repint.expression.operateurs.comparaison.*;
-import plic.repint.instruction.Affectation;
-import plic.repint.instruction.AffectationTableau;
-import plic.repint.instruction.Ecrire;
-import plic.repint.instruction.Instruction;
+import plic.repint.instruction.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +20,8 @@ public class AnalyseurSyntaxique
 {
     private final AnalyseurLexical analex;
     private String uniteCourante;
-    private static final List<String> motsReserves = List.of("programme", "entier", "tableau", "[", "]", "{", "}", "(", ")", "EOF", "ecrire", ":=");
+
+    private static final List<String> motsReserves = List.of("programme", "entier", "tableau", "[", "]", "{", "}", "(", ")", "EOF", "ecrire", "lire", ":=");
 
     private static final List<String> types = List.of("entier", "tableau");
 
@@ -137,6 +135,8 @@ public class AnalyseurSyntaxique
             return analyseAffectation();
         } else if (this.uniteCourante.equals("ecrire")) {
             return analyseEcrire();
+        } else if (this.uniteCourante.equals("lire")) {
+            return analyseLire();
         } else {
             throw new ErreurSyntaxique("Instruction inattendue: " + this.uniteCourante);
         }
@@ -148,6 +148,18 @@ public class AnalyseurSyntaxique
         analyseTerminal(";");
         return new Ecrire(expression);
     }
+
+    private Lire analyseLire() throws ErreurSyntaxique {
+        analyseTerminal("lire");
+        if (!estIdf()) {
+            throw new ErreurSyntaxique("Identificateur attendu après 'lire'");
+        }
+        Idf idf = new Idf(this.uniteCourante);
+        nextToken(); // Consomme l'identificateur
+        analyseTerminal(";");
+        return new Lire(idf);
+    }
+
 
     private Instruction analyseAffectation() throws ErreurSyntaxique {
         String idfNom = this.uniteCourante;
@@ -197,7 +209,7 @@ public class AnalyseurSyntaxique
     }
 
     private Expression analyseSuiteTerme(Expression gauche) throws ErreurSyntaxique {
-        if (this.uniteCourante.equals("*") || this.uniteCourante.equals("/") || this.uniteCourante.equals("et")) {
+        if (this.uniteCourante.equals("*") || /*this.uniteCourante.equals("/") ||*/ this.uniteCourante.equals("et")) {
             String op = analyseTerminal(operateurs);
             Expression facteur = analyseFacteur();
             Expression droite = switch (op) {

@@ -1,0 +1,6 @@
+programme test {
+    entier a ;
+    lire a ;
+    ecrire a ;
+}
+// expected : valeur de a

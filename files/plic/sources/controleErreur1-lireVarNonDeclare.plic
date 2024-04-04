@@ -1,0 +1,5 @@
+programme test {
+    lire a ;
+    ecrire a ;
+}
+// expected : erreur de syntaxe
