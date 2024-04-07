@@ -12,6 +12,7 @@ import plic.repint.expression.operateurs.booleen.*;
 import plic.repint.expression.operateurs.comparaison.*;
 import plic.repint.instruction.*;
 import plic.repint.instruction.controle.Condition;
+import plic.repint.instruction.controle.TantQue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -141,8 +142,8 @@ public class AnalyseurSyntaxique
             case "si":
                 return analyseCondition();
 //            case "pour":
-//            case "tantque":
-//                return analyseIteration();
+            case "tantque":
+                return analyseIteration();
             default:
                 if (estIdf()) {
                     return analyseAffectation();
@@ -167,7 +168,7 @@ public class AnalyseurSyntaxique
         return new Condition(condition, alorsBloc, sinonBloc);
     }
 
-//    private Instruction analyseIteration() throws ErreurSyntaxique {
+    private Instruction analyseIteration() throws ErreurSyntaxique, DoubleDeclaration {
 //        if (this.uniteCourante.equals("pour")) {
 //            nextToken(); // Consomme "pour"
 //            String idfNom = this.uniteCourante;
@@ -179,18 +180,19 @@ public class AnalyseurSyntaxique
 //            analyseTerminal("repeter");
 //            Bloc bloc = analyseBloc();
 //            return new Pour(new Idf(idfNom), debut, fin, bloc);
-//        } else if (this.uniteCourante.equals("tantque")) {
-//            nextToken(); // Consomme "tantque"
-//            analyseTerminal("(");
-//            Expression condition = analyseExpression();
-//            analyseTerminal(")");
-//            analyseTerminal("repeter");
-//            Bloc bloc = analyseBloc();
-//            return new TantQue(condition, bloc);
-//        } else {
-//            throw new ErreurSyntaxique("Instruction d'itération inattendue: " + this.uniteCourante);
 //        }
-//    }
+//        else
+        if (this.uniteCourante.equals("tantque")) {
+            nextToken();
+            Expression condition = analyseExpressionParenthesee();
+            analyseTerminal("repeter");
+            Bloc bloc = analyseBloc();
+            return new TantQue(condition, bloc);
+        }
+        else {
+            throw new ErreurSyntaxique("Instruction d'itération inattendue: " + this.uniteCourante);
+        }
+    }
 
 
     private Ecrire analyseEcrire() throws ErreurSyntaxique {
