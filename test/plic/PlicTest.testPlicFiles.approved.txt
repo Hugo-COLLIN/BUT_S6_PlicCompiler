@@ -1064,6 +1064,10 @@ end :
     li $v0, 10
     syscall
 
+
+[controle10-tantQue.plic] => ERREUR: Pas encore implémenté: Bugs non-résolus pour l'instruction TantQue
+ 
+[controle11-pour.plic] => ERREUR: Pas encore implémenté: Bugs non-résolus pour l'instruction Pour
  
 [controle2-lireEltTab.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1128,7 +1132,7 @@ end :
     syscall
 
 
-[controle3-lireTab.plic] => ERREUR: Pas encore implémenté:Affectation de tableaux par lecture
+[controle3-lireTab.plic] => ERREUR: Pas encore implémenté: Affectation de tableaux par lecture
  
 [controle4-siAlorsVrai.plic] => .data
 linebreak: 	.asciiz "\n"
@@ -1427,6 +1431,8 @@ end :
     li $v0, 10
     syscall
 
+ 
+[controle9-siAlorsSinonVariable.plic] => TODO bug à corriger
  
 [controleErreur1-lireVarNonDeclare.plic] => ERREUR: Identificateur non déclaré: a
  
