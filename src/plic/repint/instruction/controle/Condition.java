@@ -3,20 +3,15 @@ package plic.repint.instruction.controle;
 import plic.exceptions.ErreurSemantique;
 import plic.repint.Bloc;
 import plic.repint.expression.Expression;
-import plic.repint.instruction.Instruction;
 
-public class Condition extends Instruction {
+public class Condition extends Controle {
     private Bloc blocAlors;
     private Bloc blocSinon;
-
-    // Compteur statique pour suivre le nombre d'écritures de tableau
-    private static int conditionsCompteur = 0;
 
     public Condition(Expression expression, Bloc blocAlors, Bloc blocSinon) {
         super(expression);
         this.blocAlors = blocAlors;
         this.blocSinon = blocSinon;
-        conditionsCompteur = 0;
     }
 
     @Override
@@ -30,12 +25,11 @@ public class Condition extends Instruction {
 
     @Override
     public String toMips() {
+        super.toMips();
         StringBuilder sb = new StringBuilder();
 
-        // Incrémenter le compteur et générer les noms de labels basés sur ce compteur
-        conditionsCompteur++;
-        String finLabel = "finCondition" + conditionsCompteur;
-        String sinonLabel = "sinonBloc" + conditionsCompteur;
+        String finLabel = "finCondition" + compteurPointeurs;
+        String sinonLabel = "sinonBloc" + compteurPointeurs;
 
         sb.append(expression.toMips());
         sb.append("beqz $v0, ").append(sinonLabel).append("\n");
