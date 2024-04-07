@@ -165,7 +165,7 @@ public class AnalyseurSyntaxique
         return new Condition(condition, alorsBloc, sinonBloc);
     }
 
-    private Instruction analyseIteration() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
+    private Instruction analyseIteration() throws ErreurSyntaxique, ErreurNonImplemente {
         if (this.uniteCourante.equals("pour")) {
             throw new ErreurNonImplemente("Bugs non-résolus pour l'instruction Pour");
 //            nextToken();
@@ -225,7 +225,7 @@ public class AnalyseurSyntaxique
         }
     }
 
-    private Instruction analyseAffectation() throws ErreurSyntaxique, ErreurNonImplemente {
+    private Instruction analyseAffectation() throws ErreurSyntaxique {
         String idfNom = this.uniteCourante;
         analyseIdentificateur();
 

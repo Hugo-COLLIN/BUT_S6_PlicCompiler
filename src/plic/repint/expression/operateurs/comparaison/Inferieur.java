@@ -1,9 +1,7 @@
 // Inferieur.java
 package plic.repint.expression.operateurs.comparaison;
 
-import plic.exceptions.ErreurSemantique;
 import plic.repint.expression.Expression;
-import plic.repint.expression.operateurs.Binaire;
 
 public class Inferieur extends Comparaison {
     public Inferieur(Expression opGauche, Expression opDroit) {

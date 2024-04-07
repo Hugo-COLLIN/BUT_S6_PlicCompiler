@@ -5,8 +5,8 @@ import plic.repint.Bloc;
 import plic.repint.expression.Expression;
 
 public class Condition extends Controle {
-    private Bloc blocAlors;
-    private Bloc blocSinon;
+    private final Bloc blocAlors;
+    private final Bloc blocSinon;
 
     public Condition(Expression expression, Bloc blocAlors, Bloc blocSinon) {
         super(expression);

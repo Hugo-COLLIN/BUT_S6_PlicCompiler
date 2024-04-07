@@ -6,7 +6,7 @@ import plic.repint.expression.Expression;
 import plic.repint.instruction.Instruction;
 
 public class TantQue extends Instruction {
-    private Bloc bloc;
+    private final Bloc bloc;
 
     // Compteur statique pour différencier les pointeurs via un nom unique
     protected static int compteurPointeurs = 0;

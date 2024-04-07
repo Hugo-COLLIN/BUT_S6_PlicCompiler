@@ -7,10 +7,10 @@ import plic.repint.expression.Idf;
 import plic.repint.instruction.Instruction;
 
 public class Pour extends Controle {
-    private Idf idf;
-    private Expression debut;
-    private Expression fin;
-    private Bloc bloc;
+    private final Idf idf;
+    private final Expression debut;
+    private final Expression fin;
+    private final Bloc bloc;
 
     public Pour(Idf idf, Expression debut, Expression fin, Bloc bloc) {
         super(null);
@@ -26,6 +26,14 @@ public class Pour extends Controle {
         debut.verifier();
         fin.verifier();
         bloc.verifier();
+
+        if (!idf.getType().equals("entier")) {
+            throw new ErreurSemantique("L'identificateur de la boucle pour doit être de type entier");
+        }
+
+        if (!debut.getType().equals("entier") || !fin.getType().equals("entier")) {
+            throw new ErreurSemantique("Les bornes de la boucle pour doivent être de type entier");
+        }
     }
 
     @Override

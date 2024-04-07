@@ -26,8 +26,6 @@ public class Affectation extends Instruction
         String typeDest = symboleDest.getType();
 
         // Déterminer le type de l'expression à affecter
-        // Cette partie dépend de la manière dont vous avez implémenté la classe Expression
-        // Pour cet exemple, supposons que la méthode getType() retourne le type de l'expression
         String typeExpression = expression.getType();
 
         // Comparer les types et lancer une erreur si nécessaire

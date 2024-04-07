@@ -6,12 +6,12 @@ import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
 
 public class AffectationTableau extends Instruction {
-    private Idf idf;
-    private Expression indice;
-    private Expression valeur;
+    private final Idf idf;
+    private final Expression indice;
+    private final Expression valeur;
 
     public AffectationTableau(Idf idf, Expression indice, Expression valeur) {
-        super(valeur); // Utilisez la valeur comme expression de base pour l'instruction
+        super(valeur);
         this.idf = idf;
         this.indice = indice;
         this.valeur = valeur;
