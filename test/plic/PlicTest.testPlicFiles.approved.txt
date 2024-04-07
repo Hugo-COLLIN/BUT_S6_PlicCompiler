@@ -1384,7 +1384,9 @@ main :
         li $v0, 4
         la $a0, linebreak
         syscall
+    j finCondition2
     sinonBloc2:
+    finCondition2:
     li $v0, 8
     
     sw $v0, 0($sp)

@@ -40,15 +40,12 @@ public class Condition extends Instruction {
         sb.append(expression.toMips());
         sb.append("beqz $v0, ").append(sinonLabel).append("\n");
         sb.append(blocAlors.toMips());
+        sb.append("j ").append(finLabel).append("\n");
+        sb.append(sinonLabel).append(":\n");
         if (blocSinon != null) {
-            sb.append("j ").append(finLabel).append("\n");
-            sb.append(sinonLabel).append(":\n");
             sb.append(blocSinon.toMips());
-            sb.append(finLabel).append(":\n");
         }
-        else {
-            sb.append(sinonLabel).append(":\n");
-        }
+        sb.append(finLabel).append(":\n");
 
         return sb.toString();
     }
