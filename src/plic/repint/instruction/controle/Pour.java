@@ -1,10 +1,10 @@
+// Copyright © 2024 Hugo COLLIN
 package plic.repint.instruction.controle;
 
 import plic.exceptions.ErreurSemantique;
 import plic.repint.Bloc;
 import plic.repint.expression.Expression;
 import plic.repint.expression.Idf;
-import plic.repint.instruction.Instruction;
 
 public class Pour extends Controle {
     private final Idf idf;

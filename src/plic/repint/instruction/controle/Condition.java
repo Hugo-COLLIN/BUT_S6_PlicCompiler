@@ -1,3 +1,4 @@
+// Copyright © 2024 Hugo COLLIN
 package plic.repint.instruction.controle;
 
 import plic.exceptions.ErreurSemantique;

@@ -1,3 +1,4 @@
+// Copyright © 2024 Hugo COLLIN
 package plic;
 
 import java.io.File;

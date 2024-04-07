@@ -1,4 +1,4 @@
-// Inferieur.java
+// Copyright © 2024 Hugo COLLIN
 package plic.repint.expression.operateurs.comparaison;
 
 import plic.repint.expression.Expression;

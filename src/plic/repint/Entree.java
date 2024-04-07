@@ -1,3 +1,4 @@
+// Copyright © 2024 Hugo COLLIN
 package plic.repint;
 
 import java.util.Objects;
