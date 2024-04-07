@@ -16,7 +16,7 @@ public class Condition extends Instruction {
         super(expression);
         this.blocAlors = blocAlors;
         this.blocSinon = blocSinon;
-        // Ne réinitialisez pas le compteur ici pour permettre l'unicité des labels
+        conditionsCompteur = 0;
     }
 
     @Override
@@ -27,53 +27,6 @@ public class Condition extends Instruction {
             blocSinon.verifier();
         }
     }
-
-    //COMPIL ERROR ::::
-//    @Override
-//    public String toMips() {
-//        StringBuilder sb = new StringBuilder();
-//
-//        conditionsCompteur++;
-//        String finLabel = "finCondition" + conditionsCompteur;
-//        String sinonLabel = "sinonBloc" + conditionsCompteur;
-//
-//        sb.append(expression.toMips());
-//        sb.append("beqz $v0, ").append(sinonLabel).append("\n");
-//        sb.append(blocAlors.toMips());
-//        if (blocSinon != null) {
-//            sb.append("j ").append(finLabel).append("\n");
-//            sb.append(sinonLabel).append(":\n");
-//            sb.append(blocSinon.toMips());
-//        }
-//        sb.append(finLabel).append(":\n");
-//
-//        return sb.toString();
-//    }
-
-//    @Override
-//    public String toMips() {
-//        StringBuilder sb = new StringBuilder();
-//
-//        // Incrémenter le compteur et générer les noms de labels basés sur ce compteur
-//        conditionsCompteur++;
-//        String finLabel = "finCondition" + conditionsCompteur;
-//        String sinonLabel = "sinonBloc" + conditionsCompteur;
-//
-//        sb.append(expression.toMips());
-//        sb.append("beqz $v0, ").append(sinonLabel).append("\n");
-//        sb.append(blocAlors.toMips());
-//        if (blocSinon != null) {
-//            sb.append("j ").append(finLabel).append("\n");
-//            sb.append(sinonLabel).append(":\n");
-//            sb.append(blocSinon.toMips());
-//        }
-//        else {
-//            sb.append(sinonLabel).append(":\n");
-//        }
-//        sb.append(finLabel).append(":\n");
-//
-//        return sb.toString();
-//    }
 
     @Override
     public String toMips() {
