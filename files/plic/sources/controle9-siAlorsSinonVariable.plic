@@ -1,0 +1,21 @@
+programme test {
+    entier a ;
+    a := 5 ;
+
+    si ( 3 < 2 ) alors {
+        ecrire 46 ;
+    } sinon {
+        ecrire 7 ;
+    }
+
+    si ( a > 2 ) alors {
+       ecrire 102 ;
+    }
+
+    si ( a > 3 ) alors {
+        ecrire 50 ;
+    } sinon {
+        ecrire 99 ;
+    }
+}
+// expected : 7 102 50

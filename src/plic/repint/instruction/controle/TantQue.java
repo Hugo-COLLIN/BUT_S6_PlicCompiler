@@ -31,13 +31,15 @@ public class TantQue extends Instruction {
         compteurPointeurs++;
         String debutLabel = "debutTantQue" + compteurPointeurs;
         String finLabel = "finTantQue" + compteurPointeurs;
+        String checkConditionLabel = "checkConditionTantQue" + compteurPointeurs;
 
-        // Génère le code MIPS pour la boucle avec une réévaluation correcte de la condition
-        return debutLabel + ":\n" +
-                expression.toMips() + // Évalue la condition
-                "beqz $v0, " + finLabel + "\n" + // Si la condition est fausse, sort de la boucle
-                bloc.toMips() + // Exécute le bloc d'instructions
-                "j " + debutLabel + "\n" + // Retourne au début pour réévaluer la condition
+        // Ajout d'une étiquette pour réévaluer la condition après chaque itération
+        return  checkConditionLabel + ":\n" +
+                expression.toMips() +
+                "beqz $v0, " + finLabel + "\n" +
+                debutLabel + ":\n" +
+                bloc.toMips() +
+                "j " + checkConditionLabel + "\n" + // Sauter à checkConditionLabel pour réévaluer la condition
                 finLabel + ":\n";
     }
 }

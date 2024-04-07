@@ -4,16 +4,12 @@ import plic.exceptions.DoubleDeclaration;
 import plic.exceptions.ErreurNonImplemente;
 import plic.exceptions.ErreurSyntaxique;
 import plic.repint.*;
-import plic.repint.expression.AccesTableau;
-import plic.repint.expression.Expression;
-import plic.repint.expression.Idf;
-import plic.repint.expression.Nombre;
+import plic.repint.expression.*;
 import plic.repint.expression.operateurs.arithmetique.*;
 import plic.repint.expression.operateurs.booleen.*;
 import plic.repint.expression.operateurs.comparaison.*;
 import plic.repint.instruction.*;
-import plic.repint.instruction.controle.Condition;
-import plic.repint.instruction.controle.TantQue;
+import plic.repint.instruction.controle.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -142,7 +138,7 @@ public class AnalyseurSyntaxique
                 return analyseEcrire();
             case "si":
                 return analyseCondition();
-//            case "pour":
+            case "pour":
             case "tantque":
                 return analyseIteration();
             default:
@@ -170,19 +166,19 @@ public class AnalyseurSyntaxique
     }
 
     private Instruction analyseIteration() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
-//        if (this.uniteCourante.equals("pour")) {
-//            nextToken(); // Consomme "pour"
-//            String idfNom = this.uniteCourante;
-//            analyseIdentificateur();
-//            analyseTerminal("dans");
-//            Expression debut = analyseExpression();
-//            analyseTerminal("..");
-//            Expression fin = analyseExpression();
-//            analyseTerminal("repeter");
-//            Bloc bloc = analyseBloc();
-//            return new Pour(new Idf(idfNom), debut, fin, bloc);
-//        }
-//        else
+        if (this.uniteCourante.equals("pour")) {
+            nextToken(); // Consomme "pour"
+            String idfNom = this.uniteCourante;
+            analyseIdentificateur();
+            analyseTerminal("dans");
+            Expression debut = analyseExpression();
+            analyseTerminal("..");
+            Expression fin = analyseExpression();
+            analyseTerminal("repeter");
+            Bloc bloc = analyseBloc();
+            return new Pour(new Idf(idfNom), debut, fin, bloc);
+        }
+        else
         if (this.uniteCourante.equals("tantque")) {
             nextToken();
             Expression condition = analyseExpressionParenthesee();

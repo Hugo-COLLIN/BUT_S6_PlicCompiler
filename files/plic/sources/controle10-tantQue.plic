@@ -1,0 +1,10 @@
+programme test {
+    entier a ;
+    a := 2 ;
+
+    tantque ( a < 5 ) repeter {
+        ecrire ( a ) ;
+        a := a + 1 ;
+    }
+}
+// expected : 0 1 2 3 4
