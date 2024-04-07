@@ -6,6 +6,6 @@ public class ErreurNonImplemente extends Exception {
     }
 
     public ErreurNonImplemente(String token) {
-        super("ERREUR: Pas encore implémenté:" + token);
+        super("ERREUR: Pas encore implémenté: " + token);
     }
 }

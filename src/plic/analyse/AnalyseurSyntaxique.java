@@ -167,24 +167,25 @@ public class AnalyseurSyntaxique
 
     private Instruction analyseIteration() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
         if (this.uniteCourante.equals("pour")) {
-            nextToken(); // Consomme "pour"
-            String idfNom = this.uniteCourante;
-            analyseIdentificateur();
-            analyseTerminal("dans");
-            Expression debut = analyseExpression();
-            analyseTerminal("..");
-            Expression fin = analyseExpression();
-            analyseTerminal("repeter");
-            Bloc bloc = analyseBloc();
-            return new Pour(new Idf(idfNom), debut, fin, bloc);
+            throw new ErreurNonImplemente("Bugs non-résolus pour l'instruction Pour");
+//            nextToken();
+//            String idfNom = this.uniteCourante;
+//            analyseIdentificateur();
+//            analyseTerminal("dans");
+//            Expression debut = analyseExpression();
+//            analyseTerminal("..");
+//            Expression fin = analyseExpression();
+//            analyseTerminal("repeter");
+//            Bloc bloc = analyseBloc();
+//            return new Pour(new Idf(idfNom), debut, fin, bloc);
         }
-        else
-        if (this.uniteCourante.equals("tantque")) {
-            nextToken();
-            Expression condition = analyseExpressionParenthesee();
-            analyseTerminal("repeter");
-            Bloc bloc = analyseBloc();
-            return new TantQue(condition, bloc);
+        else if (this.uniteCourante.equals("tantque")) {
+            throw new ErreurNonImplemente("Bugs non-résolus pour l'instruction TantQue");
+//            nextToken();
+//            Expression condition = analyseExpressionParenthesee();
+//            analyseTerminal("repeter");
+//            Bloc bloc = analyseBloc();
+//            return new TantQue(condition, bloc);
         }
         else {
             throw new ErreurSyntaxique("Instruction d'itération inattendue: " + this.uniteCourante);
