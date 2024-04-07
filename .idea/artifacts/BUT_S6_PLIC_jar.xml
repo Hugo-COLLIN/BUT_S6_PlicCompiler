@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BUT_S6_PLIC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BUT_S6_PLIC_jar</output-path>
+    <root id="archive" name="plic.jar">
+      <element id="module-output" name="BUT_S6_PLIC" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
