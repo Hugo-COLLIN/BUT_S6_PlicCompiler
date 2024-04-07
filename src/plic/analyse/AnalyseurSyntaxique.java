@@ -1,6 +1,7 @@
 package plic.analyse;
 
 import plic.exceptions.DoubleDeclaration;
+import plic.exceptions.ErreurNonImplemente;
 import plic.exceptions.ErreurSyntaxique;
 import plic.repint.*;
 import plic.repint.expression.AccesTableau;
@@ -36,7 +37,7 @@ public class AnalyseurSyntaxique
         this.tds = TDS.getInstance();
     }
 
-    public Bloc analyse() throws ErreurSyntaxique, DoubleDeclaration {
+    public Bloc analyse() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
         // Demander la construction de la 1re unité lexicale
         nextToken();
         //Analyser le texte
@@ -54,7 +55,7 @@ public class AnalyseurSyntaxique
         this.uniteCourante = this.analex.next();
     }
 
-    private Bloc analyseProg() throws ErreurSyntaxique, DoubleDeclaration {
+    private Bloc analyseProg() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
         analyseTerminal("programme");
         analyseIdentificateur();
         return this.analyseBloc();
@@ -85,7 +86,7 @@ public class AnalyseurSyntaxique
         throw new ErreurSyntaxique("L'un des terminaux " + terminal + " attendu");
     }
 
-    private Bloc analyseBloc() throws ErreurSyntaxique, DoubleDeclaration {
+    private Bloc analyseBloc() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
         Bloc bloc = new Bloc();
         analyseTerminal("{");
 
@@ -133,7 +134,7 @@ public class AnalyseurSyntaxique
         tds.ajouter(new Entree(tempIdentificateur), new Symbole(identificateur, taille));
     }
 
-    private Instruction analyseInstruction() throws ErreurSyntaxique, DoubleDeclaration {
+    private Instruction analyseInstruction() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
         switch (this.uniteCourante) {
             case "lire":
                 return analyseLire();
@@ -153,7 +154,7 @@ public class AnalyseurSyntaxique
         }
     }
 
-    private Instruction analyseCondition() throws ErreurSyntaxique, DoubleDeclaration {
+    private Instruction analyseCondition() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
         analyseTerminal("si");
         analyseTerminal("(");
         Expression condition = analyseExpression();
@@ -168,7 +169,7 @@ public class AnalyseurSyntaxique
         return new Condition(condition, alorsBloc, sinonBloc);
     }
 
-    private Instruction analyseIteration() throws ErreurSyntaxique, DoubleDeclaration {
+    private Instruction analyseIteration() throws ErreurSyntaxique, DoubleDeclaration, ErreurNonImplemente {
 //        if (this.uniteCourante.equals("pour")) {
 //            nextToken(); // Consomme "pour"
 //            String idfNom = this.uniteCourante;
@@ -202,7 +203,7 @@ public class AnalyseurSyntaxique
         return new Ecrire(expression);
     }
 
-    private Instruction analyseLire() throws ErreurSyntaxique {
+    private Instruction analyseLire() throws ErreurSyntaxique, ErreurNonImplemente {
         analyseTerminal("lire");
         Idf idf = new Idf(this.uniteCourante);
         analyseIdentificateur(); // Consomme l'identificateur
@@ -217,13 +218,17 @@ public class AnalyseurSyntaxique
         analyseTerminal(";");
 
         if (indice == null) {
+            if (idf.getType().equals("tableau")) {
+                throw new ErreurNonImplemente("Affectation de tableaux par lecture");
+            }
+
             return new Lire(idf);
         } else {
             return new Lire(new AccesTableau(idf, indice));
         }
     }
 
-    private Instruction analyseAffectation() throws ErreurSyntaxique {
+    private Instruction analyseAffectation() throws ErreurSyntaxique, ErreurNonImplemente {
         String idfNom = this.uniteCourante;
         analyseIdentificateur();
 

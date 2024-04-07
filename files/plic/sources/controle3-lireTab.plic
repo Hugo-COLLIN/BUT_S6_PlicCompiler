@@ -1,0 +1,6 @@
+programme test {
+    tableau [ 4 ] a ;
+    lire a ;
+    ecrire a ;
+}
+// expected : valeurs de a

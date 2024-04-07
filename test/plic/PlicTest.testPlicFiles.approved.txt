@@ -1127,6 +1127,8 @@ end :
     li $v0, 10
     syscall
 
+
+[controle3-lireTab.plic] => ERREUR: Pas encore implémenté:Affectation de tableaux par lecture
  
 [controle4-siAlorsVrai.plic] => .data
 linebreak: 	.asciiz "\n"
